@@ -2,8 +2,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
-const User = require('../models/user.model');
-const { userResponse } = require('../resources/auth.resource');
+const User = require('../models/UserModel');
+const { userResponse } = require('../resources/AuthResource');
 
 const transporter = nodemailer.createTransport({
     host: process.env.MAIL_HOST,
@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-const { asyncHandler } = require('../middlewares/validation.middleware');
+const { asyncHandler } = require('../middlewares/ValidationMiddleware');
 
 const signup = asyncHandler(async (req, res) => {
     const { name, email, password } = req.validatedData;

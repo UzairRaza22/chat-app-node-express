@@ -1,5 +1,5 @@
-const User = require('../../models/user.model');
-const { asyncHandler } = require('../validation.middleware');
+const User = require('../../models/UserModel');
+const { asyncHandler } = require('../ValidationMiddleware');
 
 const verifyEmailExists = asyncHandler(async (req, res, next) => {
     const { email } = req.body;
