@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth.routes');
+const { errorHandler } = require('./middlewares/validation.middleware');
 
 const app = express();
 
@@ -13,6 +14,9 @@ app.use(express.json());
 
 // Define Routes
 app.use('/api/auth', authRoutes);
+
+// Error Handler (must be last)
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 

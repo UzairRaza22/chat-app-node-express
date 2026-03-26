@@ -11,4 +11,16 @@ const validate = (schema) => (req, res, next) => {
     next();
 };
 
-module.exports = validate;
+const asyncHandler = (fn) => (req, res, next) => {
+    Promise.resolve(fn(req, res, next)).catch(next);
+};
+
+const errorHandler = (err, req, res, next) => {
+    console.error(err);
+    res.status(500).json({
+        message: 'Server error',
+        error: err.message
+    });
+};
+
+module.exports = { validate, asyncHandler, errorHandler };

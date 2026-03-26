@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/user.model');
+const User = require('../../models/user.model');
+const { asyncHandler } = require('../validation.middleware');
 
-const auth = async (req, res, next) => {
+const auth = asyncHandler(async (req, res, next) => {
     const token = req.header('Authorization');
 
     if (!token) {
@@ -23,10 +24,10 @@ const auth = async (req, res, next) => {
         req.user = user;
         next();
     } catch (ex) {
-        res.status(401).json({
+        return res.status(401).json({
             message: 'Invalid token.'
         });
     }
-};
+});
 
 module.exports = auth;

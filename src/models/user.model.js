@@ -18,6 +18,10 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    verifyToken: {
+        type: String,
+        default: null
+    },
     resetToken: {
         type: String,
         default: null

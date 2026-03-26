@@ -14,98 +14,91 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-const signup = async (req, res) => {
-    try {
-        const { name, email, password } = req.validatedData;
+const { asyncHandler } = require('../middlewares/validation.middleware');
 
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
+const signup = asyncHandler(async (req, res) => {
+    const { name, email, password } = req.validatedData;
 
-        const user = await User.create({ name, email, password: hashedPassword });
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const verifyToken = crypto.randomBytes(32).toString('hex');
 
-        res.status(201).json(userResponse(user, token));
-    } catch (err) {
-        res.status(500).json({ message: 'Server error', error: err.message });
-    }
-};
+    const user = await User.create({ 
+        name, 
+        email, 
+        password: hashedPassword,
+        verifyToken
+    });
 
-const verify = async (req, res) => {
-    try {
-        const user = req.user;
-        user.isVerified = true;
-        await user.save();
+    await transporter.sendMail({
+        from: '"No Reply" <no-reply@nodeapp.com>',
+        to: user.email,
+        subject: 'Verify your account',
+        html: `<p>Welcome, ${name}!</p>
+               <p>Please use this token to verify your account:</p>
+               <p><strong>${verifyToken}</strong></p>`
+    });
 
-        res.json(userResponse(user));
-    } catch (err) {
-        res.status(500).json({ message: 'Server error', error: err.message });
-    }
-};
+    res.status(201).json({
+        message: 'Account created successfully. Please check your email for the verification token.',
+        user: userResponse(user)
+    });
+});
 
-const login = async (req, res) => {
-    try {
-        const user = req.user;
+const verify = asyncHandler(async (req, res) => {
+    const user = req.user;
+    user.isVerified = true;
+    user.verifyToken = null;
+    await user.save();
 
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.json({ message: 'Account verified successfully. You can now log in.' });
+});
 
-        res.json(userResponse(user, token));
-    } catch (err) {
-        res.status(500).json({ message: 'Server error', error: err.message });
-    }
-};
+const login = asyncHandler(async (req, res) => {
+    const user = req.user;
 
-const forget = async (req, res) => {
-    try {
-        const user = req.user;
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        const resetToken = crypto.randomBytes(32).toString('hex');
-        user.resetToken = resetToken;
-        user.resetTokenExpire = Date.now() + 3600000; // 1 hour
-        await user.save();
+    res.json(userResponse(user, token));
+});
 
-        await transporter.sendMail({
-            from: '"No Reply" <no-reply@nodeapp.com>',
-            to: user.email,
-            subject: 'Password Reset Request',
-            html: `<p>You requested a password reset.</p>
-                   <p>Use this token to reset your password:</p>
-                   <p><strong>${resetToken}</strong></p>
-                   <p>This token expires in 1 hour.</p>`
-        });
+const forget = asyncHandler(async (req, res) => {
+    const user = req.user;
 
-        res.json({ message: 'Password reset token sent to your email.' });
-    } catch (err) {
-        res.status(500).json({ message: 'Server error', error: err.message });
-    }
-};
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    user.resetToken = resetToken;
+    user.resetTokenExpire = Date.now() + 3600000; // 1 hour
+    await user.save();
 
-const reset = async (req, res) => {
-    try {
-        const user = req.user;
-        const { password } = req.validatedData;
+    await transporter.sendMail({
+        from: '"No Reply" <no-reply@nodeapp.com>',
+        to: user.email,
+        subject: 'Password Reset Request',
+        html: `<p>You requested a password reset.</p>
+               <p>Use this token to reset your password:</p>
+               <p><strong>${resetToken}</strong></p>
+               <p>This token expires in 1 hour.</p>`
+    });
 
-        const salt = await bcrypt.genSalt(10);
-        user.password = await bcrypt.hash(password, salt);
-        user.resetToken = null;
-        user.resetTokenExpire = null;
-        await user.save();
+    res.json({ message: 'Password reset token sent to your email.' });
+});
 
-        res.json({ message: 'Password has been reset successfully.' });
-    } catch (err) {
-        res.status(500).json({ message: 'Server error', error: err.message });
-    }
-};
+const reset = asyncHandler(async (req, res) => {
+    const user = req.user;
+    const { password } = req.validatedData;
 
-const logout = async (req, res) => {
-    try {
-        // In a stateless JWT architecture, logout is primarily handled by the client 
-        // deleting the token from their storage (localStorage/cookies).
-        // This endpoint acts as a successful confirmation hook for the frontend.
-        res.json({ message: 'Logged out successfully. Please remove the token from the client.' });
-    } catch (err) {
-        res.status(500).json({ message: 'Server error', error: err.message });
-    }
-};
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(password, salt);
+    user.resetToken = null;
+    user.resetTokenExpire = null;
+    await user.save();
+
+    res.json({ message: 'Password has been reset successfully.' });
+});
+
+const logout = asyncHandler(async (req, res) => {
+    res.json({ message: 'Logged out successfully.' });
+});
 
 module.exports = { signup, verify, login, forget, reset, logout };
