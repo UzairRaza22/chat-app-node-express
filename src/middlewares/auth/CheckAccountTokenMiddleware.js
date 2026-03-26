@@ -1,5 +1,5 @@
 const User = require('../../models/UserModel');
-const { asyncHandler } = require('../ValidationMiddleware');
+const { asyncHandler } = require('../CheckValidationMiddleware');
 
 const verifyAccountToken = asyncHandler(async (req, res, next) => {
     const { token } = req.body;

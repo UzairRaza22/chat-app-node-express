@@ -1,53 +1,41 @@
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
-const nodemailer = require('nodemailer');
 const User = require('../models/UserModel');
+const Token = require('../models/TokenModel');
 const { userResponse } = require('../resources/AuthResource');
+const { asyncHandler } = require('../middlewares/CheckValidationMiddleware');
 
-const transporter = nodemailer.createTransport({
-    host: process.env.MAIL_HOST,
-    port: process.env.MAIL_PORT,
-    auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS
-    }
-});
-
-const { asyncHandler } = require('../middlewares/ValidationMiddleware');
-
+/**
+ * @desc    Register a new user
+ * @route   POST /api/auth/signup
+ */
 const signup = asyncHandler(async (req, res) => {
     const { name, email, password } = req.validatedData;
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-
     const verifyToken = crypto.randomBytes(32).toString('hex');
 
-    const user = await User.create({ 
-        name, 
-        email, 
+    const user = await User.create({
+        name,
+        email,
         password: hashedPassword,
         verifyToken
     });
 
-    await transporter.sendMail({
-        from: '"No Reply" <no-reply@nodeapp.com>',
-        to: user.email,
-        subject: 'Verify your account',
-        html: `<p>Welcome, ${name}!</p>
-               <p>Please use this token to verify your account:</p>
-               <p><strong>${verifyToken}</strong></p>`
-    });
-
     res.status(201).json({
-        message: 'Account created successfully. Please check your email for the verification token.',
+        message: 'Account created. Please check your email to verify your account.',
         user: userResponse(user)
     });
 });
 
+/**
+ * @desc    Verify user account
+ * @route   POST /api/auth/verify
+ */
 const verify = asyncHandler(async (req, res) => {
     const user = req.user;
+
     user.isVerified = true;
     user.verifyToken = null;
     await user.save();
@@ -55,35 +43,43 @@ const verify = asyncHandler(async (req, res) => {
     res.json({ message: 'Account verified successfully. You can now log in.' });
 });
 
+/**
+ * @desc    Login user & get custom token
+ * @route   POST /api/auth/login
+ */
 const login = asyncHandler(async (req, res) => {
     const user = req.user;
+    const accessToken = crypto.randomBytes(32).toString('hex');
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    await Token.create({
+        userId: user._id,
+        token: accessToken
+    });
 
-    res.json(userResponse(user, token));
+    res.json(userResponse(user, accessToken));
 });
 
+/**
+ * @desc    Forgot password - send reset token
+ * @route   POST /api/auth/forget
+ */
 const forget = asyncHandler(async (req, res) => {
     const user = req.user;
 
-    const resetToken = crypto.randomBytes(32).toString('hex');
-    user.resetToken = resetToken;
-    user.resetTokenExpire = Date.now() + 3600000; // 1 hour
+    user.resetToken = crypto.randomBytes(32).toString('hex');
+    user.resetTokenExpire = Date.now() + 3600000;
+    
+    // Flag to trigger the post-save email since findOne users don't have isModified easily in post-save sometimes
+    user._resetTokenChanged = true;
     await user.save();
-
-    await transporter.sendMail({
-        from: '"No Reply" <no-reply@nodeapp.com>',
-        to: user.email,
-        subject: 'Password Reset Request',
-        html: `<p>You requested a password reset.</p>
-               <p>Use this token to reset your password:</p>
-               <p><strong>${resetToken}</strong></p>
-               <p>This token expires in 1 hour.</p>`
-    });
 
     res.json({ message: 'Password reset token sent to your email.' });
 });
 
+/**
+ * @desc    Reset password
+ * @route   POST /api/auth/reset
+ */
 const reset = asyncHandler(async (req, res) => {
     const user = req.user;
     const { password } = req.validatedData;
@@ -97,8 +93,23 @@ const reset = asyncHandler(async (req, res) => {
     res.json({ message: 'Password has been reset successfully.' });
 });
 
+/**
+ * @desc    Logout user
+ * @route   POST /api/auth/logout
+ */
 const logout = asyncHandler(async (req, res) => {
+    const token = req.header('Authorization').replace('Bearer ', '');
+
+    await Token.findOneAndDelete({ token });
+
     res.json({ message: 'Logged out successfully.' });
 });
 
-module.exports = { signup, verify, login, forget, reset, logout };
+module.exports = {
+    signup,
+    verify,
+    login,
+    forget,
+    reset,
+    logout
+};
