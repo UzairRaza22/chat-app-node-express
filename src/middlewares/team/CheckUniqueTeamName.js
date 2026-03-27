@@ -1,4 +1,4 @@
-const Team = require('../../models/Team');
+const Team = require('../../Models/TeamModel');
 const { asyncHandler } = require('../CheckValidationMiddleware');
 
 const checkUniqueTeamName = asyncHandler(async (req, res, next) => {

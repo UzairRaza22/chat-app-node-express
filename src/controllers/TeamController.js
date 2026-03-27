@@ -1,6 +1,6 @@
-const Team = require('../models/Team');
-const TeamResource = require('../resources/TeamResource');
-const { asyncHandler } = require('../middlewares/CheckValidationMiddleware');
+const Team = require('../Models/TeamModel');
+const TeamResource = require('../Resources/TeamResource');
+const { asyncHandler } = require('../Middlewares/CheckValidationMiddleware');
 
 /**
  * @desc    Create a new team
@@ -66,7 +66,7 @@ const deleteTeam = asyncHandler(async (req, res) => {
  * @desc    Add members to a team
  * @route   POST /api/teams/add-member
  */
-const addmember = asyncHandler(async (req, res) => {
+const addMember = asyncHandler(async (req, res) => {
     const { members } = req.validatedData;
 
     await Team.findByIdAndUpdate(
@@ -86,7 +86,7 @@ const addmember = asyncHandler(async (req, res) => {
  * @desc    Remove members from a team
  * @route   DELETE /api/teams/remove-member
  */
-const removemember = asyncHandler(async (req, res) => {
+const removeMember = asyncHandler(async (req, res) => {
     const { members } = req.validatedData;
 
     await Team.findByIdAndUpdate(
@@ -107,6 +107,6 @@ module.exports = {
     read,
     update,
     deleteTeam,
-    addmember,
-    removemember
+    addMember,
+    removeMember
 };
