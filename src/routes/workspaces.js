@@ -1,22 +1,22 @@
 const express = require('express');
 const router = express.Router();
 
-const workspaceController = require('../controllers/WorkspaceController');
-const { validate } = require('../middlewares/CheckValidationMiddleware');
-const auth = require('../middlewares/auth/CheckTokenMiddleware');
+const workspaceController = require('../Controllers/WorkspaceController');
+const { validate } = require('../Middlewares/CheckValidationMiddleware');
+const auth = require('../Middlewares/Auth/CheckTokenMiddleware');
 
 // Workspace Middlewares (PascalCase)
-const checkWorkspaceExists = require('../middlewares/workspace/CheckWorkspaceExistsMiddleware');
-const checkWorkspaceExist = require('../middlewares/workspace/CheckWorkspaceExistMiddleware');
-const checkUniqueWorkspace = require('../middlewares/workspace/CheckUniqueWorkspaceMiddleware');
-const checkWorkspaceCreator = require('../middlewares/workspace/CheckWorkspaceCreateMiddleware');
-const checkMembersExist = require('../middlewares/workspace/CheckMembersExistMiddleware');
+const checkWorkspaceExists = require('../Middlewares/Workspace/CheckWorkspaceExistsMiddleware');
+const checkWorkspaceExist = require('../Middlewares/Workspace/CheckWorkspaceExistMiddleware');
+const checkUniqueWorkspace = require('../Middlewares/Workspace/CheckUniqueWorkspaceMiddleware');
+const checkWorkspaceCreator = require('../Middlewares/Workspace/CheckWorkspaceCreateMiddleware');
+const checkMembersExist = require('../Middlewares/Workspace/CheckMembersExistMiddleware');
 
 // Request Schemas (PascalCase)
-const createWorkspaceSchema = require('../requests/workspace/CreateWorkspaceRequest');
-const updateWorkspaceSchema = require('../requests/workspace/UpdateWorkspaceRequest');
-const addWorkspaceMemberSchema = require('../requests/workspace/AddWorkspaceMemberRequest');
-const removeWorkspaceMemberSchema = require('../requests/workspace/RemoveWorkspaceMemberRequest');
+const createWorkspaceSchema = require('../Requests/Workspace/CreateWorkspaceRequest');
+const updateWorkspaceSchema = require('../Requests/Workspace/UpdateWorkspaceRequest');
+const addWorkspaceMemberSchema = require('../Requests/Workspace/AddWorkspaceMemberRequest');
+const removeWorkspaceMemberSchema = require('../Requests/Workspace/RemoveWorkspaceMemberRequest');
 
 // Routes
 
