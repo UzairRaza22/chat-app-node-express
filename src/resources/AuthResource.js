@@ -1,17 +1,20 @@
-const userResponse = (user, token = null) => {
-    const response = {
-        id: user._id,
-        name: user.name,
-        email: user.email
-    };
+const BaseResource = require('./BaseResource');
 
-    if (token) {
-        response.token = token;
+class AuthResource extends BaseResource {
+    toArray() {
+        return {
+            id: this.resource._id,
+            name: this.resource.name,
+            email: this.resource.email
+        };
     }
 
-    return response;
-};
+    static withToken(user, token) {
+        return {
+            ...new this(user).toArray(),
+            token
+        };
+    }
+}
 
-module.exports = {
-    userResponse
-};
+module.exports = AuthResource;
