@@ -1,16 +1,24 @@
-const express = require('express');
-const authRoutes = require('./routes/authroutes');
-const { errorHandler } = require('./middlewares/CheckValidationMiddleware');
+require("dotenv").config();
+const express = require("express");
+const connectDB = require("./config/db");
+const authRoutes = require("./routes/auth.routes");
+const messageRoutes = require("./routes/message.routes");
+const {
+  errorHandler,
+  successResponse,
+} = require("./middlewares/validation.middleware");
 
 const app = express();
 
-// Middleware
+connectDB();
+
 app.use(express.json());
+app.use(successResponse);
 
-// Routes
-app.use('/api/auth', authRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes);
 
-// Error Handler (must be last)
 app.use(errorHandler);
 
-module.exports = app;
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
