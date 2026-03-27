@@ -3,7 +3,7 @@ const BaseResource = require('./BaseResource');
 class WorkspaceResource extends BaseResource {
     toArray() {
         return {
-            id: this.resource._id,
+            workspace_id: this.resource._id,
             name: this.resource.name,
             description: this.resource.description,
             owner: this.resource.ownerId,

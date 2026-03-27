@@ -1,28 +1,6 @@
-const Workspace = require('../models/Workspaces');
-const WorkspaceResource = require('../resources/WorkspaceResource');
-const { asyncHandler } = require('../middlewares/CheckValidationMiddleware');
-
-/**
- * @desc    Get all workspaces for the authenticated user
- * @route   GET /api/workspaces
- */
-const readAll = asyncHandler(async (req, res) => {
-    res.json({
-        message: 'Workspaces retrieved successfully.',
-        data: WorkspaceResource.collection(req.userWorkspaces)
-    });
-});
-
-/**
- * @desc    Get a single workspace by ID
- * @route   GET /api/workspaces/:id
- */
-const readOne = asyncHandler(async (req, res) => {
-    res.json({
-        message: 'Workspace retrieved successfully.',
-        data: WorkspaceResource.make(req.workspace)
-    });
-});
+const Workspace = require('../Models/Workspaces');
+const WorkspaceResource = require('../Resources/WorkspaceResource');
+const { asyncHandler } = require('../Middlewares/CheckValidationMiddleware');
 
 /**
  * @desc    Create a new workspace
@@ -64,7 +42,7 @@ const update = asyncHandler(async (req, res) => {
  * @desc    Delete a workspace
  * @route   DELETE /api/workspaces/:id
  */
-const deleteWorkspace = asyncHandler(async (req, res) => {
+const deletes = asyncHandler(async (req, res) => {
     await req.workspace.deleteOne();
 
     res.json({
@@ -112,12 +90,21 @@ const removeMember = asyncHandler(async (req, res) => {
     });
 });
 
+
+
+/**
+ * @desc    Get a single workspace or all workspaces
+ * @route   GET /api/workspaces/read
+ */
+const read = asyncHandler(async (req, res) => {
+    res.json(req.responseData);
+});
+
 module.exports = {
-    readAll,
-    readOne,
+    read,
     create,
     update,
-    delete: deleteWorkspace,
+    delete: deletes,
     addMember,
     removeMember
 };

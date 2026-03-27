@@ -1,6 +1,7 @@
 const Joi = require('joi');
 
-// No body required for reading a single workspace
-const readWorkspaceSchema = Joi.object({});
+const readWorkspaceSchema = Joi.object({
+    workspace_id: Joi.string().optional()
+});
 
 module.exports = readWorkspaceSchema;
