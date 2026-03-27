@@ -36,8 +36,12 @@
                 ],
                 "url": {
                     "raw": "{{base_url}}/workspaces",
-                    "host": ["{{base_url}}"],
-                    "path": ["workspaces"]
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "workspaces"
+                    ]
                 },
                 "description": "Returns all workspaces where the authenticated user is a member."
             },
@@ -80,8 +84,12 @@
                 },
                 "url": {
                     "raw": "{{base_url}}/workspaces",
-                    "host": ["{{base_url}}"],
-                    "path": ["workspaces"]
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "workspaces"
+                    ]
                 },
                 "description": "Creates a new workspace. The authenticated user becomes the owner and first member."
             },
@@ -115,8 +123,13 @@
                 ],
                 "url": {
                     "raw": "{{base_url}}/workspaces/{{workspace_id}}",
-                    "host": ["{{base_url}}"],
-                    "path": ["workspaces", "{{workspace_id}}"]
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "workspaces",
+                        "{{workspace_id}}"
+                    ]
                 },
                 "description": "Returns a single workspace by ID. `workspace_id` is auto-set after Create."
             },
@@ -159,8 +172,13 @@
                 },
                 "url": {
                     "raw": "{{base_url}}/workspaces/{{workspace_id}}",
-                    "host": ["{{base_url}}"],
-                    "path": ["workspaces", "{{workspace_id}}"]
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "workspaces",
+                        "{{workspace_id}}"
+                    ]
                 },
                 "description": "Updates name/description. Only the workspace owner can do this."
             },
@@ -202,8 +220,14 @@
                 },
                 "url": {
                     "raw": "{{base_url}}/workspaces/{{workspace_id}}/members",
-                    "host": ["{{base_url}}"],
-                    "path": ["workspaces", "{{workspace_id}}", "members"]
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "workspaces",
+                        "{{workspace_id}}",
+                        "members"
+                    ]
                 },
                 "description": "Adds one or more users to the workspace. Replace `<userId>` with a valid MongoDB user ID. Owner only."
             },
@@ -242,8 +266,14 @@
                 },
                 "url": {
                     "raw": "{{base_url}}/workspaces/{{workspace_id}}/members",
-                    "host": ["{{base_url}}"],
-                    "path": ["workspaces", "{{workspace_id}}", "members"]
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "workspaces",
+                        "{{workspace_id}}",
+                        "members"
+                    ]
                 },
                 "description": "Removes one or more users from the workspace. Replace `<userId>` with a valid MongoDB user ID. Owner only."
             },
@@ -273,8 +303,13 @@
                 ],
                 "url": {
                     "raw": "{{base_url}}/workspaces/{{workspace_id}}",
-                    "host": ["{{base_url}}"],
-                    "path": ["workspaces", "{{workspace_id}}"]
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "workspaces",
+                        "{{workspace_id}}"
+                    ]
                 },
                 "description": "Permanently deletes a workspace. Owner only."
             },

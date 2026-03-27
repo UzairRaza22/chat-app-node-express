@@ -1,5 +1,5 @@
-const User = require('../../models/UserModel');
-const Token = require('../../models/TokenModel');
+const User = require('../../Models/UserModel');
+const Token = require('../../Models/TokenModel');
 const { asyncHandler } = require('../CheckValidationMiddleware');
 
 const auth = asyncHandler(async (req, res, next) => {
