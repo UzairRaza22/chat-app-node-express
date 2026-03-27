@@ -1,8 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
-const authRoutes = require('./routes/authroutes');
-const { errorHandler } = require('./middlewares/CheckValidationMiddleware');
+const authRoutes = require('./routes/AuthRoutes');
+const channelRoutes = require('./routes/ChannelRoutes');
+const { errorHandler } = require('./Middlewares/CheckValidationMiddleware');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 // Define Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/channels', channelRoutes);
 
 // Error Handler (must be last)
 app.use(errorHandler);
