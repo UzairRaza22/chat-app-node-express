@@ -1,4 +1,4 @@
-const User = require('../../Models/UserModel');
+const User = require('../../models/UserModel');
 const { asyncHandler } = require('../CheckValidationMiddleware');
 
 const verifyResetToken = asyncHandler(async (req, res, next) => {

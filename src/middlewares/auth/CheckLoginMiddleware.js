@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const User = require('../../Models/UserModel');
+const User = require('../../models/UserModel');
 const { asyncHandler } = require('../CheckValidationMiddleware');
 
 const verifyLogin = asyncHandler(async (req, res, next) => {

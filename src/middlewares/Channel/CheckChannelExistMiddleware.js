@@ -1,4 +1,4 @@
-const Channel = require('../../Models/ChannelModel');
+const Channel = require('../../models/ChannelModel');
 const { asyncHandler } = require('../CheckValidationMiddleware');
 
 const channelExist = asyncHandler(async (req, res, next) => {
