@@ -1,0 +1,298 @@
+{
+    "info": {
+        "name": "Chat App — Workspace API",
+        "_postman_id": "workspace-api-collection",
+        "description": "All CRUD endpoints for the Workspace module. Set the `token` variable to your bearer token before running.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:5000/api",
+            "type": "string"
+        },
+        {
+            "key": "token",
+            "value": "e73f6e9b537d65bd33abd231b0d4bd039e7ea5ffd1853ae8169175c118c3e5c9",
+            "type": "string"
+        },
+        {
+            "key": "workspace_id",
+            "value": "",
+            "type": "string"
+        }
+    ],
+    "item": [
+        {
+            "name": "1. Get All Workspaces",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/workspaces",
+                    "host": ["{{base_url}}"],
+                    "path": ["workspaces"]
+                },
+                "description": "Returns all workspaces where the authenticated user is a member."
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                            "pm.test('Has data array', () => {",
+                            "    const json = pm.response.json();",
+                            "    pm.expect(json).to.have.property('data');",
+                            "    pm.expect(json.data).to.be.an('array');",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "2. Create Workspace",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"My Workspace\",\n    \"description\": \"A sample workspace\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/workspaces",
+                    "host": ["{{base_url}}"],
+                    "path": ["workspaces"]
+                },
+                "description": "Creates a new workspace. The authenticated user becomes the owner and first member."
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Status 201', () => pm.response.to.have.status(201));",
+                            "pm.test('Workspace created', () => {",
+                            "    const json = pm.response.json();",
+                            "    pm.expect(json.data).to.have.property('id');",
+                            "    pm.collectionVariables.set('workspace_id', json.data.id);",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "3. Get Single Workspace",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/workspaces/{{workspace_id}}",
+                    "host": ["{{base_url}}"],
+                    "path": ["workspaces", "{{workspace_id}}"]
+                },
+                "description": "Returns a single workspace by ID. `workspace_id` is auto-set after Create."
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                            "pm.test('Has workspace data', () => {",
+                            "    const json = pm.response.json();",
+                            "    pm.expect(json.data).to.have.property('id');",
+                            "    pm.expect(json.data).to.have.property('name');",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "4. Update Workspace",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Updated Workspace Name\",\n    \"description\": \"Updated description\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/workspaces/{{workspace_id}}",
+                    "host": ["{{base_url}}"],
+                    "path": ["workspaces", "{{workspace_id}}"]
+                },
+                "description": "Updates name/description. Only the workspace owner can do this."
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                            "pm.test('Name updated', () => {",
+                            "    const json = pm.response.json();",
+                            "    pm.expect(json.data.name).to.eql('Updated Workspace Name');",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "5. Add Members",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"members\": [\"<userId>\"]\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/workspaces/{{workspace_id}}/members",
+                    "host": ["{{base_url}}"],
+                    "path": ["workspaces", "{{workspace_id}}", "members"]
+                },
+                "description": "Adds one or more users to the workspace. Replace `<userId>` with a valid MongoDB user ID. Owner only."
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                            "pm.test('Has data', () => pm.expect(pm.response.json()).to.have.property('data'));"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "6. Remove Members",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"members\": [\"<userId>\"]\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/workspaces/{{workspace_id}}/members",
+                    "host": ["{{base_url}}"],
+                    "path": ["workspaces", "{{workspace_id}}", "members"]
+                },
+                "description": "Removes one or more users from the workspace. Replace `<userId>` with a valid MongoDB user ID. Owner only."
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                            "pm.test('Has data', () => pm.expect(pm.response.json()).to.have.property('data'));"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "7. Delete Workspace",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/workspaces/{{workspace_id}}",
+                    "host": ["{{base_url}}"],
+                    "path": ["workspaces", "{{workspace_id}}"]
+                },
+                "description": "Permanently deletes a workspace. Owner only."
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                            "pm.test('Deleted message', () => {",
+                            "    const json = pm.response.json();",
+                            "    pm.expect(json.message).to.include('deleted');",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        }
+    ]
+}
