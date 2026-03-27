@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const User = require('../models/UserModel');
 const Token = require('../models/TokenModel');
-const { userResponse } = require('../resources/AuthResource');
+const AuthResource = require('../resources/AuthResource');
 const { asyncHandler } = require('../middlewares/CheckValidationMiddleware');
 
 /**
@@ -25,7 +25,7 @@ const signup = asyncHandler(async (req, res) => {
 
     res.status(201).json({
         message: 'Account created. Please check your email to verify your account.',
-        user: userResponse(user)
+        user: AuthResource.make(user)
     });
 });
 
@@ -56,7 +56,7 @@ const login = asyncHandler(async (req, res) => {
         token: accessToken
     });
 
-    res.json(userResponse(user, accessToken));
+    res.json(AuthResource.withToken(user, accessToken));
 });
 
 /**
