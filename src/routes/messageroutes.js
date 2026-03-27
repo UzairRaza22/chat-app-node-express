@@ -2,26 +2,34 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 
-const messageController = require("../controllers/message.controller");
+const messageController = require("../controllers/MessageController");
 const { validate } = require("../middlewares/validation.middleware");
 const auth = require("../middlewares/auth/auth.middleware");
 
-const verifyChannelMember = require("../middlewares/message/verifyChannelMember.middleware");
-const verifyMessageExists = require("../middlewares/message/verifyMessageExists.middleware");
-const verifyMessageOwner = require("../middlewares/message/verifyMessageOwner.middleware");
-const verifyFileAttached = require("../middlewares/message/verifyFileAttached.middleware");
-const verifyUpdatePayload = require("../middlewares/message/verifyUpdatePayload.middleware");
+// existing middlewares
+const verifyChannelMember = require("../middlewares/message/VerifyChannelMemberMiddleware");
+const verifyMessageExists = require("../middlewares/message/VerifyMessageExistsMiddleware");
+const verifyMessageOwner = require("../middlewares/message/VerifyMessageOwnerMiddleware");
+const verifyFileAttached = require("../middlewares/message/VerifyFileAttachedMiddleware");
+const verifyUpdatePayload = require("../middlewares/message/VerifyUpdatePayloadMiddleware");
 
-const createSchema = require("../requests/message/create.request");
-const readSchema = require("../requests/message/read.request");
-const updateSchema = require("../requests/message/update.request");
-const deleteSchema = require("../requests/message/delete.request");
+// new middlewares
+const handleFileUpload = require("../middlewares/message/HandleFileUploadMiddleware");
+const handleFileUpdate = require("../middlewares/message/HandleFileUpdateMiddleware");
+const handleFileDelete = require("../middlewares/message/HandleFileDeleteMiddleware");
+const streamFile = require("../middlewares/message/StreamFileMiddleware");
+
+// request schemas
+const createSchema = require("../requests/message/CreateMessageRequest");
+const readSchema = require("../requests/message/ReadMessageRequest");
+const updateSchema = require("../requests/message/UpdateMessageRequest");
+const deleteSchema = require("../requests/message/DeleteMessageRequest");
 
 const upload = multer({ storage: multer.memoryStorage() });
 
-// POST /api/messages/create
-// text message  → multipart or json: { channelId, type: 'text', content }
-// file message  → multipart:         { channelId, type: 'file' }  + file field
+// ─── CREATE ──────────────────────────────────────────────────────────────────
+// text:  raw JSON  → { channelId, type: 'text', content }
+// file:  multipart → { channelId, type: 'file' } + file field
 router.post(
   "/create",
   auth,
@@ -29,24 +37,29 @@ router.post(
   validate(createSchema),
   verifyFileAttached,
   verifyChannelMember,
+  handleFileUpload,
   messageController.create,
 );
 
-// GET /api/messages/read
-// all messages  → { channelId, page?, limit? }
-// single text   → { messageId }             — returns JSON
-// single file   → { messageId }             — streams file download
-router.get(
+// ─── READ ─────────────────────────────────────────────────────────────────────
+// POST is used so the payload is sent as raw JSON body — not query params.
+//
+// Payload decides the behaviour:
+//   { messageId }                → single text message JSON response
+//   { messageId } (file msg)     → file streamed directly as download
+//   { channelId, page?, limit? } → paginated channel messages, newest first
+router.post(
   "/read",
   auth,
   validate(readSchema),
   verifyMessageExists,
+  streamFile,
   messageController.read,
 );
 
-// PUT /api/messages/update
-// text message  → { messageId, content }
-// file message  → multipart: { messageId }  + file field
+// ─── UPDATE ───────────────────────────────────────────────────────────────────
+// text:  raw JSON  → { messageId, content }
+// file:  multipart → { messageId } + file field
 router.put(
   "/update",
   auth,
@@ -55,17 +68,19 @@ router.put(
   verifyMessageExists,
   verifyMessageOwner,
   verifyUpdatePayload,
+  handleFileUpdate,
   messageController.update,
 );
 
-// DELETE /api/messages/delete
-// { messageId }
+// ─── DELETE ───────────────────────────────────────────────────────────────────
+// raw JSON → { messageId }
 router.delete(
   "/delete",
   auth,
   validate(deleteSchema),
   verifyMessageExists,
   verifyMessageOwner,
+  handleFileDelete,
   messageController.delete,
 );
 
