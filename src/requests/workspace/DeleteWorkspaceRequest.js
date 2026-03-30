@@ -1,6 +1,7 @@
 const Joi = require('joi');
 
-// No body required for delete operation
-const deleteWorkspaceSchema = Joi.object({});
+const deleteWorkspaceSchema = Joi.object({
+    workspace_id: Joi.string().required()
+});
 
 module.exports = deleteWorkspaceSchema;
