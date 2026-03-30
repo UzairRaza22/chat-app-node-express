@@ -26,16 +26,6 @@ const read = asyncHandler(async (req, res) => {
 });
 
 /**
- * @desc    List channels for a user
- * @route   GET /api/channels/list-by-user
- */
-const listByUser = asyncHandler(async (req, res) => {
-    res.json({
-        channels: ChannelResource.collection(req.channels)
-    });
-});
-
-/**
  * @desc    Update a channel
  * @route   PATCH /api/channels/update
  */
@@ -97,7 +87,6 @@ const removeMember = asyncHandler(async (req, res) => {
 module.exports = {
     create,
     read,
-    listByUser,
     update,
     deleteChannel,
     addMember,

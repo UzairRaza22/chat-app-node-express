@@ -14,7 +14,6 @@ const channelRemoveMember = require('../Middlewares/Channel/CheckChannelRemoveMe
 
 const createChannelSchema = require('../Requests/Channel/CreateChannelRequest');
 const readChannelSchema = require('../Requests/Channel/ReadChannelRequest');
-const listUserChannelsSchema = require('../Requests/Channel/ListUserChannelsRequest');
 const updateChannelSchema = require('../Requests/Channel/UpdateChannelRequest');
 const deleteChannelSchema = require('../Requests/Channel/DeleteChannelRequest');
 const addMemberSchema = require('../Requests/Channel/AddMemberRequest');
@@ -34,12 +33,6 @@ router.get('/read',
     validate(readChannelSchema), 
     channelExist, 
     channelController.read
-);
-
-router.get('/list-by-user', 
-    validate(listUserChannelsSchema), 
-    channelExist, 
-    channelController.listByUser
 );
 
 router.patch('/update', 
