@@ -1,32 +1,39 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const connectDB = require('./config/db');
-const authRoutes = require('./routes/AuthRoutes');
-const workspaceRoutes = require('./routes/workspaceRoutes');
-const channelRoutes = require('./routes/channelroutes');
-const teamRoutes = require('./routes/teamroutes');
-const { errorHandler } = require('./Middlewares/CheckValidationMiddleware');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+
+const connectDB = require("./config/db");
+const authRoutes = require("./routes/authroutes");
+const workspaceRoutes = require("./routes/workspaces");
+const channelRoutes = require("./routes/ChannelRoutes");
+const messageRoutes = require("./routes/message.routes");
+
+// ✅ Import ONLY once
+const {
+  errorHandler,
+  successResponse,
+} = require("./middlewares/validation.middleware");
 
 const app = express();
 
 // Connect Database
 connectDB();
 
-// Init Middleware
+// Middlewares
 app.use(cors());
 app.use(express.json());
 
-// Define Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/workspaces', workspaceRoutes);
-app.use('/api/channels', channelRoutes);
-app.use('/api/teams', teamRoutes);
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/workspaces", workspaceRoutes);
+app.use("/api/channels", channelRoutes);
+app.use("/api/messages", messageRoutes);
 
+// Error Handler (should be last)
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+  console.log(`Server started on port ${PORT}`);
 });
