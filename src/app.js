@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
-const workspaceRoutes = require('./routes/workspaces');
+const workspaceRoutes = require('./routes/workspaceRoutes');
 const channelRoutes = require('./routes/ChannelRoutes');
 const { errorHandler } = require('./Middlewares/CheckValidationMiddleware');
 
