@@ -5,7 +5,6 @@ const authRoutes = require("./routes/authroutes");
 const workspaceRoutes = require("./routes/workspaces");
 const channelRoutes = require("./routes/ChannelRoutes");
 const { errorHandler } = require("./Middlewares/CheckValidationMiddleware");
-const authRoutes = require("./routes/auth.routes");
 const messageRoutes = require("./routes/message.routes");
 const {
   errorHandler,
