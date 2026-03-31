@@ -1,11 +1,8 @@
 const Team = require('../Models/TeamModel');
-const TeamResource = require('../Resources/TeamResource');
+const TeamResource = require('../resources/TeamResource');
 const { asyncHandler } = require('../Middlewares/CheckValidationMiddleware');
 
-/**
- * @desc    Create a new team
- * @route   POST /api/teams/create
- */
+
 const create = asyncHandler(async (req, res) => {
     const { workspace_id, name, description } = req.validatedData;
 
@@ -23,10 +20,6 @@ const create = asyncHandler(async (req, res) => {
     });
 });
 
-/**
- * @desc    Get team details
- * @route   GET /api/teams/read
- */
 const read = asyncHandler(async (req, res) => {
     res.json({
         message: 'Team retrieved successfully.',
@@ -34,10 +27,7 @@ const read = asyncHandler(async (req, res) => {
     });
 });
 
-/**
- * @desc    Update a team
- * @route   PUT /api/teams/update
- */
+
 const update = asyncHandler(async (req, res) => {
     const updatePayload = req.updatePayload;
 
@@ -50,10 +40,6 @@ const update = asyncHandler(async (req, res) => {
     });
 });
 
-/**
- * @desc    Delete a team
- * @route   DELETE /api/teams/delete
- */
 const deleteTeam = asyncHandler(async (req, res) => {
     await req.team.deleteOne();
 
@@ -62,10 +48,6 @@ const deleteTeam = asyncHandler(async (req, res) => {
     });
 });
 
-/**
- * @desc    Add members to a team
- * @route   POST /api/teams/add-member
- */
 const addMember = asyncHandler(async (req, res) => {
     const { members } = req.validatedData;
 
@@ -82,10 +64,6 @@ const addMember = asyncHandler(async (req, res) => {
     });
 });
 
-/**
- * @desc    Remove members from a team
- * @route   DELETE /api/teams/remove-member
- */
 const removeMember = asyncHandler(async (req, res) => {
     const { members } = req.validatedData;
 

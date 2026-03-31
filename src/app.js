@@ -11,12 +11,16 @@ const errorHandler = require('./Middlewares/ErrorHandlerMiddleware');
 const app = express();
 
 // Connect Database
+
 connectDB();
 
 // Init Middleware
 app.use(cors());
 app.use(express.json());
 
+app.use(cors());
+
+app.use(express.json());
 // Define Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/workspaces', workspaceRoutes);
