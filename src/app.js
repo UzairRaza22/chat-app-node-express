@@ -1,12 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const connectDB = require('./config/db');
-const authRoutes = require('./routes/AuthRoutes');
-const workspaceRoutes = require('./routes/workspaceRoutes');
-const channelRoutes = require('./routes/channelroutes');
-const teamRoutes = require('./routes/teamroutes');
-const { errorHandler } = require('./Middlewares/CheckValidationMiddleware');
+const connectDB = require('./Config/db');
+const authRoutes = require('./Routes/authRoutes');
+const workspaceRoutes = require('./Routes/workspaceRoutes');
+const channelRoutes = require('./Routes/channelRoutes');
+const teamRoutes = require('./Routes/teamRoutes');
+const errorHandler = require('./Middlewares/ErrorHandlerMiddleware');
 
 const app = express();
 

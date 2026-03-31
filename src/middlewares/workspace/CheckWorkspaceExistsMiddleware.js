@@ -1,5 +1,6 @@
 const Workspace = require('../../Models/WorkspaceModel');
 const { asyncHandler } = require('../CheckValidationMiddleware');
+const AppError = require('../../utils/AppError');
 
 /**
  * Finds a single workspace by req.body.workspace_id and attaches it to req.workspace.
@@ -9,17 +10,13 @@ const checkWorkspaceExists = asyncHandler(async (req, res, next) => {
     const id = req.body.workspace_id;
     
     if (!id) {
-        return res.status(400).json({
-            message: 'workspace_id is required in the request body.'
-        });
+        return next(new AppError('workspace_id is required in the request body.', 400));
     }
 
     const workspace = await Workspace.findById(id);
 
     if (!workspace) {
-        return res.status(404).json({
-            message: 'Workspace not found.'
-        });
+        return next(new AppError('Workspace not found.', 404));
     }
 
     req.workspace = workspace;
