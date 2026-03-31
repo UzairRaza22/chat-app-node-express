@@ -1,4 +1,4 @@
-const { asyncHandler } = require("../validation.middleware");
+const { asyncHandler } = require("./ValidationMiddleware");
 
 const verifyFileAttached = asyncHandler(async (req, res, next) => {
   const { type } = req.validatedData;

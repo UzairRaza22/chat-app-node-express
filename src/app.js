@@ -4,15 +4,15 @@ const cors = require("cors");
 
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authroutes");
-const workspaceRoutes = require("./routes/workspaces");
+const workspaceRoutes = require("./routes/workspaceRoutes");
 const channelRoutes = require("./routes/ChannelRoutes");
-const messageRoutes = require("./routes/message.routes");
+const messageRoutes = require("./routes/messageroutes");
 
 // ✅ Import ONLY once
 const {
   errorHandler,
   successResponse,
-} = require("./middlewares/validation.middleware");
+} = require("./middlewares/Messages/ValidationMiddleware");
 
 const app = express();
 
@@ -22,6 +22,7 @@ connectDB();
 // Middlewares
 app.use(cors());
 app.use(express.json());
+app.use(successResponse);
 
 // Routes
 app.use("/api/auth", authRoutes);

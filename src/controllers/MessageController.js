@@ -1,6 +1,8 @@
-const Message = require("../models/message.model");
+const Message = require("../models/MessageModel");
 const MessageResource = require("../resources/MessageResource");
-const { asyncHandler } = require("../middlewares/validation.middleware");
+const {
+  asyncHandler,
+} = require("../middlewares/Messages/ValidationMiddleware");
 
 // ─── CREATE ──────────────────────────────────────────────────────────────────
 // POST /api/messages/create
@@ -24,7 +26,7 @@ const create = asyncHandler(async (req, res) => {
     file: req.uploadedFile, // null for text, GridFS object for file
   });
 
-  return res.status(201).success({
+  return res.success({
     message: "Message sent successfully.",
     data: MessageResource.make(message),
   });

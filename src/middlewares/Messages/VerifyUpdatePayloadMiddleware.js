@@ -1,4 +1,4 @@
-const { asyncHandler } = require("../validation.middleware");
+const { asyncHandler } = require("./ValidationMiddleware");
 
 const verifyUpdatePayload = asyncHandler(async (req, res, next) => {
   const message = req.message;

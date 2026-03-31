@@ -3,27 +3,31 @@ const router = express.Router();
 const multer = require("multer");
 
 const messageController = require("../controllers/MessageController");
-const { validate } = require("../middlewares/validation.middleware");
-const auth = require("../middlewares/auth/auth.middleware");
 
-// existing middlewares
-const verifyChannelMember = require("../middlewares/message/VerifyChannelMemberMiddleware");
-const verifyMessageExists = require("../middlewares/message/VerifyMessageExistsMiddleware");
-const verifyMessageOwner = require("../middlewares/message/VerifyMessageOwnerMiddleware");
-const verifyFileAttached = require("../middlewares/message/VerifyFileAttachedMiddleware");
-const verifyUpdatePayload = require("../middlewares/message/VerifyUpdatePayloadMiddleware");
+// FIX: Path was wrong and filename is ValidationMiddleware
+const { validate } = require("../middlewares/Messages/ValidationMiddleware");
 
-// new middlewares
-const handleFileUpload = require("../middlewares/message/HandleFileUploadMiddleware");
-const handleFileUpdate = require("../middlewares/message/HandleFileUpdateMiddleware");
-const handleFileDelete = require("../middlewares/message/HandleFileDeleteMiddleware");
-const streamFile = require("../middlewares/message/StreamFileMiddleware");
+// FIX: Check your auth folder - usually it's AuthMiddleware.js or similar
+const auth = require("../middlewares/auth/CheckTokenMiddleware");
 
-// request schemas
-const createSchema = require("../requests/message/CreateMessageRequest");
-const readSchema = require("../requests/message/ReadMessageRequest");
-const updateSchema = require("../requests/message/UpdateMessageRequest");
-const deleteSchema = require("../requests/message/DeleteMessageRequest");
+// FIX: Your screenshot showed the folder is "Messages" (Capital M)
+// and filenames end with "Middleware" (Capital M)
+const verifyChannelMember = require("../middlewares/Messages/VerifyChannelMemberMiddleware");
+const verifyMessageExists = require("../middlewares/Messages/VerifyMessageExistsMiddleware");
+const verifyMessageOwner = require("../middlewares/Messages/VerifyMessageOwnerMiddleware");
+const verifyFileAttached = require("../middlewares/Messages/VerifyFileAttachedMiddleware");
+const verifyUpdatePayload = require("../middlewares/Messages/VerifyUpdatePayloadMiddleware");
+
+const handleFileUpload = require("../middlewares/Messages/HandleFileUploadMiddleware");
+const handleFileUpdate = require("../middlewares/Messages/HandleFileUpdateMiddleware");
+const handleFileDelete = require("../middlewares/Messages/HandleFileDeleteMiddleware");
+const streamFile = require("../middlewares/Messages/StreamFileMiddleware");
+
+// FIX: Your screenshot showed the folder is "Messages" (Capital M)
+const createSchema = require("../requests/Messages/CreateMessageRequest");
+const readSchema = require("../requests/Messages/ReadMessageRequest");
+const updateSchema = require("../requests/Messages/UpdateMessageRequest");
+const deleteSchema = require("../requests/Messages/DeleteMessageRequest");
 
 const upload = multer({ storage: multer.memoryStorage() });
 
