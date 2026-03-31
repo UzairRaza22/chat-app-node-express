@@ -1,19 +1,29 @@
-const { asyncHandler } = require('../CheckValidationMiddleware');
+﻿const { asyncHandler } = require('../CheckValidationMiddleware');
 
 const channelAdmin = asyncHandler(async (req, res, next) => {
     const channel = req.channel;
     const user = req.user;
 
-    // Exception: allow self-removal in remove-member route
+    if (!channel) {
+        return res.status(404).json({ message: 'Channel not found.' });
+    }
+
+    if (!user) {
+        return res.status(401).json({ message: 'Unauthorized.' });
+    }
+
+    const userId = String(user._id);
+    const creatorId = String(channel.created_id);
+
     if (req.route && req.route.path === '/remove-member') {
-        const { user_id } = req.validatedData || req.body;
-        if (user_id === user._id.toString()) {
+        const targetUserId = String(req.validatedData?.user_id || '');
+        if (targetUserId === userId) {
             return next();
         }
     }
 
-    if (channel.created_id !== user._id.toString()) {
-        return res.status(403).json({ message: 'Access denied. Only the channel admin can perform this action.' });
+    if (creatorId !== userId) {
+        return res.status(403).json({ message: 'Access denied. Only the channel creator can perform this action.' });
     }
 
     next();
