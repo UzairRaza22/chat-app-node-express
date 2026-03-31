@@ -1,33 +1,34 @@
 const Workspace = require('../../Models/WorkspaceModel');
 const Team = require('../../Models/TeamModel');
 const { asyncHandler } = require('../CheckValidationMiddleware');
+const AppError = require('../../utils/AppError');
 
 const memberCheck = asyncHandler(async (req, res, next) => {
     const user = req.user;
     const data = req.validatedData;
 
     if (!user) {
-        return res.status(401).json({ message: 'Unauthorized.' });
+        return next(new AppError('Unauthorized.', 401));
     }
 
     if (!data) {
-        return res.status(400).json({ message: 'Invalid request data.' });
+        return next(new AppError('Invalid request data.', 400));
     }
 
     const { workspace_id, team_id, type } = data;
     if (!workspace_id) {
-        return res.status(400).json({ message: 'workspace_id is required.' });
+        return next(new AppError('workspace_id is required.', 400));
     }
 
     const workspace = await Workspace.findById(workspace_id);
     if (!workspace) {
-        return res.status(404).json({ message: 'Workspace not found.' });
+        return next(new AppError('Workspace not found.', 404));
     }
 
     const userId = String(user._id);
     const workspaceMemberIds = workspace.members.map(member => String(member));
     if (!workspaceMemberIds.includes(userId)) {
-        return res.status(403).json({ message: 'User is not part of this workspace.' });
+        return next(new AppError('User is not part of this workspace.', 403));
     }
 
     req.workspace = workspace;
@@ -37,21 +38,21 @@ const memberCheck = asyncHandler(async (req, res, next) => {
     }
 
     if (!team_id) {
-        return res.status(400).json({ message: 'team_id is required for public or private channels.' });
+        return next(new AppError('team_id is required for public or private channels.', 400));
     }
 
     const team = await Team.findById(team_id);
     if (!team) {
-        return res.status(404).json({ message: 'Team not found.' });
+        return next(new AppError('Team not found.', 404));
     }
 
     if (String(team.workspace_id) !== String(workspace._id)) {
-        return res.status(400).json({ message: 'Team does not belong to this workspace.' });
+        return next(new AppError('Team does not belong to this workspace.', 400));
     }
 
     const teamMemberIds = team.members.map(member => String(member));
     if (!teamMemberIds.includes(userId)) {
-        return res.status(403).json({ message: 'User is not part of this team.' });
+        return next(new AppError('User is not part of this team.', 403));
     }
 
     req.team = team;

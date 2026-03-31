@@ -1,7 +1,8 @@
-﻿const Channel = require('../../Models/ChannelModel');
+const Channel = require('../../Models/ChannelModel');
 const Workspace = require('../../Models/WorkspaceModel');
 const Team = require('../../Models/TeamModel');
 const { asyncHandler } = require('../CheckValidationMiddleware');
+const AppError = require('../../utils/AppError');
 
 const channelCreate = asyncHandler(async (req, res, next) => {
     const data = req.validatedData;
@@ -9,12 +10,12 @@ const channelCreate = asyncHandler(async (req, res, next) => {
 
     // Ensure request is authenticated
     if (!user) {
-        return res.status(401).json({ message: 'Unauthorized.' });
+        return next(new AppError('Unauthorized.', 401));
     }
 
     // Joi already validated payload shape, but guard missing data
     if (!data) {
-        return res.status(400).json({ message: 'Invalid request data.' });
+        return next(new AppError('Invalid request data.', 400));
     }
 
     const { name, workspace_id, team_id, type, direct_user_id } = data;
@@ -22,47 +23,47 @@ const channelCreate = asyncHandler(async (req, res, next) => {
 
     // Channel type must be one of the supported values
     if (!['public', 'private', 'direct'].includes(type)) {
-        return res.status(400).json({ message: 'Invalid channel type.' });
+        return next(new AppError('Invalid channel type.', 400));
     }
 
     // Workspace membership is required for all channel creation flows
     if (!workspace_id) {
-        return res.status(400).json({ message: 'workspace_id is required.' });
+        return next(new AppError('workspace_id is required.', 400));
     }
 
     const workspace = req.workspace || await Workspace.findById(workspace_id);
     if (!workspace) {
-        return res.status(404).json({ message: 'Workspace not found.' });
+        return next(new AppError('Workspace not found.', 404));
     }
 
     const workspaceMemberIds = workspace.members.map(member => String(member));
     if (!workspaceMemberIds.includes(userId)) {
-        return res.status(403).json({ message: 'User is not part of this workspace.' });
+        return next(new AppError('User is not part of this workspace.', 403));
     }
 
     // Public/private channels require team membership as well
     let team = req.team;
     if (type !== 'direct') {
         if (!team_id) {
-            return res.status(400).json({ message: 'team_id is required for public or private channels.' });
+            return next(new AppError('team_id is required for public or private channels.', 400));
         }
 
         team = team || await Team.findById(team_id);
         if (!team) {
-            return res.status(404).json({ message: 'Team not found.' });
+            return next(new AppError('Team not found.', 404));
         }
 
         if (String(team.workspace_id) !== String(workspace._id)) {
-            return res.status(400).json({ message: 'Team does not belong to this workspace.' });
+            return next(new AppError('Team does not belong to this workspace.', 400));
         }
 
         const teamMemberIds = team.members.map(member => String(member));
         if (!teamMemberIds.includes(userId)) {
-            return res.status(403).json({ message: 'User is not part of this team.' });
+            return next(new AppError('User is not part of this team.', 403));
         }
 
         if (!name || name.trim().length < 3) {
-            return res.status(400).json({ message: 'Channel name must be at least 3 characters.' });
+            return next(new AppError('Channel name must be at least 3 characters.', 400));
         }
 
         // Enforce unique name inside workspace + team for public/private channels
@@ -74,7 +75,7 @@ const channelCreate = asyncHandler(async (req, res, next) => {
         });
 
         if (existing) {
-            return res.status(409).json({ message: 'Channel with this name already exists.' });
+            return next(new AppError('Channel with this name already exists.', 409));
         }
     }
 
@@ -83,20 +84,20 @@ const channelCreate = asyncHandler(async (req, res, next) => {
 
     if (type === 'direct') {
         if (team_id) {
-            return res.status(400).json({ message: 'team_id is not allowed for direct channels.' });
+            return next(new AppError('team_id is not allowed for direct channels.', 400));
         }
 
         if (!direct_user_id) {
-            return res.status(400).json({ message: 'direct_user_id is required for direct channels.' });
+            return next(new AppError('direct_user_id is required for direct channels.', 400));
         }
 
         const directUserId = String(direct_user_id);
         if (directUserId === userId) {
-            return res.status(400).json({ message: 'Cannot create a direct channel with yourself.' });
+            return next(new AppError('Cannot create a direct channel with yourself.', 400));
         }
 
         if (!workspaceMemberIds.includes(directUserId)) {
-            return res.status(403).json({ message: 'User is not part of this workspace.' });
+            return next(new AppError('User is not part of this workspace.', 403));
         }
 
         const sortedIds = [userId, directUserId].sort();
@@ -109,7 +110,7 @@ const channelCreate = asyncHandler(async (req, res, next) => {
         });
 
         if (existing) {
-            return res.status(409).json({ message: 'Direct channel already exists between these users.' });
+            return next(new AppError('Direct channel already exists between these users.', 409));
         }
 
         members.push({ user_id: directUserId, role: 'member' });
