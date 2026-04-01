@@ -1,23 +1,23 @@
 const express = require('express');
 const router = express.Router();
 
-const channelController = require('../controllers/ChannelController');
-const { validate } = require('../middlewares/ResponseHandlerMiddleware');
-const auth = require('../middlewares/auth/CheckTokenMiddleware');
+const channelController = require('/ChannelController');
+const { validate } = require('/ResponseHandlerMiddleware');
+const auth = require('/auth/CheckTokenMiddleware');
 
-const channelExist = require('../middlewares/Channel/CheckChannelExistMiddleware');
-const channelCreate = require('../middlewares/Channel/CheckChannelCreateMiddleware');
-const memberCheck = require('../middlewares/Channel/MemberCheckMiddleware');
-const channelAdmin = require('../middlewares/Channel/CheckChannelAdminMiddleware');
-const channelAddMember = require('../middlewares/Channel/CheckChannelAddMemberMiddleware');
-const channelRemoveMember = require('../middlewares/Channel/CheckChannelRemoveMemberMiddleware');
+const channelExist = require('/Channel/CheckChannelExistMiddleware');
+const channelCreate = require('/Channel/CheckChannelCreateMiddleware');
+const memberCheck = require('/Channel/MemberCheckMiddleware');
+const channelAdmin = require('/Channel/CheckChannelAdminMiddleware');
+const channelAddMember = require('/Channel/CheckChannelAddMemberMiddleware');
+const channelRemoveMember = require('/Channel/CheckChannelRemoveMemberMiddleware');
 
-const createChannelSchema = require('../Requests/Channel/CreateChannelRequest');
-const readChannelSchema = require('../Requests/Channel/ReadChannelRequest');
-const updateChannelSchema = require('../Requests/Channel/UpdateChannelRequest');
-const deleteChannelSchema = require('../Requests/Channel/DeleteChannelRequest');
-const addMemberSchema = require('../Requests/Channel/AddMemberRequest');
-const removeMemberSchema = require('../Requests/Channel/RemoveMemberRequest');
+const createChannelSchema = require('/Channel/CreateChannelRequest');
+const readChannelSchema = require('/Channel/ReadChannelRequest');
+const updateChannelSchema = require('/Channel/UpdateChannelRequest');
+const deleteChannelSchema = require('/Channel/DeleteChannelRequest');
+const addMemberSchema = require('/Channel/AddMemberRequest');
+const removeMemberSchema = require('/Channel/RemoveMemberRequest');
 
 // All channel routes require authentication
 router.use(auth);

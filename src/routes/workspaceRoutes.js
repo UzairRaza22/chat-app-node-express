@@ -4,41 +4,41 @@ const router = express.Router();
 
 
 
-const workspaceController = require('../controllers/WorkspaceController');
+const workspaceController = require('/WorkspaceController');
 
-const { validate } = require('../middlewares/ResponseHandlerMiddleware');
+const { validate } = require('/ResponseHandlerMiddleware');
 
-const auth = require('../middlewares/auth/CheckTokenMiddleware');
+const auth = require('/auth/CheckTokenMiddleware');
 
 // Workspace Middlewares (lowercase)
 
-const checkWorkspaceExists  = require('../middlewares/workspace/CheckWorkspaceExistsMiddleware');
+const checkWorkspaceExists  = require('/workspace/CheckWorkspaceExistsMiddleware');
 
-const checkWorkspaceExist   = require('../middlewares/workspace/CheckWorkspaceExistMiddleware');
+const checkWorkspaceExist   = require('/workspace/CheckWorkspaceExistMiddleware');
 
-const checkUniqueWorkspace  = require('../middlewares/workspace/CheckUniqueWorkspaceMiddleware');
+const checkUniqueWorkspace  = require('/workspace/CheckUniqueWorkspaceMiddleware');
 
-const checkWorkspaceCreator = require('../middlewares/workspace/CheckWorkspaceCreateMiddleware');
+const checkWorkspaceCreator = require('/workspace/CheckWorkspaceCreateMiddleware');
 
-const checkMembersExist     = require('../middlewares/workspace/CheckMembersExistMiddleware');
+const checkMembersExist     = require('/workspace/CheckMembersExistMiddleware');
 
-const checkReadWorkspace    = require('../middlewares/workspace/CheckReadWorkspaceMiddleware');
+const checkReadWorkspace    = require('/workspace/CheckReadWorkspaceMiddleware');
 
 
 
 // Request Schemas (PascalCase)
 
-const createWorkspaceSchema       = require('../Requests/Workspace/CreateWorkspaceRequest');
+const createWorkspaceSchema       = require('/Workspace/CreateWorkspaceRequest');
 
-const updateWorkspaceSchema       = require('../Requests/Workspace/UpdateWorkspaceRequest');
+const updateWorkspaceSchema       = require('/Workspace/UpdateWorkspaceRequest');
 
-const addWorkspaceMemberSchema    = require('../Requests/Workspace/AddWorkspaceMemberRequest');
+const addWorkspaceMemberSchema    = require('/Workspace/AddWorkspaceMemberRequest');
 
-const removeWorkspaceMemberSchema = require('../Requests/Workspace/RemoveWorkspaceMemberRequest');
+const removeWorkspaceMemberSchema = require('/Workspace/RemoveWorkspaceMemberRequest');
 
-const readWorkspaceSchema         = require('../Requests/Workspace/ReadWorkspaceRequest');
+const readWorkspaceSchema         = require('/Workspace/ReadWorkspaceRequest');
 
-const deleteWorkspaceSchema       = require('../Requests/Workspace/DeleteWorkspaceRequest');
+const deleteWorkspaceSchema       = require('/Workspace/DeleteWorkspaceRequest');
 
 
 

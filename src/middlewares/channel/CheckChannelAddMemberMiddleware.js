@@ -9,17 +9,6 @@ const channelAddMember = asyncHandler(async (req, res, next) => {
     const user = req.user;
     const data = req.validatedData;
 
-    if (!user) {
-        return next(new AppError('Unauthorized.', 401));
-    }
-
-    if (!channel) {
-        return next(new AppError('Channel not found.', 404));
-    }
-
-    if (!data || !data.user_id) {
-        return next(new AppError('User ID is required.', 400));
-    }
 
     if (channel.type === 'direct') {
         return next(new AppError('Cannot add members to a direct channel.', 400));

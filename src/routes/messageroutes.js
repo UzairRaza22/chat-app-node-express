@@ -4,24 +4,24 @@ const multer = require("multer");
 
 const messageController = require("../controllers/MessageController");
 
-// FIX: Path was wrong and filename is ValidationMiddleware
-const { validate } = require('../middlewares/ResponseHandlerMiddleware');
+// FIX: Path was wrong and filename is ResponseHandlerMiddleware
+const { validate } = require('/ResponseHandlerMiddleware');
 
 // FIX: Check your auth folder - usually it's AuthMiddleware.js or similar
 const auth = require("../middlewares/auth/CheckTokenMiddleware");
 
 // FIX: Your screenshot showed the folder is "Messages" (Capital M)
 // and filenames end with "Middleware" (Capital M)
-const verifyChannelMember = require("../middlewares/Messages/VerifyChannelMemberMiddleware");
-const verifyMessageExists = require("../middlewares/Messages/VerifyMessageExistsMiddleware");
-const verifyMessageOwner = require("../middlewares/Messages/VerifyMessageOwnerMiddleware");
-const verifyFileAttached = require("../middlewares/Messages/VerifyFileAttachedMiddleware");
-const verifyUpdatePayload = require("../middlewares/Messages/VerifyUpdatePayloadMiddleware");
+const verifyChannelMember = require("../middlewares/messages/VerifyChannelMemberMiddleware");
+const verifyMessageExists = require("../middlewares/messages/VerifyMessageExistsMiddleware");
+const verifyMessageOwner = require("../middlewares/messages/VerifyMessageOwnerMiddleware");
+const verifyFileAttached = require("../middlewares/messages/VerifyFileAttachedMiddleware");
+const verifyUpdatePayload = require("../middlewares/messages/VerifyUpdatePayloadMiddleware");
 
-const handleFileUpload = require("../middlewares/Messages/HandleFileUploadMiddleware");
-const handleFileUpdate = require("../middlewares/Messages/HandleFileUpdateMiddleware");
-const handleFileDelete = require("../middlewares/Messages/HandleFileDeleteMiddleware");
-const streamFile = require("../middlewares/Messages/StreamFileMiddleware");
+const handleFileUpload = require("../middlewares/messages/HandleFileUploadMiddleware");
+const handleFileUpdate = require("../middlewares/messages/HandleFileUpdateMiddleware");
+const handleFileDelete = require("../middlewares/messages/HandleFileDeleteMiddleware");
+const streamFile = require("../middlewares/messages/StreamFileMiddleware");
 
 // FIX: Your screenshot showed the folder is "Messages" (Capital M)
 const createSchema = require("../requests/Messages/CreateMessageRequest");

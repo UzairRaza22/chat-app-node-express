@@ -1,6 +1,6 @@
-const Channel = require('../Models/ChannelModel');
-const ChannelResource = require('../Resources/ChannelResource');
-const { asyncHandler } = require('../middlewares/ResponseHandlerMiddleware');
+const Channel = require('/ChannelModel');
+const ChannelResource = require('/ChannelResource');
+const { asyncHandler } = require('/ResponseHandlerMiddleware');
 
 /**
  * @desc    Create a new channel
