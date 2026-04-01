@@ -36,8 +36,14 @@ app.use(cors());
 
 app.use(express.json());
 
+<<<<<<< HEAD
 
 
+=======
+app.use(cors());
+
+app.use(express.json());
+>>>>>>> 95766a890e7489a0f6b2707fe389470b9cf3b4d5
 // Define Routes
 
 app.use('/api/auth', authRoutes);

@@ -15,49 +15,33 @@ const acceptInvitationByToken = asyncHandler(async (req, res) => {
     }).populate('workspaceId');
 
     if (!invitation) {
-        return res.status(400).json({
-            success: false,
-            message: 'Invalid or expired invitation token.'
-        });
+        return res.error('Invalid or expired invitation token.');
     }
 
     // Verify if workspaceId matches
     if (invitation.workspaceId._id.toString() !== workspaceId.toString()) {
-        return res.status(400).json({
-            success: false,
-            message: 'Invitation does not match the provided workspace.'
-        });
+        return res.error('Invitation does not match the provided workspace.');
     }
 
     if (invitation.isExpired()) {
-        return res.status(400).json({
-            success: false,
-            message: 'Invitation token has expired.'
-        });
+        return res.error('Invitation token has expired.');
     }
 
     // Check if invitation email matches user email
     if (invitation.email.toLowerCase() !== user.email.toLowerCase()) {
-        return res.status(400).json({
-            success: false,
-            message: 'This invitation is for a different email address.'
-        });
+        return res.error('This invitation is for a different email address.');
     }
 
     // Check if user is already a member of the workspace
     if (invitation.workspaceId.members.includes(user._id)) {
-        return res.status(400).json({
-            success: false,
-            message: 'You are already a member of this workspace.'
-        });
+        return res.error('You are already a member of this workspace.');
     }
 
     // Accept the invitation
     const invitationResult = await InvitationService.acceptInvitation(token, user._id, workspaceId);
     
     if (invitationResult.success) {
-        res.json({
-            success: true,
+        res.success({
             message: 'Invitation accepted successfully! You have been added to the workspace.',
             workspace: {
                 id: invitationResult.workspace._id,
@@ -66,10 +50,7 @@ const acceptInvitationByToken = asyncHandler(async (req, res) => {
             }
         });
     } else {
-        res.status(400).json({
-            success: false,
-            message: 'Failed to accept invitation. Please try again.'
-        });
+        res.error('Failed to accept invitation. Please try again.');
     }
 });
 

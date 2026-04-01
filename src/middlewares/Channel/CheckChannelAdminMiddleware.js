@@ -1,15 +1,16 @@
-﻿const { asyncHandler } = require('../CheckValidationMiddleware');
+const { asyncHandler } = require('../CheckValidationMiddleware');
+const AppError = require('../../utils/AppError');
 
 const channelAdmin = asyncHandler(async (req, res, next) => {
     const channel = req.channel;
     const user = req.user;
 
     if (!channel) {
-        return res.status(404).json({ message: 'Channel not found.' });
+        return next(new AppError('Channel not found.', 404));
     }
 
     if (!user) {
-        return res.status(401).json({ message: 'Unauthorized.' });
+        return next(new AppError('Unauthorized.', 401));
     }
 
     const userId = String(user._id);
@@ -23,7 +24,7 @@ const channelAdmin = asyncHandler(async (req, res, next) => {
     }
 
     if (creatorId !== userId) {
-        return res.status(403).json({ message: 'Access denied. Only the channel creator can perform this action.' });
+        return next(new AppError('Access denied. Only the channel creator can perform this action.', 403));
     }
 
     next();

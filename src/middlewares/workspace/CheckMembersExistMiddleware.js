@@ -99,15 +99,11 @@ const checkMembersExist = asyncHandler(async (req, res, next) => {
             // Check if user exists and is verified
             const user = await User.findById(member);
             if (!user) {
-                return res.status(400).json({
-                    message: `User ID ${member} does not exist.`
-                });
+                return res.error(`User ID ${member} does not exist.`);
             }
             
             if (!user.isVerified) {
-                return res.status(400).json({
-                    message: `Cannot add unverified users to workspace.`
-                });
+                return res.error(`Cannot add unverified users to workspace.`);
             }
             
             workspace.members.push(member);
