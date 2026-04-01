@@ -1,6 +1,6 @@
-const Message = require("../models/MessageModel");
-const MessageResource = require("../resources/MessageResource");
-const { asyncHandler } = require('/ResponseHandlerMiddleware');
+const Message = require('../models/messagemodel');
+const MessageResource = require('../resources/messageresource');
+const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
 
 const create = asyncHandler(async (req, res) => {
   const { channelId, type, content } = req.validatedData;

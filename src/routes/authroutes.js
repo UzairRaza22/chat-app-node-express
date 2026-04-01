@@ -1,20 +1,20 @@
 const express = require('express');
 const router = express.Router();
 
-const authController = require('/AuthController');
-const { validate } = require('/ResponseHandlerMiddleware');
-const auth = require('/auth/CheckTokenMiddleware');
-const checkExistingUser = require('/auth/CheckExistingUserMiddleware');
-const verifyLogin = require('/auth/CheckLoginMiddleware');
-const verifyEmailExists = require('/auth/CheckEmailExistsMiddleware');
-const verifyResetToken = require('/auth/CheckResetTokenMiddleware');
-const verifyAccountToken = require('/auth/CheckAccountTokenMiddleware');
+const authController = require('../controllers/authcontroller');
+const { validate } = require('../middlewares/responsehandlermiddleware');
+const auth = require('../middlewares/auth/checktokenmiddleware');
+const checkExistingUser = require('../middlewares/auth/checkexistingusermiddleware');
+const verifyLogin = require('../middlewares/auth/checkloginmiddleware');
+const verifyEmailExists = require('../middlewares/auth/checkemailexistsmiddleware');
+const verifyResetToken = require('../middlewares/auth/checkresettokenmiddleware');
+const verifyAccountToken = require('../middlewares/auth/checkaccounttokenmiddleware');
 
-const signupSchema = require('/Auth/SignupRequest');
-const verifySchema = require('/Auth/VerifyRequest');
-const loginSchema = require('/Auth/LoginRequest');
-const forgetSchema = require('/Auth/ForgetRequest');
-const resetSchema = require('/Auth/ResetRequest');
+const signupSchema = require('../requests/auth/signuprequest');
+const verifySchema = require('../requests/auth/verifyrequest');
+const loginSchema = require('../requests/auth/loginrequest');
+const forgetSchema = require('../requests/auth/forgetrequest');
+const resetSchema = require('../requests/auth/resetrequest');
 
 // Routes
 router.post('/signup', validate(signupSchema), checkExistingUser, authController.signup);

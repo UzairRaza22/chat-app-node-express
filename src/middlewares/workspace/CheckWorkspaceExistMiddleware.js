@@ -1,5 +1,5 @@
-const Workspace = require('../../Models/WorkspaceModel');
-const { asyncHandler } = require('../ResponseHandlerMiddleware');
+const Workspace = require('../../models/workspacemodel');
+const { asyncHandler } = require('../responsehandlermiddleware');
 
 /**
  * Finds all workspaces where the authenticated user is a member.

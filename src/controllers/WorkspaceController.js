@@ -1,6 +1,6 @@
-const Workspace = require('/WorkspaceModel');
-const WorkspaceResource = require('/WorkspaceResource');
-const { asyncHandler } = require('/ResponseHandlerMiddleware');
+const Workspace = require('../models/workspacemodel');
+const WorkspaceResource = require('../resources/workspaceresource');
+const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
 
 /**
  * @desc    Get all workspaces for the authenticated user

@@ -1,6 +1,6 @@
-const User = require('../../Models/UserModel');
-const { asyncHandler } = require('../ResponseHandlerMiddleware');
-const AppError = require('../../utils/AppError');
+const User = require('../../models/usermodel');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
 
 const verifyResetToken = asyncHandler(async (req, res, next) => {
     const { token } = req.body;

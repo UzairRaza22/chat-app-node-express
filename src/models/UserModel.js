@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const transporter = require('/mail');
+const transporter = require('../config/mail');
 
 const UserSchema = new mongoose.Schema({
     name: {

@@ -1,5 +1,5 @@
-const { updateFileInGridFS } = require("../../Config/gridfs");
-const { asyncHandler } = require("../ResponseHandlerMiddleware");
+const { updateFileInGridFS } = require('../../config/gridfs');
+const { asyncHandler } = require('../responsehandlermiddleware');
 
 /**
  * Runs before the update controller.

@@ -1,9 +1,9 @@
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
-const User = require('/UserModel');
-const Token = require('/TokenModel');
-const AuthResource = require('/AuthResource');
-const { asyncHandler } = require('/ResponseHandlerMiddleware');
+const User = require('../models/usermodel');
+const Token = require('../models/tokenmodel');
+const AuthResource = require('../resources/authresource');
+const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
 
 /**
  * @desc    Register a new user

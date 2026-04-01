@@ -1,5 +1,5 @@
-const { asyncHandler } = require('../ResponseHandlerMiddleware');
-const AppError = require('../../utils/AppError');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
 
 const checkTeamMemberExists = asyncHandler(async (req, res, next) => {
     const { members } = req.validatedData;

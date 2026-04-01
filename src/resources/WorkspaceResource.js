@@ -1,4 +1,4 @@
-const BaseResource = require('./BaseResource');
+const BaseResource = require('./baseresource');
 
 class WorkspaceResource extends BaseResource {
     toArray() {

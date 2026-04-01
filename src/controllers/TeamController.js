@@ -1,7 +1,7 @@
-const Team = require('/TeamModel');
-const User = require('/UserModel'); 
-const TeamResource = require('/TeamResource');
-const { asyncHandler } = require('/ResponseHandlerMiddleware');
+const Team = require('../models/teammodel');
+const User = require('../models/usermodel'); 
+const TeamResource = require('../resources/teamresource');
+const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
 
 
 //Create

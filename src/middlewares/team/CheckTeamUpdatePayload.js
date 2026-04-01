@@ -1,5 +1,5 @@
-const { asyncHandler } = require('../ResponseHandlerMiddleware');
-const AppError = require('../../utils/AppError');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
 
 const checkTeamUpdatePayload = asyncHandler(async (req, res, next) => {
     const { name, description } = req.validatedData;

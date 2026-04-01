@@ -1,6 +1,6 @@
-const Team = require('../../Models/TeamModel');
-const { asyncHandler } = require('../ResponseHandlerMiddleware');
-const AppError = require('../../utils/AppError');
+const Team = require('../../models/teammodel');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
 
 const checkUniqueTeamName = asyncHandler(async (req, res, next) => {
     const { workspace_id, name, team_id } = req.validatedData;

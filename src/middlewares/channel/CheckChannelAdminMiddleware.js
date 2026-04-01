@@ -1,5 +1,5 @@
-const { asyncHandler } = require('../ResponseHandlerMiddleware');
-const AppError = require('../../utils/AppError');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
 
 
 const channelAdmin = asyncHandler(async (req, res, next) => {

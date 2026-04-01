@@ -4,16 +4,16 @@ const cors = require("cors");
 
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authroutes");
-const workspaceRoutes = require("./routes/workspaceRoutes");
-const channelRoutes = require("./routes/ChannelRoutes");
+const workspaceRoutes = require("./routes/workspaceroutes");
+const channelRoutes = require("./routes/channelroutes");
 const messageRoutes = require("./routes/messageroutes");
-const teamRoutes = require("./routes/teamRoutes");
+const teamRoutes = require("./routes/teamroutes");
 
 // ✅ Import ONLY once
 const {
   errorHandler,
   successResponse,
-} = require("./middlewares/ResponseHandlerMiddleware");
+} = require("./middlewares/responsehandlermiddleware");
 
 const app = express();
 

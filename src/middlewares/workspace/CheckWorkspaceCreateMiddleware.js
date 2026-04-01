@@ -1,5 +1,5 @@
-const { asyncHandler } = require('../ResponseHandlerMiddleware');
-const AppError = require('../../utils/AppError');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
 
 /**
  * Checks that the authenticated user is the owner (creator) of the workspace.

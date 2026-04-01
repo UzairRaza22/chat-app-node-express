@@ -1,6 +1,6 @@
-const Message = require("../../models/MessageModel");
-const { asyncHandler } = require("../ResponseHandlerMiddleware");
-const AppError = require("../../utils/AppError");
+const Message = require('../../models/messagemodel');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
 
 /**
  * Looks up the message only when messageId is present in the validated payload.

@@ -1,7 +1,7 @@
-const Workspace = require('../../Models/WorkspaceModel');
-const Team = require('../../Models/TeamModel');
-const { asyncHandler } = require('../ResponseHandlerMiddleware');
-const AppError = require('../../utils/AppError');
+const Workspace = require('../../models/workspacemodel');
+const Team = require('../../models/teammodel');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
 
 const memberCheck = asyncHandler(async (req, res, next) => {
     const user = req.user;
