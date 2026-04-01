@@ -1,4 +1,4 @@
-const { downloadFileFromGridFS } = require("../../config/gridfs");
+const { downloadFileFromGridFS } = require("../../Config/gridfs");
 
 /**
  * Runs on GET /api/messages/read for both single-message and channel flows.

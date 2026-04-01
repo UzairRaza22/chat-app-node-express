@@ -97,8 +97,19 @@ const asyncHandler = (fn) => (req, res, next) => {
     Promise.resolve(fn(req, res, next)).catch(next);
 };
 
+const validate = (schema) => (req, res, next) => {
+    const { error, value } = schema.validate(req.body);
+    if (error) {
+        error.isJoi = true;
+        return next(error);
+    }
+    req.validatedData = value;
+    next();
+};
+
 module.exports = {
   errorHandler: ErrorHandlerMiddleware,
   successResponse,
-  asyncHandler
+  asyncHandler,
+  validate
 };

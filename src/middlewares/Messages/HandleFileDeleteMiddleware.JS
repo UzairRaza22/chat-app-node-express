@@ -1,5 +1,5 @@
-const { deleteFileFromGridFS } = require("../../config/gridfs");
-const { asyncHandler } = require("./ValidationMiddleware");
+const { deleteFileFromGridFS } = require("../../Config/gridfs");
+const { asyncHandler } = require("../ResponseHandlerMiddleware");
 
 /**
  * Runs before the delete controller.

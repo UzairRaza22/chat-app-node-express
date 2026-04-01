@@ -5,7 +5,7 @@ const multer = require("multer");
 const messageController = require("../controllers/MessageController");
 
 // FIX: Path was wrong and filename is ValidationMiddleware
-const { validate } = require("../middlewares/Messages/ValidationMiddleware");
+const { validate } = require('../middlewares/ResponseHandlerMiddleware');
 
 // FIX: Check your auth folder - usually it's AuthMiddleware.js or similar
 const auth = require("../middlewares/auth/CheckTokenMiddleware");
@@ -31,9 +31,9 @@ const deleteSchema = require("../requests/Messages/DeleteMessageRequest");
 
 const upload = multer({ storage: multer.memoryStorage() });
 
-// ─── CREATE ──────────────────────────────────────────────────────────────────
-// text:  raw JSON  → { channelId, type: 'text', content }
-// file:  multipart → { channelId, type: 'file' } + file field
+// â”€â”€â”€ CREATE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// text:  raw JSON  â†’ { channelId, type: 'text', content }
+// file:  multipart â†’ { channelId, type: 'file' } + file field
 router.post(
   "/create",
   auth,
@@ -45,13 +45,13 @@ router.post(
   messageController.create,
 );
 
-// ─── READ ─────────────────────────────────────────────────────────────────────
-// POST is used so the payload is sent as raw JSON body — not query params.
+// â”€â”€â”€ READ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// POST is used so the payload is sent as raw JSON body â€” not query params.
 //
 // Payload decides the behaviour:
-//   { messageId }                → single text message JSON response
-//   { messageId } (file msg)     → file streamed directly as download
-//   { channelId, page?, limit? } → paginated channel messages, newest first
+//   { messageId }                â†’ single text message JSON response
+//   { messageId } (file msg)     â†’ file streamed directly as download
+//   { channelId, page?, limit? } â†’ paginated channel messages, newest first
 router.post(
   "/read",
   auth,
@@ -61,9 +61,9 @@ router.post(
   messageController.read,
 );
 
-// ─── UPDATE ───────────────────────────────────────────────────────────────────
-// text:  raw JSON  → { messageId, content }
-// file:  multipart → { messageId } + file field
+// â”€â”€â”€ UPDATE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// text:  raw JSON  â†’ { messageId, content }
+// file:  multipart â†’ { messageId } + file field
 router.put(
   "/update",
   auth,
@@ -76,8 +76,8 @@ router.put(
   messageController.update,
 );
 
-// ─── DELETE ───────────────────────────────────────────────────────────────────
-// raw JSON → { messageId }
+// â”€â”€â”€ DELETE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// raw JSON â†’ { messageId }
 router.delete(
   "/delete",
   auth,
@@ -89,3 +89,4 @@ router.delete(
 );
 
 module.exports = router;
+

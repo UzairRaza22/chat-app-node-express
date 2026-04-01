@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const channelController = require('../Controllers/ChannelController');
-const { validate } = require('../Middlewares/CheckValidationMiddleware');
-const auth = require('../Middlewares/Auth/CheckTokenMiddleware');
+const channelController = require('../controllers/ChannelController');
+const { validate } = require('../middlewares/ResponseHandlerMiddleware');
+const auth = require('../middlewares/auth/CheckTokenMiddleware');
 
-const channelExist = require('../Middlewares/Channel/CheckChannelExistMiddleware');
-const channelCreate = require('../Middlewares/Channel/CheckChannelCreateMiddleware');
-const memberCheck = require('../Middlewares/Channel/MemberCheckMiddleware');
-const channelAdmin = require('../Middlewares/Channel/CheckChannelAdminMiddleware');
-const channelAddMember = require('../Middlewares/Channel/CheckChannelAddMemberMiddleware');
-const channelRemoveMember = require('../Middlewares/Channel/CheckChannelRemoveMemberMiddleware');
+const channelExist = require('../middlewares/Channel/CheckChannelExistMiddleware');
+const channelCreate = require('../middlewares/Channel/CheckChannelCreateMiddleware');
+const memberCheck = require('../middlewares/Channel/MemberCheckMiddleware');
+const channelAdmin = require('../middlewares/Channel/CheckChannelAdminMiddleware');
+const channelAddMember = require('../middlewares/Channel/CheckChannelAddMemberMiddleware');
+const channelRemoveMember = require('../middlewares/Channel/CheckChannelRemoveMemberMiddleware');
 
 const createChannelSchema = require('../Requests/Channel/CreateChannelRequest');
 const readChannelSchema = require('../Requests/Channel/ReadChannelRequest');
@@ -66,3 +66,4 @@ router.delete('/remove-member',
 );
 
 module.exports = router;
+

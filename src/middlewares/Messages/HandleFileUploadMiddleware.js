@@ -1,5 +1,5 @@
-const { uploadFileToGridFS } = require("../../config/gridfs");
-const { asyncHandler } = require("./ValidationMiddleware");
+const { uploadFileToGridFS } = require("../../Config/gridfs");
+const { asyncHandler } = require("../ResponseHandlerMiddleware");
 
 /**
  * Runs before the create controller.

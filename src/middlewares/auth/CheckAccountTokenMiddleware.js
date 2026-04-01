@@ -1,5 +1,6 @@
 const User = require('../../Models/UserModel');
-const { asyncHandler } = require('../CheckValidationMiddleware');
+const { asyncHandler } = require('../ResponseHandlerMiddleware');
+const AppError = require('../../utils/AppError');
 
 const verifyAccountToken = asyncHandler(async (req, res, next) => {
     const { token } = req.body;
@@ -7,9 +8,7 @@ const verifyAccountToken = asyncHandler(async (req, res, next) => {
     const user = await User.findOne({ verifyToken: token });
 
     if (!user) {
-        return res.status(400).json({
-            message: 'Invalid verification token.'
-        });
+        return next(new AppError('Invalid verification token.', 400));
     }
 
     req.user = user;
@@ -17,3 +16,4 @@ const verifyAccountToken = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = verifyAccountToken;
+

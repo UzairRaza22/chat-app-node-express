@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-const teamController = require('../Controllers/TeamController');
-const { validate } = require('../Middlewares/CheckValidationMiddleware');
-const auth = require('../Middlewares/Auth/CheckTokenMiddleware');
+const teamController = require('../controllers/TeamController');
+const { validate } = require('../middlewares/ResponseHandlerMiddleware');
+const auth = require('../middlewares/auth/CheckTokenMiddleware');
 
 // Middleware
-const checkTeamExists = require('../Middlewares/Team/CheckTeamExists');
-const checkWorkspaceCreatorTeam = require('../Middlewares/Team/CheckWorkspaceCreatorTeam');
-const checkUniqueTeamName = require('../Middlewares/Team/CheckUniqueTeamName');
+const checkTeamExists = require('../middlewares/team/CheckTeamExists');
+const checkWorkspaceCreatorTeam = require('../middlewares/team/CheckWorkspaceCreatorTeam');
+const checkUniqueTeamName = require('../middlewares/team/CheckUniqueTeamName');
 const checkWorkspaceMemberTeam = require('../middlewares/team/CheckWorkspaceMemberTeam');
-const checkTeamMemberExists = require('../Middlewares/Team/CheckTeamMemberExists');
-const checkTeamUpdatePayload = require('../Middlewares/Team/CheckTeamUpdatePayload');
+const checkTeamMemberExists = require('../middlewares/team/CheckTeamMemberExists');
+const checkTeamUpdatePayload = require('../middlewares/team/CheckTeamUpdatePayload');
 
 // Request Schemas
 const createRequest = require('../Requests/Team/CreateRequest');
@@ -80,3 +80,4 @@ router.delete('/remove-member',
 );
 
 module.exports = router;
+

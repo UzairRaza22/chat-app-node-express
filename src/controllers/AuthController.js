@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const User = require('../Models/UserModel');
 const Token = require('../Models/TokenModel');
 const AuthResource = require('../Resources/AuthResource');
-const { asyncHandler } = require('../Middlewares/CheckValidationMiddleware');
+const { asyncHandler } = require('../middlewares/ResponseHandlerMiddleware');
 
 /**
  * @desc    Register a new user
@@ -23,10 +23,10 @@ const signup = asyncHandler(async (req, res) => {
         verifyToken
     });
 
-    res.status(201).json({
+    res.success({
         message: 'Account created. Please check your email to verify your account.',
         user: AuthResource.make(user)
-    });
+    }, 201);
 });
 
 /**
@@ -40,7 +40,7 @@ const verify = asyncHandler(async (req, res) => {
     user.verifyToken = null;
     await user.save();
 
-    res.json({ message: 'Account verified successfully. You can now log in.' });
+    res.success({ message: 'Account verified successfully. You can now log in.' });
 });
 
 /**
@@ -56,7 +56,7 @@ const login = asyncHandler(async (req, res) => {
         token: accessToken
     });
 
-    res.json(AuthResource.withToken(user, accessToken));
+    res.success(AuthResource.withToken(user, accessToken));
 });
 
 /**
@@ -73,7 +73,7 @@ const forget = asyncHandler(async (req, res) => {
     user._resetTokenChanged = true;
     await user.save();
 
-    res.json({ message: 'Password reset token sent to your email.' });
+    res.success({ message: 'Password reset token sent to your email.' });
 });
 
 /**
@@ -90,7 +90,7 @@ const reset = asyncHandler(async (req, res) => {
     user.resetTokenExpire = null;
     await user.save();
 
-    res.json({ message: 'Password has been reset successfully.' });
+    res.success({ message: 'Password has been reset successfully.' });
 });
 
 /**
@@ -102,7 +102,7 @@ const logout = asyncHandler(async (req, res) => {
 
     await Token.findOneAndDelete({ token });
 
-    res.json({ message: 'Logged out successfully.' });
+    res.success({ message: 'Logged out successfully.' });
 });
 
 module.exports = {
@@ -113,3 +113,4 @@ module.exports = {
     reset,
     logout
 };
+

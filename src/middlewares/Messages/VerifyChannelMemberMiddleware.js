@@ -1,5 +1,5 @@
 const Channel = require("../../Models/ChannelModel");
-const { asyncHandler } = require("../CheckValidationMiddleware");
+const { asyncHandler } = require("../ResponseHandlerMiddleware");
 const AppError = require("../../utils/AppError");
 
 /**
@@ -7,7 +7,7 @@ const AppError = require("../../utils/AppError");
  * members is an array of objects: [{ user_id, role, _id }, ...]
  * Uses "members.user_id" dot notation to match the nested field.
  *
- * On failure → passes 403 error to ErrorHandlerMiddleware via next(err).
+ * On failure â†’ passes 403 error to ErrorHandlerMiddleware via next(err).
  */
 const verifyChannelMember = asyncHandler(async (req, res, next) => {
   const { channelId } = req.validatedData;
@@ -27,3 +27,4 @@ const verifyChannelMember = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = verifyChannelMember;
+

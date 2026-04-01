@@ -1,5 +1,6 @@
 const Message = require("../../models/MessageModel");
-const { asyncHandler } = require("./ValidationMiddleware");
+const { asyncHandler } = require("../ResponseHandlerMiddleware");
+const AppError = require("../../utils/AppError");
 
 /**
  * Looks up the message only when messageId is present in the validated payload.
@@ -15,9 +16,7 @@ const verifyMessageExists = asyncHandler(async (req, res, next) => {
   const message = await Message.findOne({ _id: messageId, isDeleted: false });
 
   if (!message) {
-    const err = new Error("Message not found.");
-    err.statusCode = 404;
-    return next(err);
+    return next(new AppError("Message not found.", 404));
   }
 
   req.message = message;

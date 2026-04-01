@@ -13,7 +13,7 @@ const teamRoutes = require("./routes/teamRoutes");
 const {
   errorHandler,
   successResponse,
-} = require("./middlewares/Messages/ValidationMiddleware");
+} = require("./middlewares/ResponseHandlerMiddleware");
 
 const app = express();
 

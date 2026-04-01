@@ -1,13 +1,13 @@
 const Workspace = require('../Models/WorkspaceModel');
 const WorkspaceResource = require('../Resources/WorkspaceResource');
-const { asyncHandler } = require('../Middlewares/CheckValidationMiddleware');
+const { asyncHandler } = require('../middlewares/ResponseHandlerMiddleware');
 
 /**
  * @desc    Get all workspaces for the authenticated user
  * @route   GET /api/workspaces
  */
 const readAll = asyncHandler(async (req, res) => {
-    res.json({
+    res.success({
         message: 'Workspaces retrieved successfully.',
         data: WorkspaceResource.collection(req.userWorkspaces)
     });
@@ -18,7 +18,7 @@ const readAll = asyncHandler(async (req, res) => {
  * @route   GET /api/workspaces/:id
  */
 const readOne = asyncHandler(async (req, res) => {
-    res.json({
+    res.success({
         message: 'Workspace retrieved successfully.',
         data: WorkspaceResource.make(req.workspace)
     });
@@ -38,10 +38,10 @@ const create = asyncHandler(async (req, res) => {
         members: [req.user._id]
     });
 
-    res.status(201).json({
+    res.success({
         message: 'Workspace created successfully.',
         data: WorkspaceResource.make(workspace)
-    });
+    }, 201);
 });
 
 /**
@@ -54,7 +54,7 @@ const update = asyncHandler(async (req, res) => {
     Object.assign(req.workspace, { name, description });
     await req.workspace.save();
 
-    res.json({
+    res.success({
         message: 'Workspace updated successfully.',
         data: WorkspaceResource.make(req.workspace)
     });
@@ -67,7 +67,7 @@ const update = asyncHandler(async (req, res) => {
 const deletes = asyncHandler(async (req, res) => {
     await req.workspace.deleteOne();
 
-    res.json({
+    res.success({
         message: 'Workspace deleted successfully.'
     });
 });
@@ -86,7 +86,7 @@ const addMember = asyncHandler(async (req, res) => {
 
     const updated = await Workspace.findById(req.workspace._id);
 
-    res.json({
+    res.success({
         message: 'Members added successfully.',
         data: WorkspaceResource.make(updated)
     });
@@ -106,7 +106,7 @@ const removeMember = asyncHandler(async (req, res) => {
 
     const updated = await Workspace.findById(req.workspace._id);
 
-    res.json({
+    res.success({
         message: 'Members removed successfully.',
         data: WorkspaceResource.make(updated)
     });
@@ -119,7 +119,7 @@ const removeMember = asyncHandler(async (req, res) => {
  * @route   GET /api/workspaces/read
  */
 const read = asyncHandler(async (req, res) => {
-    res.json(req.responseData);
+    res.success(req.responseData);
 });
 
 module.exports = {

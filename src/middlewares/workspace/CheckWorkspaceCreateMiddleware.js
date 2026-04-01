@@ -1,4 +1,5 @@
-const { asyncHandler } = require('../CheckValidationMiddleware');
+const { asyncHandler } = require('../ResponseHandlerMiddleware');
+const AppError = require('../../utils/AppError');
 
 /**
  * Checks that the authenticated user is the owner (creator) of the workspace.
@@ -6,12 +7,11 @@ const { asyncHandler } = require('../CheckValidationMiddleware');
  */
 const checkWorkspaceCreator = asyncHandler(async (req, res, next) => {
     if (req.workspace.ownerId.toString() !== req.user._id.toString()) {
-        return res.status(403).json({
-            message: 'Access denied. Only the workspace owner can perform this action.'
-        });
+        return next(new AppError('Access denied. Only the workspace owner can perform this action.', 403));
     }
 
     next();
 });
 
 module.exports = checkWorkspaceCreator;
+

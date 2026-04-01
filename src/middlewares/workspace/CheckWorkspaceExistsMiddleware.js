@@ -1,5 +1,5 @@
 const Workspace = require('../../Models/WorkspaceModel');
-const { asyncHandler } = require('../CheckValidationMiddleware');
+const { asyncHandler } = require('../ResponseHandlerMiddleware');
 const AppError = require('../../utils/AppError');
 
 /**
@@ -24,3 +24,4 @@ const checkWorkspaceExists = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkWorkspaceExists;
+

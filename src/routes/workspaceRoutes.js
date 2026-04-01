@@ -4,27 +4,25 @@ const router = express.Router();
 
 
 
-const workspaceController = require('../Controllers/WorkspaceController');
+const workspaceController = require('../controllers/WorkspaceController');
 
-const { validate } = require('../Middlewares/CheckValidationMiddleware');
+const { validate } = require('../middlewares/ResponseHandlerMiddleware');
 
-const auth = require('../Middlewares/Auth/CheckTokenMiddleware');
+const auth = require('../middlewares/auth/CheckTokenMiddleware');
 
+// Workspace Middlewares (lowercase)
 
+const checkWorkspaceExists  = require('../middlewares/workspace/CheckWorkspaceExistsMiddleware');
 
-// Workspace Middlewares (PascalCase)
+const checkWorkspaceExist   = require('../middlewares/workspace/CheckWorkspaceExistMiddleware');
 
-const checkWorkspaceExists  = require('../Middlewares/Workspace/CheckWorkspaceExistsMiddleware');
+const checkUniqueWorkspace  = require('../middlewares/workspace/CheckUniqueWorkspaceMiddleware');
 
-const checkWorkspaceExist   = require('../Middlewares/Workspace/CheckWorkspaceExistMiddleware');
+const checkWorkspaceCreator = require('../middlewares/workspace/CheckWorkspaceCreateMiddleware');
 
-const checkUniqueWorkspace  = require('../Middlewares/Workspace/CheckUniqueWorkspaceMiddleware');
+const checkMembersExist     = require('../middlewares/workspace/CheckMembersExistMiddleware');
 
-const checkWorkspaceCreator = require('../Middlewares/Workspace/CheckWorkspaceCreateMiddleware');
-
-const checkMembersExist     = require('../Middlewares/Workspace/CheckMembersExistMiddleware');
-
-const checkReadWorkspace    = require('../Middlewares/Workspace/CheckReadWorkspaceMiddleware');
+const checkReadWorkspace    = require('../middlewares/workspace/CheckReadWorkspaceMiddleware');
 
 
 

@@ -1,8 +1,6 @@
 const Message = require("../models/MessageModel");
 const MessageResource = require("../resources/MessageResource");
-const {
-  asyncHandler,
-} = require("../middlewares/Messages/ValidationMiddleware");
+const { asyncHandler } = require('../middlewares/ResponseHandlerMiddleware');
 
 const create = asyncHandler(async (req, res) => {
   const { channelId, type, content } = req.validatedData;
@@ -84,3 +82,4 @@ const delete_ = asyncHandler(async (req, res) => {
 });
 
 module.exports = { create, read, update, delete: delete_ };
+

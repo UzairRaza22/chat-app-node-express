@@ -1,4 +1,5 @@
-const { asyncHandler } = require("./ValidationMiddleware");
+const { asyncHandler } = require("../ResponseHandlerMiddleware");
+const AppError = require("../../utils/AppError");
 
 /**
  * Verifies the update payload matches the message type.
@@ -12,15 +13,11 @@ const verifyUpdatePayload = asyncHandler(async (req, res, next) => {
   const { content } = req.validatedData;
 
   if (message.type === "text" && !content) {
-    const err = new Error("content is required to update a text message.");
-    err.statusCode = 400;
-    return next(err);
+    return next(new AppError("content is required to update a text message.", 400));
   }
 
   if (message.type === "file" && !req.file) {
-    const err = new Error("A new file is required to update a file message.");
-    err.statusCode = 400;
-    return next(err);
+    return next(new AppError("A new file is required to update a file message.", 400));
   }
 
   next();
