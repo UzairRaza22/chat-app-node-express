@@ -1,5 +1,6 @@
-const Channel = require("../../models/ChannelModel");
-const { asyncHandler } = require("./ValidationMiddleware");
+const Channel = require("../../Models/ChannelModel");
+const { asyncHandler } = require("../CheckValidationMiddleware");
+const AppError = require("../../utils/AppError");
 
 /**
  * Verifies the logged-in user is a member of the channel.
@@ -14,13 +15,11 @@ const verifyChannelMember = asyncHandler(async (req, res, next) => {
 
   const channel = await Channel.findOne({
     _id: channelId,
-    "members.user_id": userId,
+    "members.user_id": String(userId),
   });
 
   if (!channel) {
-    const err = new Error("You are not a member of this channel.");
-    err.statusCode = 403;
-    return next(err);
+    return next(new AppError("You are not a member of this channel.", 403));
   }
 
   req.channel = channel;

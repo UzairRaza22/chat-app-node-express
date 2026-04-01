@@ -1,19 +1,20 @@
-﻿const { asyncHandler } = require('../CheckValidationMiddleware');
+const { asyncHandler } = require('../CheckValidationMiddleware');
+const AppError = require('../../utils/AppError');
 
 const channelRemoveMember = asyncHandler(async (req, res, next) => {
     const channel = req.channel;
     const data = req.validatedData;
 
     if (!channel) {
-        return res.status(404).json({ message: 'Channel not found.' });
+        return next(new AppError('Channel not found.', 404));
     }
 
     if (!data || !data.user_id) {
-        return res.status(400).json({ message: 'User ID is required.' });
+        return next(new AppError('User ID is required.', 400));
     }
 
     if (channel.type === 'direct') {
-        return res.status(400).json({ message: 'Cannot remove members from a direct channel.' });
+        return next(new AppError('Cannot remove members from a direct channel.', 400));
     }
 
     const targetUserId = String(data.user_id);
@@ -23,11 +24,11 @@ const channelRemoveMember = asyncHandler(async (req, res, next) => {
     }));
 
     if (!members.some(member => member.user_id === targetUserId)) {
-        return res.status(404).json({ message: 'User is not a member of this channel.' });
+        return next(new AppError('User is not a member of this channel.', 404));
     }
 
     if (String(channel.created_id) === targetUserId) {
-        return res.status(403).json({ message: 'Cannot remove the channel creator.' });
+        return next(new AppError('Cannot remove the channel creator.', 403));
     }
 
     req.members = members.filter(member => member.user_id !== targetUserId);

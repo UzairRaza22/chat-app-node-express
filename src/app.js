@@ -7,6 +7,7 @@ const authRoutes = require("./routes/authroutes");
 const workspaceRoutes = require("./routes/workspaceRoutes");
 const channelRoutes = require("./routes/ChannelRoutes");
 const messageRoutes = require("./routes/messageroutes");
+const teamRoutes = require("./routes/teamRoutes");
 
 // ✅ Import ONLY once
 const {
@@ -17,6 +18,7 @@ const {
 const app = express();
 
 // Connect Database
+
 connectDB();
 
 // Middlewares
@@ -29,6 +31,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/workspaces", workspaceRoutes);
 app.use("/api/channels", channelRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/teams", teamRoutes);
+app.use(cors());
 
 // Error Handler (should be last)
 app.use(errorHandler);
