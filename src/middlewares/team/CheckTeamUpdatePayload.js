@@ -1,4 +1,5 @@
 const { asyncHandler } = require('../CheckValidationMiddleware');
+const AppError = require('../../utils/AppError'); 
 
 const checkTeamUpdatePayload = asyncHandler(async (req, res, next) => {
     const { name, description } = req.validatedData;
@@ -9,9 +10,7 @@ const checkTeamUpdatePayload = asyncHandler(async (req, res, next) => {
     if (description !== undefined) updatePayload.description = description;
 
     if (Object.keys(updatePayload).length === 0) {
-        return res.status(400).json({
-            message: 'At least one field (name or description) must be provided for update.'
-        });
+        return next(new AppError('At least one field (name or description) must be provided for update.', 400));
     }
 
     req.updatePayload = updatePayload;

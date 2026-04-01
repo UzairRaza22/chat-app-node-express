@@ -1,4 +1,4 @@
-﻿const { asyncHandler } = require('../CheckValidationMiddleware');
+﻿const { asyncHandler } = require('./CheckValidationMiddleware');
 
 const channelRemoveMember = asyncHandler(async (req, res, next) => {
     const channel = req.channel;

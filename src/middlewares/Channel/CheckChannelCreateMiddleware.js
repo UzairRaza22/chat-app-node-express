@@ -1,7 +1,7 @@
 ﻿const Channel = require('../../Models/ChannelModel');
 const Workspace = require('../../Models/WorkspaceModel');
 const Team = require('../../Models/TeamModel');
-const { asyncHandler } = require('../CheckValidationMiddleware');
+const { asyncHandler } = require('./CheckValidationMiddleware');
 
 const channelCreate = asyncHandler(async (req, res, next) => {
     const data = req.validatedData;
