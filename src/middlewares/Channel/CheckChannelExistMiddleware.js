@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Channel = require('../../Models/ChannelModel');
-const { asyncHandler } = require('../CheckValidationMiddleware');
+const { asyncHandler } = require('./CheckValidationMiddleware');
 const AppError = require('../../utils/AppError');
 
 const channelExist = asyncHandler(async (req, res, next) => {

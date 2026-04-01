@@ -1,8 +1,12 @@
 const Channel = require('../../Models/ChannelModel');
 const Workspace = require('../../Models/WorkspaceModel');
 const Team = require('../../Models/TeamModel');
+<<<<<<< HEAD
 const { asyncHandler } = require('../CheckValidationMiddleware');
 const AppError = require('../../utils/AppError');
+=======
+const { asyncHandler } = require('./CheckValidationMiddleware');
+>>>>>>> 188e872936afc37377ce5e8a584d8a43059cf436
 
 const channelCreate = asyncHandler(async (req, res, next) => {
     const data = req.validatedData;
