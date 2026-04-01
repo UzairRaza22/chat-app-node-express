@@ -1,5 +1,6 @@
-const Channel = require("../../models/channel.model");
-const { asyncHandler } = require("../validation.middleware");
+const Channel = require("../../Models/ChannelModel");
+const { asyncHandler } = require("../CheckValidationMiddleware");
+const AppError = require("../../utils/AppError");
 
 const verifyChannelMember = asyncHandler(async (req, res, next) => {
   const { channelId } = req.validatedData;
@@ -7,13 +8,11 @@ const verifyChannelMember = asyncHandler(async (req, res, next) => {
 
   const channel = await Channel.findOne({
     _id: channelId,
-    members: userId,
+    'members.user_id': String(userId),
   });
 
   if (!channel) {
-    return res.status(403).json({
-      message: "You are not a member of this channel.",
-    });
+    return next(new AppError("You are not a member of this channel.", 403));
   }
 
   req.channel = channel;
