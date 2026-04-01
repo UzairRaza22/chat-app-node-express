@@ -11,6 +11,11 @@ const checkTeamExists = asyncHandler(async (req, res, next) => {
         return next(new AppError('Team not found.', 404));
     }
 
+    // CHECK Team Creator?
+    if (team.creator_id.toString() !== req.user._id.toString()) {
+        return next(new AppError('You do not have permission to manage this team.', 403));
+    }
+
     req.team = team;
     next();
 });
