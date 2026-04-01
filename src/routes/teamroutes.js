@@ -9,7 +9,7 @@ const auth = require('../Middlewares/Auth/CheckTokenMiddleware');
 const checkTeamExists = require('../Middlewares/Team/CheckTeamExists');
 const checkWorkspaceCreatorTeam = require('../Middlewares/Team/CheckWorkspaceCreatorTeam');
 const checkUniqueTeamName = require('../Middlewares/Team/CheckUniqueTeamName');
-const checkWorkspaceMemberTeam = require('../Middlewares/Team/CheckWorkspaceMemberTeam');
+const checkWorkspaceMemberTeam = require('../middlewares/team/CheckWorkspaceMemberTeam');
 const checkTeamMemberExists = require('../Middlewares/Team/CheckTeamMemberExists');
 const checkTeamUpdatePayload = require('../Middlewares/Team/CheckTeamUpdatePayload');
 
