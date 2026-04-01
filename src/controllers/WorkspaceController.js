@@ -1,4 +1,5 @@
 const Workspace = require('../Models/WorkspaceModel');
+const User = require('../Models/UserModel');
 const WorkspaceResource = require('../Resources/WorkspaceResource');
 const { asyncHandler } = require('../Middlewares/CheckValidationMiddleware');
 
@@ -73,22 +74,32 @@ const deletes = asyncHandler(async (req, res) => {
 });
 
 /**
- * @desc    Add members to a workspace
- * @route   POST /api/workspaces/:id/members
+ * @desc    Add members to a workspace (handles both user IDs and emails)
+ * @route   POST /api/workspaces/add-member
  */
 const addMember = asyncHandler(async (req, res) => {
-    const { members } = req.validatedData;
+    const { processedResults, emailResults } = req;
+    const workspace = req.workspace;
 
-    await Workspace.findByIdAndUpdate(
-        req.workspace._id,
-        { $addToSet: { members: { $each: members } } }
-    );
+    // Merge processed results with email results
+    const finalResults = processedResults.map(result => {
+        if (result.status === 'pending_email') {
+            // Find corresponding email result
+            const emailResult = emailResults.find(email => email.member === result.member);
+            return emailResult || result;
+        }
+        return result;
+    });
 
-    const updated = await Workspace.findById(req.workspace._id);
+    // Get updated workspace
+    const updatedWorkspace = await Workspace.findById(workspace._id);
 
     res.json({
-        message: 'Members added successfully.',
-        data: WorkspaceResource.make(updated)
+        message: 'Member processing completed.',
+        data: {
+            workspace: WorkspaceResource.make(updatedWorkspace),
+            results: finalResults
+        }
     });
 });
 
@@ -111,8 +122,6 @@ const removeMember = asyncHandler(async (req, res) => {
         data: WorkspaceResource.make(updated)
     });
 });
-
-
 
 /**
  * @desc    Get a single workspace or all workspaces
