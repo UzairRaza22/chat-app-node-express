@@ -1,7 +1,7 @@
-const User = require('../../Models/UserModel');
-const Token = require('../../Models/TokenModel');
-const { asyncHandler } = require('../CheckValidationMiddleware');
-const AppError = require('../../utils/AppError');
+const User = require('../../models/usermodel');
+const Token = require('../../models/tokenmodel');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
 
 const auth = asyncHandler(async (req, res, next) => {
     let token = req.header('Authorization');
@@ -28,3 +28,4 @@ const auth = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = auth;
+

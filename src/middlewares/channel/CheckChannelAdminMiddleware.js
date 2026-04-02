@@ -1,5 +1,6 @@
-const { asyncHandler } = require('../CheckValidationMiddleware');
-const AppError = require('../../utils/AppError');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
+
 
 const channelAdmin = asyncHandler(async (req, res, next) => {
     const channel = req.channel;
@@ -31,3 +32,4 @@ const channelAdmin = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = channelAdmin;
+

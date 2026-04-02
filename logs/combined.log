@@ -1,0 +1,9 @@
+[2026-04-02T06:34:02.365Z] INFO: Server started on port 5000
+[2026-04-02T06:41:39.955Z] INFO: Incoming Request: POST /api/auth/login - IP: ::1 - Body: {"email":"basim@example.com","password":"*****"}
+[2026-04-02T06:41:41.012Z] INFO: Outgoing Response: POST /api/auth/login - Status: 200 - Time: 1057.06ms
+[2026-04-02T06:52:22.108Z] INFO: Incoming Request: POST /api/auth/login - IP: ::1 - Body: {"email":"basi@example.com","password":"*****"}
+[2026-04-02T06:52:22.446Z] ERROR: Application Error: Invalid credentials.
+[2026-04-02T06:52:22.474Z] WARN: Outgoing Response: POST /api/auth/login - Status: 400 - Time: 363.45ms
+[2026-04-02T06:54:42.285Z] INFO: Server started on port 5000
+[2026-04-02T06:55:25.998Z] INFO: Server started on port 5000
+[2026-04-02T06:55:42.338Z] INFO: Server started on port 5000

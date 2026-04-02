@@ -4,11 +4,12 @@ const verifyFileAttached = asyncHandler(async (req, res, next) => {
   const { type } = req.validatedData;
 
   if (type === "file" && !req.file) {
-    const err = new Error(
-      'No file attached. Please upload a file when type is "file".',
+    return next(
+      new AppError(
+        'No file attached. Please upload a file when type is "file".',
+        400,
+      ),
     );
-    err.statusCode = 400;
-    return next(err);
   }
 
   next();

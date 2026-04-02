@@ -1,6 +1,6 @@
-const Channel = require('../Models/ChannelModel');
-const ChannelResource = require('../Resources/ChannelResource');
-const { asyncHandler } = require('../Middlewares/CheckValidationMiddleware');
+const Channel = require('../models/channelmodel');
+const ChannelResource = require('../resources/channelresource');
+const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
 
 /**
  * @desc    Create a new channel
@@ -9,10 +9,10 @@ const { asyncHandler } = require('../Middlewares/CheckValidationMiddleware');
 const create = asyncHandler(async (req, res) => {
     const channel = await Channel.create(req.channelData);
 
-    res.status(201).json({
+    res.success({
         message: 'Channel created successfully.',
         channel: ChannelResource.make(channel)
-    });
+    }, 201);
 });
 
 /**
@@ -20,7 +20,7 @@ const create = asyncHandler(async (req, res) => {
  * @route   GET /api/channels/read
  */
 const read = asyncHandler(async (req, res) => {
-    res.json({
+    res.success({
         channel: ChannelResource.make(req.channel)
     });
 });
@@ -36,7 +36,7 @@ const update = asyncHandler(async (req, res) => {
     if (name) channel.name = name;
     await channel.save();
 
-    res.json({
+    res.success({
         message: 'Channel updated successfully.',
         channel: ChannelResource.make(channel)
     });
@@ -49,7 +49,7 @@ const update = asyncHandler(async (req, res) => {
 const deleteChannel = asyncHandler(async (req, res) => {
     await req.channel.deleteOne();
 
-    res.json({
+    res.success({
         message: 'Channel deleted successfully.'
     });
 });
@@ -63,7 +63,7 @@ const addMember = asyncHandler(async (req, res) => {
     channel.members = req.members;
     await channel.save();
 
-    res.json({
+    res.success({
         message: 'Member added successfully.',
         channel: ChannelResource.make(channel)
     });
@@ -78,7 +78,7 @@ const removeMember = asyncHandler(async (req, res) => {
     channel.members = req.members;
     await channel.save();
 
-    res.json({
+    res.success({
         message: 'Member removed successfully.',
         channel: ChannelResource.make(channel)
     });
@@ -92,3 +92,4 @@ module.exports = {
     addMember,
     removeMember
 };
+

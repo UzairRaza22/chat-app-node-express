@@ -1,25 +1,25 @@
 const express = require('express');
 const router = express.Router();
 
-const teamController = require('../Controllers/TeamController');
-const { validate } = require('../Middlewares/CheckValidationMiddleware');
-const auth = require('../Middlewares/Auth/CheckTokenMiddleware');
+const teamController = require('../controllers/teamcontroller');
+const { validate } = require('../middlewares/responsehandlermiddleware');
+const auth = require('../middlewares/auth/checktokenmiddleware');
 
 // Middleware
-const checkTeamExists = require('../Middlewares/Team/CheckTeamExists');
-const checkWorkspaceCreatorTeam = require('../Middlewares/Team/CheckWorkspaceCreatorTeam');
-const checkUniqueTeamName = require('../Middlewares/Team/CheckUniqueTeamName');
-const checkWorkspaceMemberTeam = require('../middlewares/team/CheckWorkspaceMemberTeam');
-const checkTeamMemberExists = require('../Middlewares/Team/CheckTeamMemberExists');
-const checkTeamUpdatePayload = require('../Middlewares/Team/CheckTeamUpdatePayload');
+const checkTeamExists = require('../middlewares/team/checkteamexists');
+const checkWorkspaceCreatorTeam = require('../middlewares/team/checkworkspacecreatorteam');
+const checkUniqueTeamName = require('../middlewares/team/checkuniqueteamname');
+const checkWorkspaceMemberTeam = require('../middlewares/team/checkworkspacememberteam');
+const checkTeamMemberExists = require('../middlewares/team/checkteammemberexists');
+const checkTeamUpdatePayload = require('../middlewares/team/checkteamupdatepayload');
 
 // Request Schemas
-const createRequest = require('../Requests/Team/CreateRequest');
-const readRequest = require('../Requests/Team/ReadRequest');
-const updateRequest = require('../Requests/Team/UpdateRequest');
-const deleteRequest = require('../Requests/Team/DeleteRequest');
-const addMemberRequest = require('../Requests/Team/AddMemberRequest');
-const removeMemberRequest = require('../Requests/Team/RemoveMemberRequest');
+const createRequest = require('../requests/team/createrequest');
+const readRequest = require('../requests/team/readrequest');
+const updateRequest = require('../requests/team/updaterequest');
+const deleteRequest = require('../requests/team/deleterequest');
+const addMemberRequest = require('../requests/team/addmemberrequest');
+const removeMemberRequest = require('../requests/team/removememberrequest');
 
 // Routes
 
@@ -80,3 +80,4 @@ router.delete('/remove-member',
 );
 
 module.exports = router;
+

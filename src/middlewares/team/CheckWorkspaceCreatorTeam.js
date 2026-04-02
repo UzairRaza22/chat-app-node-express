@@ -1,19 +1,15 @@
-const Workspace = require('../../Models/WorkspaceModel');
-const { asyncHandler } = require('../CheckValidationMiddleware');
+const Workspace = require('../../models/workspacemodel');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
 
 const checkWorkspaceCreatorTeam = asyncHandler(async (req, res, next) => {
     const workspace = await Workspace.findById(req.team.workspace_id);
-
     if (!workspace) {
-        return res.status(404).json({
-            message: 'Workspace not found.'
-        });
+        return next(new AppError('Workspace not found.', 404));
     }
 
-    if (workspace.ownerId.toString() !== req.user._id.toString()) {
-        return res.status(403).json({
-            message: 'Access denied. Only the workspace owner can manage teams.'
-        });
+    if (String(workspace.creator_id) !== String(req.user._id)) {
+        return next(new AppError('Access denied. Only the workspace creator can manage teams.', 403));
     }
 
     req.workspace = workspace;

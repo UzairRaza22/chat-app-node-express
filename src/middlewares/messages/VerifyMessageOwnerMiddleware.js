@@ -5,9 +5,9 @@ const verifyMessageOwner = asyncHandler(async (req, res, next) => {
   const userId = req.user._id;
 
   if (message.senderId.toString() !== userId.toString()) {
-    const err = new Error("You are not authorized to modify this message.");
-    err.statusCode = 403;
-    return next(err);
+    return next(
+      new AppError("You are not authorized to modify this message.", 403),
+    );
   }
 
   next();

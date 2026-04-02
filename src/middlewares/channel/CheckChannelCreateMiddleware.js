@@ -1,8 +1,9 @@
-const Channel = require('../../Models/ChannelModel');
-const Workspace = require('../../Models/WorkspaceModel');
-const Team = require('../../Models/TeamModel');
-const { asyncHandler } = require('../CheckValidationMiddleware');
-const AppError = require('../../utils/AppError');
+const Channel = require('../../models/channelmodel');
+const Workspace = require('../../models/workspacemodel');
+const Team = require('../../models/teammodel');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
+
 
 const channelCreate = asyncHandler(async (req, res, next) => {
     const data = req.validatedData;
@@ -130,3 +131,4 @@ const channelCreate = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = channelCreate;
+

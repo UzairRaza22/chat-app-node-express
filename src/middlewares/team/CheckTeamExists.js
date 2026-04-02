@@ -1,6 +1,6 @@
-const Team = require('../../Models/TeamModel');
-const { asyncHandler } = require('../CheckValidationMiddleware');
-const AppError = require('../../utils/AppError');
+const Team = require('../../models/teammodel');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
 
 const checkTeamExists = asyncHandler(async (req, res, next) => {
     const { team_id } = req.validatedData || req.params;
@@ -11,7 +11,6 @@ const checkTeamExists = asyncHandler(async (req, res, next) => {
         return next(new AppError('Team not found.', 404));
     }
 
-    // CHECK Team Creator?
     if (team.creator_id.toString() !== req.user._id.toString()) {
         return next(new AppError('You do not have permission to manage this team.', 403));
     }

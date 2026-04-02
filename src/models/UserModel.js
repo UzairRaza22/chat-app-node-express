@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const transporter = require('../Config/mail');
+const transporter = require('../config/mail');
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -20,6 +20,10 @@ const UserSchema = new mongoose.Schema({
         default: false
     },
     verifyToken: {
+        type: String,
+        default: null
+    },
+    invitationToken: {
         type: String,
         default: null
     },

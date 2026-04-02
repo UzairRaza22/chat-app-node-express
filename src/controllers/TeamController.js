@@ -1,8 +1,10 @@
-const Team = require('../Models/TeamModel');
-const User = require('../Models/UserModel'); 
-const TeamResource = require('../resources/TeamResource');
-const { asyncHandler } = require('../Middlewares/CheckValidationMiddleware');
+const Team = require('../models/teammodel');
+const User = require('../models/usermodel'); 
+const TeamResource = require('../resources/teamresource');
+const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
 
+
+//Create
 const create = asyncHandler(async (req, res) => {
     const { workspace_id, name, description } = req.validatedData;
 
@@ -16,31 +18,34 @@ const create = asyncHandler(async (req, res) => {
 
     await User.findByIdAndUpdate(req.user._id, { $addToSet: { teams: team._id } });
 
-    res.status(201).json({
+    res.success({
         message: 'Team created successfully.',
         data: TeamResource.make(team)
-    });
+    }, 201);
 });
 
+//  read team
 const read = asyncHandler(async (req, res) => {
-    res.json({
+    res.success({
         message: 'Team retrieved successfully.',
         data: TeamResource.make(req.team)
     });
 });
 
+//  Update 
 const update = asyncHandler(async (req, res) => {
     const updatePayload = req.updatePayload;
 
     Object.assign(req.team, updatePayload);
     await req.team.save();
 
-    res.json({
+    res.success({
         message: 'Team updated successfully.',
         data: TeamResource.make(req.team)
     });
 });
 
+ //  Delete 
 const deleteTeam = asyncHandler(async (req, res) => {
     await User.updateMany(
         { teams: req.team._id },
@@ -49,48 +54,50 @@ const deleteTeam = asyncHandler(async (req, res) => {
 
     await req.team.deleteOne();
 
-    res.json({
+    res.success({
         message: 'Team deleted successfully.'
     });
 });
 
+  // Add members 
 const addMember = asyncHandler(async (req, res) => {
     const { members } = req.validatedData;
 
-    await Team.findByIdAndUpdate(
+    const team = await Team.findByIdAndUpdate(
         req.team._id,
-        { $addToSet: { members: { $each: members } } }
+        { $addToSet: { members: { $each: members } } },
+        { new: true }
     );
+
     await User.updateMany(
         { _id: { $in: members } },
         { $addToSet: { teams: req.team._id } }
     );
 
-    const updated = await Team.findById(req.team._id);
-
-    res.json({
+    res.success({
         message: 'Members added successfully.',
-        data: TeamResource.make(updated)
+        data: TeamResource.make(team)
     });
 });
-
+   
+// Remove members
 const removeMember = asyncHandler(async (req, res) => {
     const { members } = req.validatedData;
 
-    await Team.findByIdAndUpdate(
+    const team = await Team.findByIdAndUpdate(
         req.team._id,
-        { $pullAll: { members } }
+        { $pullAll: { members } },
+        { new: true }
     );
+
     await User.updateMany(
         { _id: { $in: members } },
         { $pull: { teams: req.team._id } }
     );
 
-    const updated = await Team.findById(req.team._id);
-
-    res.json({
+    res.success({
         message: 'Members removed successfully.',
-        data: TeamResource.make(updated)
+        data: TeamResource.make(team)
     });
 });
 

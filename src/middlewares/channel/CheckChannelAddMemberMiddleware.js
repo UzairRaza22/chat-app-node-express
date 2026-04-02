@@ -1,24 +1,14 @@
-const Workspace = require('../../Models/WorkspaceModel');
-const Team = require('../../Models/TeamModel');
-const { asyncHandler } = require('../CheckValidationMiddleware');
-const AppError = require('../../utils/AppError');
+const Workspace = require('../../models/workspacemodel');
+const Team = require('../../models/teammodel');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
+
 
 const channelAddMember = asyncHandler(async (req, res, next) => {
     const channel = req.channel;
     const user = req.user;
     const data = req.validatedData;
 
-    if (!user) {
-        return next(new AppError('Unauthorized.', 401));
-    }
-
-    if (!channel) {
-        return next(new AppError('Channel not found.', 404));
-    }
-
-    if (!data || !data.user_id) {
-        return next(new AppError('User ID is required.', 400));
-    }
 
     if (channel.type === 'direct') {
         return next(new AppError('Cannot add members to a direct channel.', 400));
@@ -70,3 +60,4 @@ const channelAddMember = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = channelAddMember;
+

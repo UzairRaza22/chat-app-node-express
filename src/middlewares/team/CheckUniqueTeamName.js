@@ -1,22 +1,19 @@
-const Team = require('../../Models/TeamModel');
-const { asyncHandler } = require('../CheckValidationMiddleware');
+const Team = require('../../models/teammodel');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
 
 const checkUniqueTeamName = asyncHandler(async (req, res, next) => {
     const { workspace_id, name, team_id } = req.validatedData;
-
-    const query = { workspace_id, name };
+    const searchWorkspaceId = workspace_id || (req.team ? req.team.workspace_id : null);
     
-    // If updating, exclude current team from uniqueness check
-    if (team_id) {
-        query._id = { $ne: team_id };
+    const query = { workspace_id: searchWorkspaceId, name };
+    if (team_id || (req.team && req.team._id)) {
+        query._id = { $ne: team_id || req.team._id };
     }
 
     const existing = await Team.findOne(query);
-
     if (existing) {
-        return res.status(400).json({
-            message: 'A team with this name already exists in this workspace.'
-        });
+        return next(new AppError('A team with this name already exists in this workspace.', 409));
     }
 
     next();
