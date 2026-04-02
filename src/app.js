@@ -4,11 +4,10 @@ const cors = require("cors");
 
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authroutes");
-const workspaceRoutes = require("./routes/workspaceroutes");
+const workspaceRoutes = require("./routes/workspaceRoutes");
 const channelRoutes = require("./routes/channelroutes");
 const messageRoutes = require("./routes/messageroutes");
 const teamRoutes = require("./routes/teamroutes");
-const invitationRoutes = require("./routes/invitationauthroutes");
 
 const {
   errorHandler,
@@ -33,7 +32,6 @@ app.use("/api/workspaces", workspaceRoutes);
 app.use("/api/channels", channelRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/teams", teamRoutes);
-app.use("/api/invitations", invitationRoutes);
 
 // Error Handler (should be last)
 app.use(errorHandler);

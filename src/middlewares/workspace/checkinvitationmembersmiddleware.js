@@ -3,7 +3,6 @@ const Invitation = require('../../models/InvitationModel');
 const { asyncHandler } = require('../responsehandlermiddleware');
 const AppError = require('../../utils/apperror');
 const crypto = require('crypto');
-const transporter = require('../../config/mail');
 
 /**
  * Processes member invitations for workspace
@@ -88,43 +87,10 @@ const checkInvitationMembers = asyncHandler(async (req, res, next) => {
                         expiresAt
                     });
 
-                    // Send invitation email
-                    try {
-                        await transporter.sendMail({
-                            from: `"${req.user.name}" <noreply@chatapp.com>`,
-                            to: normalizedEmail,
-                            subject: `You're invited to join "${workspace.name}" workspace`,
-                            html: `
-                                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                                    <h2 style="color: #333;">You're Invited!</h2>
-                                    <p>Hello,</p>
-                                    <p><strong>${req.user.name}</strong> has invited you to join the workspace <strong>"${workspace.name}"</strong> on Chat App.</p>
-                                    <p>To accept this invitation, simply sign up or log in to Chat App using this email address. You'll be automatically added to the workspace.</p>
-                                    <div style="background-color: #f5f5f5; padding: 20px; border-radius: 5px; margin: 20px 0;">
-                                        <p style="margin: 0;"><strong>Workspace:</strong> ${workspace.name}</p>
-                                        <p style="margin: 10px 0 0;"><strong>Invited by:</strong> ${req.user.name}</p>
-                                        <p style="margin: 10px 0 0;"><strong>Expires:</strong> ${expiresAt.toLocaleDateString()}</p>
-                                    </div>
-                                    <p style="color: #666; font-size: 14px;">
-                                        This invitation will expire in 7 days. If you don't have an account yet, 
-                                        you can create one using this email address and you'll be automatically added to the workspace.
-                                    </p>
-                                    <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-                                    <p style="color: #999; font-size: 12px;">
-                                        This is an automated message. Please do not reply to this email.
-                                    </p>
-                                </div>
-                            `
-                        });
-                    } catch (emailError) {
-                        console.error('Failed to send invitation email:', emailError.message);
-                        // Continue even if email fails, invitation is still created
-                    }
-
                     results.push({
                         member: normalizedEmail,
                         status: 'invited',
-                        message: 'Invitation sent successfully',
+                        message: 'Invitation created successfully',
                         invitationId: invitation._id,
                         token: invitationToken
                     });

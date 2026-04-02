@@ -81,3 +81,102 @@ Stack: ValidationError: "members[0]" with value "69cd1164a75020cf47438a1" fails 
 [2026-04-02T08:45:45.818Z] INFO: Outgoing Response: POST /api/auth/login - Status: 200 - Time: 985.05ms
 [2026-04-02T08:47:25.606Z] INFO: Server started on port 5000
 [2026-04-02T10:20:06.078Z] INFO: Server started on port 5000
+[2026-04-02T10:53:53.657Z] INFO: Server started on port 5000
+[2026-04-02T10:54:01.704Z] INFO: Server started on port 5000
+[2026-04-02T10:58:20.445Z] INFO: Server started on port 5000
+[2026-04-02T11:00:26.327Z] INFO: Server started on port 5000
+[2026-04-02T11:00:44.537Z] INFO: Server started on port 5000
+[2026-04-02T11:01:31.450Z] INFO: Server started on port 5000
+[2026-04-02T11:02:10.748Z] INFO: Server started on port 5000
+[2026-04-02T11:04:10.829Z] INFO: Incoming Request: POST /api/auth/login - IP: ::1 - Body: {"email":"bhutta@example.com","password":"*****"}
+[2026-04-02T11:04:11.410Z] INFO: Outgoing Response: POST /api/auth/login - Status: 200 - Time: 580.50ms
+[2026-04-02T11:15:05.751Z] INFO: Incoming Request: POST /api/workspaces/create - IP: ::1 - Body: {"name":"Basim Workspaces","description":"Optional description"}
+[2026-04-02T11:15:06.215Z] ERROR: Application Error: A workspace with this name already exists.
+[2026-04-02T11:15:06.218Z] WARN: Outgoing Response: POST /api/workspaces/create - Status: 400 - Time: 466.66ms
+[2026-04-02T11:23:57.611Z] INFO: Server started on port 5000
+[2026-04-02T11:24:04.487Z] INFO: Server started on port 5000
+[2026-04-02T11:31:54.916Z] INFO: Server started on port 5000
+[2026-04-02T11:32:17.185Z] INFO: Incoming Request: POST /api/workspaces/add-member - IP: ::1 - Body: {"workspace_id":"69ce2a27f3109ba51e89aa76","members":["69cd1164a75020cf47438a1"]}
+[2026-04-02T11:32:17.586Z] ERROR: Unhandled Error: "members[0]" with value "69cd1164a75020cf47438a1" fails to match the required pattern: /^[0-9a-fA-F]{24}$/
+Stack: ValidationError: "members[0]" with value "69cd1164a75020cf47438a1" fails to match the required pattern: /^[0-9a-fA-F]{24}$/
+[2026-04-02T11:32:17.594Z] WARN: Outgoing Response: POST /api/workspaces/add-member - Status: 422 - Time: 408.57ms
+[2026-04-02T11:32:24.754Z] INFO: Incoming Request: DELETE /api/workspaces/remove-member - IP: ::1 - Body: {"workspace_id":"69ce2a27f3109ba51e89aa76","members":["69cd1164a75020cf474308a1"]}
+[2026-04-02T11:32:25.172Z] ERROR: Application Error: Access denied. Only the workspace owner can perform this action.
+[2026-04-02T11:32:25.174Z] WARN: Outgoing Response: DELETE /api/workspaces/remove-member - Status: 403 - Time: 419.81ms
+[2026-04-02T11:32:31.573Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce2a27f3109ba51e89aa76","members":["bhutta@example.com"]}
+[2026-04-02T11:32:31.711Z] ERROR: Application Error: Invalid or expired token.
+[2026-04-02T11:32:31.713Z] WARN: Outgoing Response: POST /api/workspaces/invite-member - Status: 401 - Time: 140.53ms
+[2026-04-02T11:32:45.920Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce2a27f3109ba51e89aa76","members":["bhutta@example.com"]}
+[2026-04-02T11:32:46.336Z] ERROR: Application Error: Access denied. Only the workspace owner can perform this action.
+[2026-04-02T11:32:46.338Z] WARN: Outgoing Response: POST /api/workspaces/invite-member - Status: 403 - Time: 418.28ms
+[2026-04-02T11:33:12.712Z] INFO: Incoming Request: POST /api/workspaces/create - IP: ::1 - Body: {"name":"Basim Workspaces","description":"Optional description"}
+[2026-04-02T11:33:13.128Z] ERROR: Application Error: A workspace with this name already exists.
+[2026-04-02T11:33:13.130Z] WARN: Outgoing Response: POST /api/workspaces/create - Status: 400 - Time: 418.39ms
+[2026-04-02T11:33:27.428Z] INFO: Incoming Request: POST /api/workspaces/create - IP: ::1 - Body: {"name":"Ali Workspaces","description":"Optional description"}
+[2026-04-02T11:33:27.999Z] INFO: Outgoing Response: POST /api/workspaces/create - Status: 201 - Time: 571.60ms
+[2026-04-02T11:33:41.380Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce5407f2c7f0ec27492e40","members":["bhutta@example.com"]}
+[2026-04-02T11:33:41.946Z] ERROR: Application Error: Failed to process some invitations.
+[2026-04-02T11:33:41.950Z] WARN: Outgoing Response: POST /api/workspaces/invite-member - Status: 400 - Time: 570.23ms
+[2026-04-02T11:34:03.237Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce5407f2c7f0ec27492e40","members":["ahmed@example.com"]}
+[2026-04-02T11:34:03.791Z] ERROR: Application Error: Failed to process some invitations.
+[2026-04-02T11:34:03.794Z] WARN: Outgoing Response: POST /api/workspaces/invite-member - Status: 400 - Time: 557.23ms
+[2026-04-02T11:34:16.105Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce5407f2c7f0ec27492e40","members":["ahmedraza@example.com"]}
+[2026-04-02T11:34:16.956Z] INFO: Outgoing Response: POST /api/workspaces/invite-member - Status: 200 - Time: 851.78ms
+[2026-04-02T11:34:32.175Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce5407f2c7f0ec27492e40","members":["waqar@example.com"]}
+[2026-04-02T11:34:33.316Z] INFO: Outgoing Response: POST /api/workspaces/invite-member - Status: 200 - Time: 1140.17ms
+[2026-04-02T11:36:08.930Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce5407f2c7f0ec27492e40","members":["waqa@example.com"]}
+[2026-04-02T11:36:10.133Z] INFO: Outgoing Response: POST /api/workspaces/invite-member - Status: 200 - Time: 1202.73ms
+[2026-04-02T11:36:56.410Z] INFO: Server started on port 5000
+[2026-04-02T11:37:01.313Z] INFO: Server started on port 5000
+[2026-04-02T11:37:09.858Z] INFO: Server started on port 5000
+[2026-04-02T11:37:18.942Z] INFO: Server started on port 5000
+[2026-04-02T11:37:23.429Z] INFO: Server started on port 5000
+[2026-04-02T11:37:48.142Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce5407f2c7f0ec27492e40","members":["naeem@example.com"]}
+[2026-04-02T11:37:49.329Z] INFO: Outgoing Response: POST /api/workspaces/invite-member - Status: 200 - Time: 1186.84ms
+[2026-04-02T11:38:16.085Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce5407f2c7f0ec27492e40","members":["zainulabid@example.com"]}
+[2026-04-02T11:38:21.448Z] INFO: Outgoing Response: POST /api/workspaces/invite-member - Status: 200 - Time: 5362.86ms
+[2026-04-02T11:51:33.138Z] INFO: Incoming Request: POST /api/auth/signup - IP: ::1 - Body: {"name":"Zain ul Abid","email":"zainulabid@example.com","password":"*****"}
+[2026-04-02T11:51:37.825Z] INFO: Outgoing Response: POST /api/auth/signup - Status: 201 - Time: 4687.10ms
+[2026-04-02T11:53:28.899Z] INFO: Incoming Request: POST /api/auth/login - IP: ::1 - Body: {"email":"zainulabid@example.com","password":"*****"}
+[2026-04-02T11:53:29.262Z] ERROR: Application Error: Please verify your email address before logging in.
+[2026-04-02T11:53:29.266Z] WARN: Outgoing Response: POST /api/auth/login - Status: 403 - Time: 366.53ms
+[2026-04-02T11:53:34.220Z] INFO: Incoming Request: POST /api/auth/verify - IP: ::1 - Body: {"token":"*****"}
+[2026-04-02T11:53:34.501Z] INFO: Outgoing Response: POST /api/auth/verify - Status: 200 - Time: 280.39ms
+[2026-04-02T11:56:54.955Z] INFO: Server started on port 5000
+[2026-04-02T11:57:29.619Z] INFO: Server started on port 5000
+[2026-04-02T11:58:30.475Z] INFO: Server started on port 5000
+[2026-04-02T11:58:56.237Z] INFO: Server started on port 5000
+[2026-04-02T11:59:47.886Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce5407f2c7f0ec27492e40","members":["uzairraza@example.com"]}
+[2026-04-02T11:59:53.317Z] INFO: Outgoing Response: POST /api/workspaces/invite-member - Status: 200 - Time: 5430.67ms
+[2026-04-02T12:02:30.370Z] INFO: Server started on port 5000
+[2026-04-02T12:02:41.043Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce5407f2c7f0ec27492e40","members":["uzairaza@example.com"]}
+[2026-04-02T12:02:47.113Z] INFO: Outgoing Response: POST /api/workspaces/invite-member - Status: 200 - Time: 6070.27ms
+[2026-04-02T12:05:46.801Z] INFO: Server started on port 5000
+[2026-04-02T12:06:10.100Z] INFO: Server started on port 5000
+[2026-04-02T12:06:12.323Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce5407f2c7f0ec27492e40","members":["uzairaza@example.com"]}
+[2026-04-02T12:06:12.507Z] ERROR: Application Error: Invalid or expired token.
+[2026-04-02T12:06:12.518Z] WARN: Outgoing Response: POST /api/workspaces/invite-member - Status: 401 - Time: 194.70ms
+[2026-04-02T12:06:20.803Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce5407f2c7f0ec27492e40","members":["uzairza@example.com"]}
+[2026-04-02T12:06:20.945Z] ERROR: Application Error: Invalid or expired token.
+[2026-04-02T12:06:20.948Z] WARN: Outgoing Response: POST /api/workspaces/invite-member - Status: 401 - Time: 144.81ms
+[2026-04-02T12:06:26.406Z] INFO: Incoming Request: POST /api/auth/login - IP: ::1 - Body: {"email":"zainulabid@example.com","password":"*****"}
+[2026-04-02T12:06:27.404Z] INFO: Outgoing Response: POST /api/auth/login - Status: 200 - Time: 997.60ms
+[2026-04-02T12:06:38.120Z] INFO: Incoming Request: POST /api/auth/login - IP: ::1 - Body: {"email":"bhutta@example.com","password":"*****"}
+[2026-04-02T12:06:38.784Z] INFO: Outgoing Response: POST /api/auth/login - Status: 200 - Time: 663.19ms
+[2026-04-02T12:06:55.387Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce5407f2c7f0ec27492e40","members":["uzairza@example.com"]}
+[2026-04-02T12:07:00.925Z] INFO: Outgoing Response: POST /api/workspaces/invite-member - Status: 200 - Time: 5537.40ms
+[2026-04-02T12:07:43.603Z] INFO: Incoming Request: GET /api/auth/signup - IP: ::1 - Body: {}
+[2026-04-02T12:07:43.626Z] WARN: Outgoing Response: GET /api/auth/signup - Status: 404 - Time: 23.17ms
+[2026-04-02T12:10:16.620Z] INFO: Server started on port 5000
+[2026-04-02T12:11:19.244Z] INFO: Incoming Request: POST /api/auth/signup - IP: ::1 - Body: {"name":"Zain ul Abid","email":"zainul@example.com","password":"*****"}
+[2026-04-02T12:11:19.403Z] ERROR: Application Error: User already exists.
+[2026-04-02T12:11:19.411Z] WARN: Outgoing Response: POST /api/auth/signup - Status: 400 - Time: 167.78ms
+[2026-04-02T12:11:25.454Z] INFO: Incoming Request: POST /api/auth/signup - IP: ::1 - Body: {"name":"Zain ul Abid","email":"zain1@example.com","password":"*****"}
+[2026-04-02T12:11:29.989Z] INFO: Outgoing Response: POST /api/auth/signup - Status: 201 - Time: 4535.26ms
+[2026-04-02T12:11:43.898Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce5407f2c7f0ec27492e40","members":["zain1@example.com"]}
+[2026-04-02T12:11:44.459Z] ERROR: Application Error: Failed to process some invitations.
+[2026-04-02T12:11:44.461Z] WARN: Outgoing Response: POST /api/workspaces/invite-member - Status: 400 - Time: 562.80ms
+[2026-04-02T12:12:02.036Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce5407f2c7f0ec27492e40","members":["zainzain@example.com"]}
+[2026-04-02T12:12:07.474Z] INFO: Outgoing Response: POST /api/workspaces/invite-member - Status: 200 - Time: 5437.59ms
+[2026-04-02T12:12:59.216Z] INFO: Incoming Request: POST /api/auth/signup - IP: ::1 - Body: {"name":"Zain ul Abid","email":"zainzain@example.com","password":"*****"}
+[2026-04-02T12:13:03.700Z] INFO: Outgoing Response: POST /api/auth/signup - Status: 201 - Time: 4484.47ms
