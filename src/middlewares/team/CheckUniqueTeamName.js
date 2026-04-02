@@ -1,5 +1,5 @@
 const Team = require('../../Models/TeamModel');
-const { asyncHandler } = require("../validate"); 
+const { asyncHandler } = require("../Validate"); 
 const { createError } = require("../../utils/GlobalResponseHandler");
 
 /**
