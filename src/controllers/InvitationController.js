@@ -1,8 +1,9 @@
-const { asyncHandler } = require('../Middlewares/CheckValidationMiddleware');
-const Invitation = require('../Models/InvitationModel');
-const User = require('../Models/UserModel');
-const Workspace = require('../Models/WorkspaceModel');
-const InvitationService = require('../utils/InvitationService');
+const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
+const Invitation = require('../models/invitationmodel');
+const User = require('../models/usermodel');
+const Workspace = require('../models/workspacemodel');
+const InvitationService = require('../utils/invitationservice');
+const AppError = require('../utils/apperror');
 
 const acceptInvitationByToken = asyncHandler(async (req, res) => {
     const { token, workspaceId } = req.validatedData;
@@ -15,26 +16,26 @@ const acceptInvitationByToken = asyncHandler(async (req, res) => {
     }).populate('workspaceId');
 
     if (!invitation) {
-        return res.error('Invalid or expired invitation token.');
+        return next(new AppError('Invalid or expired invitation token.', 400));
     }
 
     // Verify if workspaceId matches
     if (invitation.workspaceId._id.toString() !== workspaceId.toString()) {
-        return res.error('Invitation does not match the provided workspace.');
+        return next(new AppError('Invitation does not match the provided workspace.', 400));
     }
 
     if (invitation.isExpired()) {
-        return res.error('Invitation token has expired.');
+        return next(new AppError('Invitation token has expired.', 400));
     }
 
     // Check if invitation email matches user email
     if (invitation.email.toLowerCase() !== user.email.toLowerCase()) {
-        return res.error('This invitation is for a different email address.');
+        return next(new AppError('This invitation is for a different email address.', 400));
     }
 
     // Check if user is already a member of the workspace
     if (invitation.workspaceId.members.includes(user._id)) {
-        return res.error('You are already a member of this workspace.');
+        return next(new AppError('You are already a member of this workspace.', 400));
     }
 
     // Accept the invitation
@@ -50,7 +51,7 @@ const acceptInvitationByToken = asyncHandler(async (req, res) => {
             }
         });
     } else {
-        res.error('Failed to accept invitation. Please try again.');
+        return next(new AppError('Failed to accept invitation. Please try again.', 500));
     }
 });
 

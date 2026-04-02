@@ -10,13 +10,13 @@ const checkWorkspaceExists = asyncHandler(async (req, res, next) => {
     const id = req.body.workspace_id;
     
     if (!id) {
-        return res.error('workspace_id is required in the request body.', 400);
+        return next(new AppError('workspace_id is required in the request body.', 400));
     }
 
     const workspace = await Workspace.findById(id);
 
     if (!workspace) {
-        return res.error('Workspace not found.', 404);
+        return next(new AppError('Workspace not found.', 404));
     }
 
     req.workspace = workspace;

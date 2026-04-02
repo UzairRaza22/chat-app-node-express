@@ -12,11 +12,7 @@ const checkReadWorkspace = asyncHandler(async (req, res, next) => {
     if (req.body.workspace_id) {
         const workspace = await Workspace.findById(req.body.workspace_id);
         if (!workspace) {
-<<<<<<< HEAD
             return next(new AppError('Workspace not found.', 404));
-=======
-            return res.error('Workspace not found.', 404);
->>>>>>> b89fd9a5ed63ea4e0854216ac6d27f5d043ecb5b
         }
         req.responseData = {
             message: 'Workspace retrieved successfully.',

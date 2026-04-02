@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 const Workspace = require('../models/workspacemodel');
 const WorkspaceResource = require('../resources/workspaceresource');
 const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
-=======
-const Workspace = require('../Models/WorkspaceModel');
-const User = require('../Models/UserModel');
-const WorkspaceResource = require('../Resources/WorkspaceResource');
-const { asyncHandler } = require('../Middlewares/CheckValidationMiddleware');
->>>>>>> b89fd9a5ed63ea4e0854216ac6d27f5d043ecb5b
 
 /**
  * @desc    Get all workspaces for the authenticated user
@@ -101,16 +94,11 @@ const addMember = asyncHandler(async (req, res) => {
     const updatedWorkspace = await Workspace.findById(workspace._id);
 
     res.success({
-<<<<<<< HEAD
-        message: 'Members added successfully.',
-        data: WorkspaceResource.make(updated)
-=======
         message: 'Member processing completed.',
         data: {
             workspace: WorkspaceResource.make(updatedWorkspace),
             results: finalResults
         }
->>>>>>> b89fd9a5ed63ea4e0854216ac6d27f5d043ecb5b
     });
 });
 
