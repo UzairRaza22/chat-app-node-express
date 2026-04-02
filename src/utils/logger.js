@@ -12,19 +12,17 @@ if (!fs.existsSync(LOGS_DIR)) {
 }
 
 // Lazy-loaded to avoid circular dependency at startup
-let LogModel = null;
-const getLogModel = () => {
-  if (!LogModel) {
+let ActivityLog = null;
+const getActivityLogModel = () => {
+  if (!ActivityLog) {
     try {
-      LogModel = require('../models/logmodel');
+      ActivityLog = require('../models/ActivityLogModel');
     } catch (e) {
       // Model not available yet (DB not connected)
     }
   }
-  return LogModel;
+  return ActivityLog;
 };
-
-const SERVER_HOST = os.hostname();
 
 /**
  * Custom Logger Utility
@@ -33,18 +31,18 @@ const SERVER_HOST = os.hostname();
 class Logger {
   constructor() {
     this.levels = {
-      INFO: 'INFO',
-      WARN: 'WARN',
-      ERROR: 'ERROR',
+      INFO: 'info',
+      WARN: 'warn',
+      ERROR: 'error',
     };
   }
 
   /**
-   * Format message with timestamp and level
+   * Format message with timestamp and level for terminal/file
    */
   _format(level, message) {
     const timestamp = new Date().toISOString();
-    return `[${timestamp}] ${level}: ${message}\n`;
+    return `[${timestamp}] ${level.toUpperCase()}: ${message}\n`;
   }
 
   /**
@@ -65,40 +63,53 @@ class Logger {
   /**
    * Write to MongoDB (async, non-blocking, fire-and-forget)
    */
-  _writeMongo(level, message, metadata = {}) {
-    const Log = getLogModel();
-    if (!Log) return;
+  async _writeMongo(level, data) {
+    const Model = getActivityLogModel();
+    if (!Model) return;
 
-    Log.create({
-      level,
-      message,
-      serverHost: SERVER_HOST,
-      ...metadata
-    }).catch(() => {
-      // Silently fail — logging should never crash the app
-    });
+    try {
+      // Ensure we have a message and a type
+      const logData = {
+        type: level,
+        message: data.message || 'No message provided',
+        ...data
+      };
+      
+      // Fire and forget
+      Model.create(logData).catch(err => {
+          console.error("Log DB Error:", err.message);
+      });
+    } catch (err) {
+      console.error("Log DB Error:", err.message);
+    }
   }
 
-  info(message, metadata = {}) {
-    const formatted = this._format(this.levels.INFO, message);
+  info(messageOrData) {
+    const data = typeof messageOrData === 'object' ? messageOrData : { message: messageOrData };
+    const formatted = this._format(this.levels.INFO, data.message);
+    
     console.log(formatted.trim());
     this._writeFile(formatted);
-    this._writeMongo(this.levels.INFO, message, metadata);
+    this._writeMongo(this.levels.INFO, data);
   }
 
-  warn(message, metadata = {}) {
-    const formatted = this._format(this.levels.WARN, message);
+  warn(messageOrData) {
+    const data = typeof messageOrData === 'object' ? messageOrData : { message: messageOrData };
+    const formatted = this._format(this.levels.WARN, data.message);
+    
     console.warn(formatted.trim());
     this._writeFile(formatted);
-    this._writeMongo(this.levels.WARN, message, metadata);
+    this._writeMongo(this.levels.WARN, data);
   }
 
-  error(message, stack = '', metadata = {}) {
-    const fullMessage = stack ? `${message}\nStack: ${stack}` : message;
+  error(messageOrData, stack = '') {
+    const data = typeof messageOrData === 'object' ? messageOrData : { message: messageOrData, stack };
+    const fullMessage = data.stack ? `${data.message}\nStack: ${data.stack}` : data.message;
     const formatted = this._format(this.levels.ERROR, fullMessage);
+    
     console.error(formatted.trim());
     this._writeFile(formatted, true);
-    this._writeMongo(this.levels.ERROR, message, { stack, ...metadata });
+    this._writeMongo(this.levels.ERROR, data);
   }
 }
 

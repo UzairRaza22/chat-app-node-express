@@ -21,43 +21,35 @@ const sanitize = (obj) => {
 
 /**
  * Global Logger Middleware
- * Logs every request/response to local files AND shared MongoDB
+ * Logs every request/response with structured data to MongoDB and console
  */
 const loggerMiddleware = (req, res, next) => {
   const { method, url, ip, body } = req;
   const startTime = process.hrtime();
 
-  // Log Incoming Request
-  const sanitizedBody = sanitize(body);
-  const bodyStr = Object.keys(sanitizedBody || {}).length > 0 ? JSON.stringify(sanitizedBody) : '{}';
-
-  logger.info(`Incoming Request: ${method} ${url} - IP: ${ip} - Body: ${bodyStr}`, {
-    method,
-    url,
-    ip,
-    userId: req.user ? req.user._id : null
-  });
-
-  // Log Outgoing Response on Finish
+  // Log Outgoing Response (and request data) on Finish
   res.on('finish', () => {
     const diff = process.hrtime(startTime);
-    const responseTimeMs = (diff[0] * 1e3 + diff[1] * 1e-6).toFixed(2);
+    const responseTimeMs = Math.round(diff[0] * 1e3 + diff[1] * 1e-6); // Structured response_time as number
     const { statusCode } = res;
+    
+    const sanitizedBody = sanitize(body);
 
-    const message = `Outgoing Response: ${method} ${url} - Status: ${statusCode} - Time: ${responseTimeMs}ms`;
-    const metadata = {
+    const logData = {
+      message: `${method} ${url} - Status: ${statusCode} - Time: ${responseTimeMs}ms`,
       method,
       url,
+      status: statusCode,
       ip,
-      statusCode,
-      responseTime: `${responseTimeMs}ms`,
-      userId: req.user ? req.user._id : null
+      user_id: req.user ? req.user._id : null,
+      request_body: sanitizedBody,
+      response_time: responseTimeMs
     };
 
     if (statusCode >= 400) {
-      logger.warn(message, metadata);
+      logger.warn(logData);
     } else {
-      logger.info(message, metadata);
+      logger.info(logData);
     }
   });
 

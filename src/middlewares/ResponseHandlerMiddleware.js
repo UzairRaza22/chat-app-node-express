@@ -5,10 +5,19 @@ const ErrorHandlerMiddleware = (err, req, res, next) => {
   error.message = err.message;
 
   // Log the full error to our custom logger
-  if (err.statusCode === 500 || !err.statusCode) {
-    logger.error(`Unhandled Error: ${err.message}`, err.stack);
+  const logData = {
+    message: err.message,
+    method: req.method,
+    url: req.originalUrl,
+    status: err.statusCode || 500,
+    ip: req.ip,
+    user_id: req.user ? req.user._id : null
+  };
+
+  if (logData.status === 500) {
+    logger.error(logData, err.stack);
   } else {
-    logger.error(`Application Error: ${err.message}`);
+    logger.error(logData);
   }
 
   // ── Joi Validation Errors ─────────────────────────────────────────────────
