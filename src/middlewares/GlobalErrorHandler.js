@@ -9,19 +9,10 @@ const ErrorHandlerMiddleware = (err, req, res, next) => {
   error.message = err.message;
 
   // Log the full error to our custom logger
-  const logData = {
-    message: err.message,
-    method: req.method,
-    url: req.originalUrl,
-    status: err.statusCode || 500,
-    ip: req.ip,
-    user_id: req.user ? req.user._id : null
-  };
-
-  if (logData.status === 500) {
-    logger.error(logData, err.stack);
+  if (err.statusCode === 500 || !err.statusCode) {
+    logger.error(`Unhandled Error: ${err.message}`, err.stack);
   } else {
-    logger.error(logData);
+    logger.error(`Application Error: ${err.message}`);
   }
 
   // ── Joi Validation Errors ─────────────────────────────────────────────────
@@ -56,19 +47,11 @@ const ErrorHandlerMiddleware = (err, req, res, next) => {
   // From: VerifyFileAttachedMiddleware  → No file attached
   // From: VerifyUpdatePayloadMiddleware → content required / new file required
   // From: validate()                   → Joi schema validation failed
-  // From: checkMembersExist            → Failed to add members to workspace
   if (err.statusCode === 400) {
-    const response = {
+    return res.status(400).json({
       success: false,
       message: err.message,
-    };
-    
-    // Include errors data if available (for member addition failures)
-    if (err.errors) {
-      response.errors = err.errors;
-    }
-    
-    return res.status(400).json(response);
+    });
   }
 
   // ── 403 Forbidden Errors ──────────────────────────────────────────────────

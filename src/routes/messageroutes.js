@@ -67,12 +67,12 @@ router.post(
 router.put(
   "/update",
   auth,
-  upload.single("file"),
+  // upload.single("file"),
   validate(updateSchema),
   verifyMessageExists,
   verifyMessageOwner,
   verifyUpdatePayload,
-  handleFileUpdate,
+  // handleFileUpdate,
   messageController.update,
 );
 
