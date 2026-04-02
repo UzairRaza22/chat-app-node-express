@@ -1,9 +1,15 @@
+const logger = require("../utils/logger");
+
 const ErrorHandlerMiddleware = (err, req, res, next) => {
   let error = { ...err };
   error.message = err.message;
 
-  // Log the full error in development/console
-  console.error(err);
+  // Log the full error to our custom logger
+  if (err.statusCode === 500 || !err.statusCode) {
+    logger.error(`Unhandled Error: ${err.message}`, err.stack);
+  } else {
+    logger.error(`Application Error: ${err.message}`);
+  }
 
   // ── Joi Validation Errors ─────────────────────────────────────────────────
   if (err.isJoi) {

@@ -14,6 +14,7 @@ const {
   errorHandler,
   successResponse,
 } = require("./middlewares/responsehandlermiddleware");
+const loggerMiddleware = require("./middlewares/loggermiddleware");
 
 const app = express();
 
@@ -23,6 +24,7 @@ connectDB();
 // Middlewares
 app.use(cors());
 app.use(express.json());
+app.use(loggerMiddleware);
 app.use(successResponse);
 
 // Routes
@@ -36,8 +38,10 @@ app.use("/api/invitations", invitationRoutes);
 // Error Handler (should be last)
 app.use(errorHandler);
 
+const logger = require("./utils/logger");
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+    logger.info(`Server started on port ${PORT}`);
 });
