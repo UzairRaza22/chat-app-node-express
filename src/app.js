@@ -34,6 +34,10 @@ app.use("/api/workspaces", workspaceRoutes);
 app.use("/api/teams", teamRoutes); 
 app.use("/api/channels", channelRoutes);
 app.use("/api/messages", messageRoutes);
+<<<<<<< HEAD
+=======
+app.use("/api/teams", teamRoutes);
+>>>>>>> 824c72fc86eba6fac1316ea5f60b3b67c08f3f7b
 
 app.use(GlobalErrorHandler);
 

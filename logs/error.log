@@ -9,3 +9,17 @@ Stack: ValidationError: "members[0]" with value "69cd1164a75020cf47438a1" fails 
 [2026-04-02T08:34:57.588Z] ERROR: Application Error: Failed to process some invitations.
 [2026-04-02T08:35:27.310Z] ERROR: Application Error: Failed to process some invitations.
 [2026-04-02T08:38:59.482Z] ERROR: Application Error: Failed to process some invitations.
+[2026-04-02T11:15:06.215Z] ERROR: Application Error: A workspace with this name already exists.
+[2026-04-02T11:32:17.586Z] ERROR: Unhandled Error: "members[0]" with value "69cd1164a75020cf47438a1" fails to match the required pattern: /^[0-9a-fA-F]{24}$/
+Stack: ValidationError: "members[0]" with value "69cd1164a75020cf47438a1" fails to match the required pattern: /^[0-9a-fA-F]{24}$/
+[2026-04-02T11:32:25.172Z] ERROR: Application Error: Access denied. Only the workspace owner can perform this action.
+[2026-04-02T11:32:31.711Z] ERROR: Application Error: Invalid or expired token.
+[2026-04-02T11:32:46.336Z] ERROR: Application Error: Access denied. Only the workspace owner can perform this action.
+[2026-04-02T11:33:13.128Z] ERROR: Application Error: A workspace with this name already exists.
+[2026-04-02T11:33:41.946Z] ERROR: Application Error: Failed to process some invitations.
+[2026-04-02T11:34:03.791Z] ERROR: Application Error: Failed to process some invitations.
+[2026-04-02T11:53:29.262Z] ERROR: Application Error: Please verify your email address before logging in.
+[2026-04-02T12:06:12.507Z] ERROR: Application Error: Invalid or expired token.
+[2026-04-02T12:06:20.945Z] ERROR: Application Error: Invalid or expired token.
+[2026-04-02T12:11:19.403Z] ERROR: Application Error: User already exists.
+[2026-04-02T12:11:44.459Z] ERROR: Application Error: Failed to process some invitations.

@@ -13,6 +13,7 @@ const checkWorkspaceCreator = require('../middlewares/workspace/checkworkspacecr
 const checkMembersExist = require('../middlewares/workspace/checkmembersexistmiddleware');
 const checkReadWorkspace = require('../middlewares/workspace/checkreadworkspacemiddleware');
 const checkInvitationMembers = require('../middlewares/workspace/checkinvitationmembersmiddleware');
+const sendInvitationEmail = require('../middlewares/workspace/SendInvitationEmailMiddleware');
 
 // Request Schemas (lowercase)
 const createWorkspaceSchema = require('../requests/workspace/createworkspacerequest');
@@ -44,6 +45,6 @@ router.post('/add-member', auth, validate(addWorkspaceMemberSchema), checkWorksp
 router.delete('/remove-member', auth, validate(removeWorkspaceMemberSchema), checkWorkspaceExists, checkWorkspaceCreator, workspaceController.removeMember);
 
 // 8. Invite members to a workspace (creator only) -- passed in body
-router.post('/invite-member', auth, validate(inviteWorkspaceMemberSchema), checkWorkspaceExists, checkWorkspaceCreator, checkInvitationMembers, workspaceController.inviteMember);
+router.post('/invite-member', auth, validate(inviteWorkspaceMemberSchema), checkWorkspaceExists, checkWorkspaceCreator, checkInvitationMembers, sendInvitationEmail, workspaceController.inviteMember);
 
 module.exports = router;
