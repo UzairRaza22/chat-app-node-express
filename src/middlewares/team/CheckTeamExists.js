@@ -1,6 +1,6 @@
-const Team = require('../../models/teammodel');
-const { asyncHandler } = require('../Validate');
-const AppError = require('../../utils/apperror');
+const Team = require('../../Models/TeamModel');
+const { asyncHandler } = require("../Validate"); 
+const { createError } = require("../../utils/GlobalResponseHandler");
 
 /**
  * @desc Verify if team exists and if the current user is the creator

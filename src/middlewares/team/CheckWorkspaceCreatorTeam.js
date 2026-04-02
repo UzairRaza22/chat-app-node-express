@@ -1,6 +1,6 @@
-const Workspace = require('../../models/workspacemodel');
-const { asyncHandler } = require('../Validate');
-const AppError = require('../../utils/apperror');
+const Workspace = require('../../Models/WorkspaceModel');
+const { asyncHandler } = require("../Validate"); 
+const { createError } = require("../../utils/GlobalResponseHandler");
 
 /**
  * @desc Verify if the current user is the creator of the workspace

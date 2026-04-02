@@ -3,7 +3,7 @@ const User = require('../models/usermodel');
 const TeamResource = require('../resources/teamresource');
 const { asyncHandler } = require('../middlewares/Validate');
 
-const { asyncHandler } = require("../middlewares/validate");
+const { asyncHandler } = require("../middlewares/Validate");
 const { createError } = require("../utils/GlobalResponseHandler");
 
 /**
