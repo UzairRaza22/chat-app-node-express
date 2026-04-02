@@ -1,14 +1,6 @@
 const { uploadFileToGridFS } = require("../../config/gridfs");
-const { asyncHandler } = require("./ValidationMiddleware");
+const { asyncHandler } = require("../Validate");
 
-/**
- * Runs before the create controller.
- *
- * - type === 'file'  → uploads to GridFS, sets req.uploadedFile to the result object
- * - type === 'text'  → sets req.uploadedFile to null
- *
- * The controller reads req.uploadedFile unconditionally with no branching.
- */
 const handleFileUpload = asyncHandler(async (req, res, next) => {
   const { type } = req.validatedData;
 

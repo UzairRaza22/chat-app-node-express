@@ -2,38 +2,38 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 
-const messageController = require("../controllers/MessageController");
+const messageController = require('../controllers/messagecontroller');
 
-// FIX: Path was wrong and filename is ValidationMiddleware
-const { validate } = require("../middlewares/Messages/ValidationMiddleware");
+// FIX: Path was wrong and filename is ResponseHandlerMiddleware
+const { validate } = require('../middlewares/responsehandlermiddleware');
 
 // FIX: Check your auth folder - usually it's AuthMiddleware.js or similar
-const auth = require("../middlewares/auth/CheckTokenMiddleware");
+const auth = require('../middlewares/auth/checktokenmiddleware');
 
 // FIX: Your screenshot showed the folder is "Messages" (Capital M)
 // and filenames end with "Middleware" (Capital M)
-const verifyChannelMember = require("../middlewares/Messages/VerifyChannelMemberMiddleware");
-const verifyMessageExists = require("../middlewares/Messages/VerifyMessageExistsMiddleware");
-const verifyMessageOwner = require("../middlewares/Messages/VerifyMessageOwnerMiddleware");
-const verifyFileAttached = require("../middlewares/Messages/VerifyFileAttachedMiddleware");
-const verifyUpdatePayload = require("../middlewares/Messages/VerifyUpdatePayloadMiddleware");
+const verifyChannelMember = require('../middlewares/messages/verifychannelmembermiddleware');
+const verifyMessageExists = require('../middlewares/messages/verifymessageexistsmiddleware');
+const verifyMessageOwner = require('../middlewares/messages/verifymessageownermiddleware');
+const verifyFileAttached = require('../middlewares/messages/verifyfileattachedmiddleware');
+const verifyUpdatePayload = require('../middlewares/messages/verifyupdatepayloadmiddleware');
 
-const handleFileUpload = require("../middlewares/Messages/HandleFileUploadMiddleware");
-const handleFileUpdate = require("../middlewares/Messages/HandleFileUpdateMiddleware");
-const handleFileDelete = require("../middlewares/Messages/HandleFileDeleteMiddleware");
-const streamFile = require("../middlewares/Messages/StreamFileMiddleware");
+const handleFileUpload = require('../middlewares/messages/handlefileuploadmiddleware');
+const handleFileUpdate = require('../middlewares/messages/handlefileupdatemiddleware');
+const handleFileDelete = require('../middlewares/messages/handlefiledeletemiddleware');
+const streamFile = require('../middlewares/messages/streamfilemiddleware');
 
 // FIX: Your screenshot showed the folder is "Messages" (Capital M)
-const createSchema = require("../requests/Messages/CreateMessageRequest");
-const readSchema = require("../requests/Messages/ReadMessageRequest");
-const updateSchema = require("../requests/Messages/UpdateMessageRequest");
-const deleteSchema = require("../requests/Messages/DeleteMessageRequest");
+const createSchema = require('../requests/messages/createmessagerequest');
+const readSchema = require('../requests/messages/readmessagerequest');
+const updateSchema = require('../requests/messages/updatemessagerequest');
+const deleteSchema = require('../requests/messages/deletemessagerequest');
 
 const upload = multer({ storage: multer.memoryStorage() });
 
-// ─── CREATE ──────────────────────────────────────────────────────────────────
-// text:  raw JSON  → { channelId, type: 'text', content }
-// file:  multipart → { channelId, type: 'file' } + file field
+// â”€â”€â”€ CREATE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// text:  raw JSON  â†’ { channelId, type: 'text', content }
+// file:  multipart â†’ { channelId, type: 'file' } + file field
 router.post(
   "/create",
   auth,
@@ -45,13 +45,13 @@ router.post(
   messageController.create,
 );
 
-// ─── READ ─────────────────────────────────────────────────────────────────────
-// POST is used so the payload is sent as raw JSON body — not query params.
+// â”€â”€â”€ READ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// POST is used so the payload is sent as raw JSON body â€” not query params.
 //
 // Payload decides the behaviour:
-//   { messageId }                → single text message JSON response
-//   { messageId } (file msg)     → file streamed directly as download
-//   { channelId, page?, limit? } → paginated channel messages, newest first
+//   { messageId }                â†’ single text message JSON response
+//   { messageId } (file msg)     â†’ file streamed directly as download
+//   { channelId, page?, limit? } â†’ paginated channel messages, newest first
 router.post(
   "/read",
   auth,
@@ -61,23 +61,23 @@ router.post(
   messageController.read,
 );
 
-// ─── UPDATE ───────────────────────────────────────────────────────────────────
-// text:  raw JSON  → { messageId, content }
-// file:  multipart → { messageId } + file field
+// â”€â”€â”€ UPDATE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// text:  raw JSON  â†’ { messageId, content }
+// file:  multipart â†’ { messageId } + file field
 router.put(
   "/update",
   auth,
-  upload.single("file"),
+  // upload.single("file"),
   validate(updateSchema),
   verifyMessageExists,
   verifyMessageOwner,
   verifyUpdatePayload,
-  handleFileUpdate,
+  // handleFileUpdate,
   messageController.update,
 );
 
-// ─── DELETE ───────────────────────────────────────────────────────────────────
-// raw JSON → { messageId }
+// â”€â”€â”€ DELETE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// raw JSON â†’ { messageId }
 router.delete(
   "/delete",
   auth,
@@ -89,3 +89,4 @@ router.delete(
 );
 
 module.exports = router;
+

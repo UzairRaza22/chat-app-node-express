@@ -1,0 +1,11 @@
+[2026-04-02T06:52:22.446Z] ERROR: Application Error: Invalid credentials.
+[2026-04-02T07:13:27.266Z] ERROR: Application Error: Workspace not found.
+[2026-04-02T07:13:50.064Z] ERROR: Application Error: Workspace not found.
+[2026-04-02T07:14:07.959Z] ERROR: Unhandled Error: "members[0]" with value "69cd1164a75020cf47438a1" fails to match the required pattern: /^[0-9a-fA-F]{24}$/
+Stack: ValidationError: "members[0]" with value "69cd1164a75020cf47438a1" fails to match the required pattern: /^[0-9a-fA-F]{24}$/
+[2026-04-02T08:33:36.861Z] ERROR: Application Error: Invalid or expired token.
+[2026-04-02T08:34:11.140Z] ERROR: Application Error: Invalid or expired token.
+[2026-04-02T08:34:30.479Z] ERROR: Application Error: Workspace not found.
+[2026-04-02T08:34:57.588Z] ERROR: Application Error: Failed to process some invitations.
+[2026-04-02T08:35:27.310Z] ERROR: Application Error: Failed to process some invitations.
+[2026-04-02T08:38:59.482Z] ERROR: Application Error: Failed to process some invitations.

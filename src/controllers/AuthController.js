@@ -1,9 +1,11 @@
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
-const User = require('../Models/UserModel');
-const Token = require('../Models/TokenModel');
-const AuthResource = require('../Resources/AuthResource');
-const { asyncHandler } = require('../Middlewares/CheckValidationMiddleware');
+const User = require('../models/usermodel');
+const Token = require('../models/tokenmodel');
+const Invitation = require('../models/InvitationModel');
+const Workspace = require('../models/workspacemodel');
+const AuthResource = require('../resources/authresource');
+const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
 
 /**
  * @desc    Register a new user
@@ -23,10 +25,10 @@ const signup = asyncHandler(async (req, res) => {
         verifyToken
     });
 
-    res.status(201).json({
+    res.success({
         message: 'Account created. Please check your email to verify your account.',
         user: AuthResource.make(user)
-    });
+    }, 201);
 });
 
 /**
@@ -40,7 +42,7 @@ const verify = asyncHandler(async (req, res) => {
     user.verifyToken = null;
     await user.save();
 
-    res.json({ message: 'Account verified successfully. You can now log in.' });
+    res.success({ message: 'Account verified successfully. You can now log in.' });
 });
 
 /**
@@ -51,12 +53,41 @@ const login = asyncHandler(async (req, res) => {
     const user = req.user;
     const accessToken = crypto.randomBytes(32).toString('hex');
 
+    // Check for pending invitations and auto-join user to workspaces
+    const pendingInvitations = await Invitation.find({
+        email: user.email.toLowerCase(),
+        status: 'pending'
+    });
+
+    if (pendingInvitations.length > 0) {
+        for (const invitation of pendingInvitations) {
+            // Check if invitation is expired
+            if (invitation.isExpired()) {
+                invitation.status = 'expired';
+                await invitation.save();
+                continue;
+            }
+
+            // Check if user is already a member of the workspace
+            const workspace = await Workspace.findById(invitation.workspaceId);
+            if (workspace && !workspace.members.includes(user._id)) {
+                // Add user to workspace
+                workspace.members.push(user._id);
+                await workspace.save();
+
+                // Update invitation status to accepted
+                invitation.status = 'accepted';
+                await invitation.save();
+            }
+        }
+    }
+
     await Token.create({
         userId: user._id,
         token: accessToken
     });
 
-    res.json(AuthResource.withToken(user, accessToken));
+    res.success(AuthResource.withToken(user, accessToken));
 });
 
 /**
@@ -73,7 +104,7 @@ const forget = asyncHandler(async (req, res) => {
     user._resetTokenChanged = true;
     await user.save();
 
-    res.json({ message: 'Password reset token sent to your email.' });
+    res.success({ message: 'Password reset token sent to your email.' });
 });
 
 /**
@@ -90,7 +121,7 @@ const reset = asyncHandler(async (req, res) => {
     user.resetTokenExpire = null;
     await user.save();
 
-    res.json({ message: 'Password has been reset successfully.' });
+    res.success({ message: 'Password has been reset successfully.' });
 });
 
 /**
@@ -102,7 +133,7 @@ const logout = asyncHandler(async (req, res) => {
 
     await Token.findOneAndDelete({ token });
 
-    res.json({ message: 'Logged out successfully.' });
+    res.success({ message: 'Logged out successfully.' });
 });
 
 module.exports = {
@@ -113,3 +144,4 @@ module.exports = {
     reset,
     logout
 };
+

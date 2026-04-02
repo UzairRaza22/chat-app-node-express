@@ -1,7 +1,7 @@
-const User = require('../../Models/UserModel');
-const Token = require('../../Models/TokenModel');
-const { asyncHandler } = require('../CheckValidationMiddleware');
-const AppError = require('../../utils/AppError');
+const User = require('../../models/usermodel');
+const Token = require('../../models/tokenmodel');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
 
 const auth = asyncHandler(async (req, res, next) => {
     let token = req.header('Authorization');
@@ -22,9 +22,15 @@ const auth = asyncHandler(async (req, res, next) => {
     if (!user) {
         return next(new AppError('User not found.', 404));
     }
+
+    // Ensure user is verified
+    if (!user.isVerified) {
+        return next(new AppError('Account not verified. Please verify your email.', 403));
+    }
     
     req.user = user;
     next();
 });
 
 module.exports = auth;
+

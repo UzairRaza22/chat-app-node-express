@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 const Team = require('../Models/TeamModel');
 const User = require('../Models/UserModel'); 
 const TeamResource = require('../resources/TeamResource');
 const { asyncHandler } = require('./Middlewares/ResponseHandlerMiddleware');
+=======
+const Team = require('../models/teammodel');
+const User = require('../models/usermodel'); 
+const TeamResource = require('../resources/teamresource');
+const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
+>>>>>>> 5fc0b42214b653d846c8bbe20fb20a3be08c8e67
 
 
 //Create

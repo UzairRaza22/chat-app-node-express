@@ -1,14 +1,13 @@
-const User = require('../../Models/UserModel');
-const { asyncHandler } = require('../CheckValidationMiddleware');
+const User = require('../../models/usermodel');
+const { asyncHandler } = require('../responsehandlermiddleware');
+const AppError = require('../../utils/apperror');
 
 const verifyEmailExists = asyncHandler(async (req, res, next) => {
     const { email } = req.body;
     
     const user = await User.findOne({ email });
     if (!user) {
-        return res.status(404).json({
-            message: 'User with this email does not exist.'
-        });
+        return next(new AppError('User with this email does not exist.', 404));
     }
 
     req.user = user;
@@ -16,3 +15,4 @@ const verifyEmailExists = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = verifyEmailExists;
+
