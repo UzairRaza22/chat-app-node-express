@@ -1,4 +1,4 @@
-const ErrorHandlerMiddleware = (err, req, res, next) => {
+const GlobalErrorHandler = (err, req, res, next) => {
   let error = { ...err };
   error.message = err.message;
 
@@ -83,4 +83,4 @@ const ErrorHandlerMiddleware = (err, req, res, next) => {
   });
 };
 
-module.exports = ErrorHandlerMiddleware;
+module.exports = GlobalErrorHandler;

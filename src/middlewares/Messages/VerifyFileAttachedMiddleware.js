@@ -1,10 +1,5 @@
-const { asyncHandler } = require("./ValidationMiddleware");
+const { asyncHandler } = require("../Validate");
 
-/**
- * Verifies a file is attached when message type is 'file'.
- *
- * On failure → passes 400 error to ErrorHandlerMiddleware via next(err).
- */
 const verifyFileAttached = asyncHandler(async (req, res, next) => {
   const { type } = req.validatedData;
 

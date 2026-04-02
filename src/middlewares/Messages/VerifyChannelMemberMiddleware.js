@@ -1,25 +1,19 @@
 const Channel = require("../../Models/ChannelModel");
-const { asyncHandler } = require("../CheckValidationMiddleware");
-const AppError = require("../../utils/AppError");
+const { asyncHandler } = require("../Validate");
 
-/**
- * Verifies the logged-in user is a member of the channel.
- * members is an array of objects: [{ user_id, role, _id }, ...]
- * Uses "members.user_id" dot notation to match the nested field.
- *
- * On failure → passes 403 error to ErrorHandlerMiddleware via next(err).
- */
 const verifyChannelMember = asyncHandler(async (req, res, next) => {
   const { channelId } = req.validatedData;
   const userId = req.user._id;
 
   const channel = await Channel.findOne({
     _id: channelId,
-    "members.user_id": String(userId),
+    "members.user_id": userId,
   });
 
   if (!channel) {
-    return next(new AppError("You are not a member of this channel.", 403));
+    const err = new Error("You are not a member of this channel.");
+    err.statusCode = 403;
+    return next(err);
   }
 
   req.channel = channel;
