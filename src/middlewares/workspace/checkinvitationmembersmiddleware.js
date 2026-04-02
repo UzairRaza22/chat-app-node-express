@@ -76,7 +76,7 @@ const checkInvitationMembers = asyncHandler(async (req, res, next) => {
 
                     // Create new invitation
                     const invitationToken = crypto.randomBytes(32).toString('hex');
-                    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
+                    const expiresAt = new Date(Date.now() + 48 * 60 * 60 * 1000); // 48 hours
 
                     const invitation = await Invitation.create({
                         workspaceId: workspace._id,

@@ -180,3 +180,14 @@ Stack: ValidationError: "members[0]" with value "69cd1164a75020cf47438a1" fails 
 [2026-04-02T12:12:07.474Z] INFO: Outgoing Response: POST /api/workspaces/invite-member - Status: 200 - Time: 5437.59ms
 [2026-04-02T12:12:59.216Z] INFO: Incoming Request: POST /api/auth/signup - IP: ::1 - Body: {"name":"Zain ul Abid","email":"zainzain@example.com","password":"*****"}
 [2026-04-02T12:13:03.700Z] INFO: Outgoing Response: POST /api/auth/signup - Status: 201 - Time: 4484.47ms
+[2026-04-02T12:16:52.960Z] INFO: Server started on port 5000
+[2026-04-02T12:24:23.629Z] INFO: Server started on port 5000
+[2026-04-02T12:25:46.531Z] INFO: Incoming Request: POST /api/auth/login - IP: ::1 - Body: {"email":"bhutta@example.com","password":"*****"}
+[2026-04-02T12:25:47.227Z] INFO: Outgoing Response: POST /api/auth/login - Status: 200 - Time: 695.34ms
+[2026-04-02T12:26:10.845Z] INFO: Incoming Request: POST /api/workspaces/invite-member - IP: ::1 - Body: {"workspace_id":"69ce5407f2c7f0ec27492e40","members":["ahmad@example.com"]}
+[2026-04-02T12:26:16.551Z] INFO: Outgoing Response: POST /api/workspaces/invite-member - Status: 200 - Time: 5706.49ms
+[2026-04-02T12:27:07.539Z] INFO: Server started on port 5000
+[2026-04-02T12:27:57.657Z] INFO: Incoming Request: POST /api/auth/signup - IP: ::1 - Body: {"name":"Ahmed","email":"ahmad@example.com","password":"*****"}
+[2026-04-02T12:28:02.709Z] INFO: Outgoing Response: POST /api/auth/signup - Status: 201 - Time: 5051.86ms
+[2026-04-02T12:28:28.715Z] INFO: Incoming Request: POST /api/auth/verify - IP: ::1 - Body: {"token":"*****"}
+[2026-04-02T12:28:29.013Z] INFO: Outgoing Response: POST /api/auth/verify - Status: 200 - Time: 298.36ms
