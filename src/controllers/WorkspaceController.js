@@ -1,6 +1,7 @@
 const Workspace = require('../models/workspacemodel');
 const WorkspaceResource = require('../resources/workspaceresource');
 const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
+const AppError = require('../utils/apperror');
 
 /**
  * @desc    Get all workspaces for the authenticated user
@@ -73,31 +74,22 @@ const deletes = asyncHandler(async (req, res) => {
 });
 
 /**
- * @desc    Add members to a workspace (handles both user IDs and emails)
+ * @desc    Add members to a workspace (only accepts user IDs)
  * @route   POST /api/workspaces/add-member
  */
 const addMember = asyncHandler(async (req, res) => {
-    const { processedResults, emailResults } = req;
+    const { processedResults } = req;
     const workspace = req.workspace;
-
-    // Merge processed results with email results
-    const finalResults = processedResults.map(result => {
-        if (result.status === 'pending_email') {
-            // Find corresponding email result
-            const emailResult = emailResults.find(email => email.member === result.member);
-            return emailResult || result;
-        }
-        return result;
-    });
 
     // Get updated workspace
     const updatedWorkspace = await Workspace.findById(workspace._id);
 
+    // All members added successfully (middleware ensures this)
     res.success({
-        message: 'Member processing completed.',
+        message: 'Members added successfully to workspace.',
         data: {
             workspace: WorkspaceResource.make(updatedWorkspace),
-            results: finalResults
+            results: processedResults
         }
     });
 });
@@ -130,11 +122,33 @@ const read = asyncHandler(async (req, res) => {
     res.success(req.responseData);
 });
 
+/**
+ * @desc    Invite members to a workspace (handles both existing users and invitations)
+ * @route   POST /api/workspaces/invite-member
+ */
+const inviteMember = asyncHandler(async (req, res) => {
+    const { processedResults } = req;
+    const workspace = req.workspace;
+
+    // Get updated workspace
+    const updatedWorkspace = await Workspace.findById(workspace._id);
+
+    // All invitations processed successfully (middleware ensures this)
+    res.success({
+        message: 'Invitations processed successfully.',
+        data: {
+            workspace: WorkspaceResource.make(updatedWorkspace),
+            results: processedResults
+        }
+    });
+});
+
 module.exports = {
     read,
     create,
     update,
     delete: deletes,
     addMember,
-    removeMember
+    removeMember,
+    inviteMember
 };

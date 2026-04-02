@@ -2,6 +2,8 @@ const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const User = require('../models/usermodel');
 const Token = require('../models/tokenmodel');
+const Invitation = require('../models/InvitationModel');
+const Workspace = require('../models/workspacemodel');
 const AuthResource = require('../resources/authresource');
 const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
 
@@ -50,6 +52,35 @@ const verify = asyncHandler(async (req, res) => {
 const login = asyncHandler(async (req, res) => {
     const user = req.user;
     const accessToken = crypto.randomBytes(32).toString('hex');
+
+    // Check for pending invitations and auto-join user to workspaces
+    const pendingInvitations = await Invitation.find({
+        email: user.email.toLowerCase(),
+        status: 'pending'
+    });
+
+    if (pendingInvitations.length > 0) {
+        for (const invitation of pendingInvitations) {
+            // Check if invitation is expired
+            if (invitation.isExpired()) {
+                invitation.status = 'expired';
+                await invitation.save();
+                continue;
+            }
+
+            // Check if user is already a member of the workspace
+            const workspace = await Workspace.findById(invitation.workspaceId);
+            if (workspace && !workspace.members.includes(user._id)) {
+                // Add user to workspace
+                workspace.members.push(user._id);
+                await workspace.save();
+
+                // Update invitation status to accepted
+                invitation.status = 'accepted';
+                await invitation.save();
+            }
+        }
+    }
 
     await Token.create({
         userId: user._id,
