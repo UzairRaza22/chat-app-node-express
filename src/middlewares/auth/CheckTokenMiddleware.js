@@ -1,6 +1,6 @@
 const User = require('../../models/usermodel');
 const Token = require('../../models/tokenmodel');
-const { asyncHandler } = require('../responsehandlermiddleware');
+const { asyncHandler } = require('../Validate');
 const AppError = require('../../utils/apperror');
 
 const auth = asyncHandler(async (req, res, next) => {
@@ -33,4 +33,5 @@ const auth = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = auth;
+
 

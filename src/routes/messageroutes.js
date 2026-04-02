@@ -5,7 +5,7 @@ const multer = require("multer");
 const messageController = require('../controllers/messagecontroller');
 
 // FIX: Path was wrong and filename is ResponseHandlerMiddleware
-const { validate } = require('../middlewares/responsehandlermiddleware');
+const { validate } = require('../middlewares/Validate');
 
 // FIX: Check your auth folder - usually it's AuthMiddleware.js or similar
 const auth = require('../middlewares/auth/checktokenmiddleware');

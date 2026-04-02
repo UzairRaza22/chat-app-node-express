@@ -7,8 +7,18 @@
  *
  * Works for: auth, workspace, team, channel, messages — every module.
  */
+const logger = require('./logger');
+
 const GlobalErrorHandler = (err, req, res, next) => {
-  console.error(err);
+  logger.error({
+    message: err.message || 'Internal Server Error',
+    method: req.method,
+    url: req.originalUrl,
+    status: err.statusCode || 500,
+    ip: req.ip,
+    user_id: req.user ? req.user._id : null,
+    stack: err.stack
+  });
 
   // ── Joi Validation Errors ─────────────────────────────────────────────────
   // Any module using validate() or validateQuery() with Joi schemas

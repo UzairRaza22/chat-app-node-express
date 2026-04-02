@@ -1,5 +1,5 @@
 const User = require('../../models/usermodel');
-const { asyncHandler } = require('../responsehandlermiddleware');
+const { asyncHandler } = require('../Validate');
 const AppError = require('../../utils/apperror');
 
 /**
@@ -81,3 +81,4 @@ const checkMembersExist = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkMembersExist;
+

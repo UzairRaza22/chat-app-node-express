@@ -1,4 +1,4 @@
-const { asyncHandler } = require('../responsehandlermiddleware');
+const { asyncHandler } = require('../Validate');
 const transporter = require('../../config/mail');
 
 /**
@@ -79,3 +79,4 @@ const sendInvitationEmail = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = sendInvitationEmail;
+

@@ -1,6 +1,6 @@
 const Workspace = require('../../models/workspacemodel');
 const WorkspaceResource = require('../../resources/workspaceresource');
-const { asyncHandler } = require('../responsehandlermiddleware');
+const { asyncHandler } = require('../Validate');
 const AppError = require('../../utils/apperror');
 
 /**
@@ -29,4 +29,5 @@ const checkReadWorkspace = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkReadWorkspace;
+
 

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const invitationController = require('../controllers/invitationcontroller');
-const { validate } = require('../middlewares/responsehandlermiddleware');
+const { validate } = require('../middlewares/Validate');
 const auth = require('../middlewares/auth/checktokenmiddleware');
 
 // Request Schemas

@@ -1,5 +1,5 @@
 const Workspace = require('../../models/workspacemodel');
-const { asyncHandler } = require('../responsehandlermiddleware');
+const { asyncHandler } = require('../Validate');
 const AppError = require('../../utils/apperror');
 
 const checkWorkspaceCreatorTeam = asyncHandler(async (req, res, next) => {
@@ -17,3 +17,4 @@ const checkWorkspaceCreatorTeam = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkWorkspaceCreatorTeam;
+

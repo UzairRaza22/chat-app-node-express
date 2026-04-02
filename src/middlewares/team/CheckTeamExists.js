@@ -1,5 +1,5 @@
 const Team = require('../../models/teammodel');
-const { asyncHandler } = require('../responsehandlermiddleware');
+const { asyncHandler } = require('../Validate');
 const AppError = require('../../utils/apperror');
 
 const checkTeamExists = asyncHandler(async (req, res, next) => {
@@ -20,3 +20,4 @@ const checkTeamExists = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkTeamExists;
+

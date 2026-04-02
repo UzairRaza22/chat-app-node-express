@@ -1,4 +1,4 @@
-const { asyncHandler } = require('../responsehandlermiddleware');
+const { asyncHandler } = require('../Validate');
 const AppError = require('../../utils/apperror');
 
 
@@ -37,4 +37,5 @@ const channelRemoveMember = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = channelRemoveMember;
+
 

@@ -1,4 +1,4 @@
-const { asyncHandler } = require('../responsehandlermiddleware');
+const { asyncHandler } = require('../Validate');
 const AppError = require('../../utils/apperror');
 
 /**
@@ -14,4 +14,5 @@ const checkWorkspaceCreator = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkWorkspaceCreator;
+
 

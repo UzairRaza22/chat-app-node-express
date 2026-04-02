@@ -1,6 +1,6 @@
 const Workspace = require('../models/workspacemodel');
 const WorkspaceResource = require('../resources/workspaceresource');
-const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
+const { asyncHandler } = require('../middlewares/Validate');
 const AppError = require('../utils/apperror');
 
 /**

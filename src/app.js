@@ -10,6 +10,7 @@ const messageRoutes = require("./routes/messageroutes");
 
 const GlobalResponseHandler = require("./utils/GlobalResponseHandler");
 const GlobalErrorHandler = require("./utils/GlobalErrorHandler");
+const loggerMiddleware = require("./middlewares/loggermiddleware");
 
 const app = express();
 
@@ -17,6 +18,7 @@ connectDB();
 
 app.use(cors());
 app.use(express.json());
+app.use(loggerMiddleware);
 
 // ✅ Attaches res.success() and res.failed() to every request
 app.use(GlobalResponseHandler);

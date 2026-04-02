@@ -3,17 +3,35 @@ const logger = require('../utils/logger');
 /**
  * Sensitive fields to sanitize from logs
  */
-const SENSITIVE_FIELDS = ['password', 'token', 'access_token', 'refreshToken', 'resetToken', 'verifyToken'];
+const SENSITIVE_FIELDS = ['password', 'token', 'access_token', 'refreshToken', 'refresh_token', 'resetToken', 'verifyToken', 'verify_token'];
+const BLOCKED_FIELDS = ['file', 'files', 'attachment', 'attachments', 'raw'];
 
 /**
  * Sanitize sensitive fields from object
  */
-const sanitize = (obj) => {
-  if (!obj || typeof obj !== 'object') return obj;
-  const sanitized = { ...obj };
+const sanitize = (value, depth = 0) => {
+  if (value === null || value === undefined) return value;
+  if (typeof value !== 'object') return value;
+  if (depth > 2) return '[Sanitized]';
+  if (Array.isArray(value)) {
+    return value.map(item => sanitize(item, depth + 1));
+  }
 
-  SENSITIVE_FIELDS.forEach(field => {
-    if (sanitized[field]) sanitized[field] = '*****';
+  const sanitized = {};
+
+  Object.entries(value).forEach(([key, item]) => {
+    const normalizedKey = key.toLowerCase();
+
+    if (SENSITIVE_FIELDS.includes(normalizedKey) || normalizedKey.includes('password') || normalizedKey.includes('token')) {
+      sanitized[key] = '*****';
+      return;
+    }
+
+    if (BLOCKED_FIELDS.includes(normalizedKey)) {
+      return;
+    }
+
+    sanitized[key] = sanitize(item, depth + 1);
   });
 
   return sanitized;

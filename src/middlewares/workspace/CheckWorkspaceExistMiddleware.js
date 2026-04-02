@@ -1,5 +1,5 @@
 const Workspace = require('../../models/workspacemodel');
-const { asyncHandler } = require('../responsehandlermiddleware');
+const { asyncHandler } = require('../Validate');
 
 /**
  * Finds all workspaces where the authenticated user is a member.
@@ -13,4 +13,5 @@ const checkWorkspaceExist = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkWorkspaceExist;
+
 

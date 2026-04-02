@@ -1,4 +1,4 @@
-const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
+const { asyncHandler } = require('../middlewares/Validate');
 const Invitation = require('../models/invitationmodel');
 const User = require('../models/usermodel');
 const Workspace = require('../models/workspacemodel');

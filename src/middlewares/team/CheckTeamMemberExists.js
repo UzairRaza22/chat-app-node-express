@@ -1,4 +1,4 @@
-const { asyncHandler } = require('../responsehandlermiddleware');
+const { asyncHandler } = require('../Validate');
 const AppError = require('../../utils/apperror');
 
 const checkTeamMemberExists = asyncHandler(async (req, res, next) => {
@@ -13,3 +13,4 @@ const checkTeamMemberExists = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkTeamMemberExists;
+

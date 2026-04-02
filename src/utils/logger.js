@@ -11,18 +11,13 @@ if (!fs.existsSync(LOGS_DIR)) {
   fs.mkdirSync(LOGS_DIR, { recursive: true });
 }
 
-// Lazy-loaded to avoid circular dependency at startup
+// MongoDB activity log model
 let ActivityLog = null;
-const getActivityLogModel = () => {
-  if (!ActivityLog) {
-    try {
-      ActivityLog = require('../models/ActivityLogModel');
-    } catch (e) {
-      // Model not available yet (DB not connected)
-    }
-  }
-  return ActivityLog;
-};
+try {
+  ActivityLog = require('../models/ActivityLogModel');
+} catch (e) {
+  ActivityLog = null;
+}
 
 /**
  * Custom Logger Utility
@@ -64,21 +59,23 @@ class Logger {
    * Write to MongoDB (async, non-blocking, fire-and-forget)
    */
   async _writeMongo(level, data) {
-    const Model = getActivityLogModel();
-    if (!Model) return;
+    if (!ActivityLog) return;
+
+    const logData = {
+      type: level,
+      message: data.message || 'No message provided',
+      method: data.method,
+      url: data.url,
+      status: data.status,
+      ip: data.ip,
+      user_id: data.user_id || null,
+      request_body: data.request_body,
+      response_time: data.response_time,
+      created_at: data.created_at || Date.now()
+    };
 
     try {
-      // Ensure we have a message and a type
-      const logData = {
-        type: level,
-        message: data.message || 'No message provided',
-        ...data
-      };
-      
-      // Fire and forget
-      Model.create(logData).catch(err => {
-          console.error("Log DB Error:", err.message);
-      });
+      await ActivityLog.create(logData);
     } catch (err) {
       console.error("Log DB Error:", err.message);
     }

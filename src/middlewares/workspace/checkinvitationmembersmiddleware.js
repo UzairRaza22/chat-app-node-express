@@ -1,6 +1,6 @@
 const User = require('../../models/usermodel');
 const Invitation = require('../../models/InvitationModel');
-const { asyncHandler } = require('../responsehandlermiddleware');
+const { asyncHandler } = require('../Validate');
 const AppError = require('../../utils/apperror');
 const crypto = require('crypto');
 const transporter = require('../../config/mail');
@@ -166,3 +166,4 @@ const checkInvitationMembers = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkInvitationMembers;
+

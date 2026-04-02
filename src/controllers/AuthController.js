@@ -5,7 +5,7 @@ const Token = require('../models/tokenmodel');
 const Invitation = require('../models/InvitationModel');
 const Workspace = require('../models/workspacemodel');
 const AuthResource = require('../resources/authresource');
-const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
+const { asyncHandler } = require('../middlewares/Validate');
 
 /**
  * @desc    Register a new user

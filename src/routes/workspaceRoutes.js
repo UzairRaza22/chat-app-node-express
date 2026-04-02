@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const workspaceController = require('../controllers/workspacecontroller');
-const { validate } = require('../middlewares/responsehandlermiddleware');
+const { validate } = require('../middlewares/Validate');
 const auth = require('../middlewares/auth/checktokenmiddleware');
 
 // Workspace Middlewares (lowercase)

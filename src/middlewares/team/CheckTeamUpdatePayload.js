@@ -1,4 +1,4 @@
-const { asyncHandler } = require('../responsehandlermiddleware');
+const { asyncHandler } = require('../Validate');
 const AppError = require('../../utils/apperror');
 
 const checkTeamUpdatePayload = asyncHandler(async (req, res, next) => {
@@ -15,3 +15,4 @@ const checkTeamUpdatePayload = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkTeamUpdatePayload;
+
