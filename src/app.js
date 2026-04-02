@@ -3,33 +3,37 @@ const express = require("express");
 const cors = require("cors");
 
 const connectDB = require("./config/db");
+
+// Routes Imports
 const authRoutes = require("./routes/authroutes");
-const workspaceRoutes = require("./routes/workspaceroutes");
-const channelRoutes = require("./routes/channelroutes");
+const workspaceRoutes = require("./routes/workspaceRoutes");
+const teamRoutes = require("./routes/teamRoutes");
+const channelRoutes = require("./routes/ChannelRoutes");
 const messageRoutes = require("./routes/messageroutes");
 
-const GlobalResponseHandler = require("./utils/GlobalResponseHandler");
+const { GlobalResponseHandler } = require("./utils/GlobalResponseHandler");
 const GlobalErrorHandler = require("./utils/GlobalErrorHandler");
 
 const app = express();
 
+// Database Connection
 connectDB();
 
+// Standard Middlewares
 app.use(cors());
 app.use(express.json());
 
-// ✅ Attaches res.success() and res.failed() to every request
+// ✅ 3. Attaches res.success() and res.failed() - Registered BEFORE routes
 app.use(GlobalResponseHandler);
 
+// Routes Registration
 app.use("/api/auth", authRoutes);
 app.use("/api/workspaces", workspaceRoutes);
+app.use("/api/teams", teamRoutes); 
 app.use("/api/channels", channelRoutes);
 app.use("/api/messages", messageRoutes);
 
-// ✅ Catches all next(err) calls from every module — registered last
 app.use(GlobalErrorHandler);
-
-const logger = require("./utils/logger");
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

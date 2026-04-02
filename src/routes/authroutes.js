@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const authController = require('../controllers/authcontroller');
-const { validate } = require('../middlewares/responsehandlermiddleware');
+const { asyncHandler } = require("../middlewares/validate");;
 const auth = require('../middlewares/auth/checktokenmiddleware');
 const checkExistingUser = require('../middlewares/auth/checkexistingusermiddleware');
 const verifyLogin = require('../middlewares/auth/checkloginmiddleware');
