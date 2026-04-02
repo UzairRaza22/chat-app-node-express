@@ -12,7 +12,7 @@ const checkUniqueWorkspace = require('../middlewares/workspace/checkuniqueworksp
 const checkWorkspaceCreator = require('../middlewares/workspace/checkworkspacecreatemiddleware');
 const checkMembersExist = require('../middlewares/workspace/checkmembersexistmiddleware');
 const checkReadWorkspace = require('../middlewares/workspace/checkreadworkspacemiddleware');
-const sendInvitationEmail = require('../middlewares/workspace/sendinvitationemailmiddleware');
+const checkInvitationMembers = require('../middlewares/workspace/checkinvitationmembersmiddleware');
 
 // Request Schemas (lowercase)
 const createWorkspaceSchema = require('../requests/workspace/createworkspacerequest');
@@ -21,6 +21,7 @@ const addWorkspaceMemberSchema = require('../requests/workspace/addworkspacememb
 const removeWorkspaceMemberSchema = require('../requests/workspace/removeworkspacememberrequest');
 const readWorkspaceSchema = require('../requests/workspace/readworkspacerequest');
 const deleteWorkspaceSchema = require('../requests/workspace/deleteworkspacerequest');
+const inviteWorkspaceMemberSchema = require('../requests/workspace/inviteworkspacememberrequest');
 
 // Routes
 
@@ -37,9 +38,12 @@ router.put('/update', auth, validate(updateWorkspaceSchema), checkWorkspaceExist
 router.delete('/delete', auth, validate(deleteWorkspaceSchema), checkWorkspaceExists, checkWorkspaceCreator, workspaceController.delete);
 
 // 6. Add members to a workspace (creator only) -- passed in body
-router.post('/add-member', auth, validate(addWorkspaceMemberSchema), checkWorkspaceExists, checkWorkspaceCreator, checkMembersExist, sendInvitationEmail, workspaceController.addMember);
+router.post('/add-member', auth, validate(addWorkspaceMemberSchema), checkWorkspaceExists, checkWorkspaceCreator, checkMembersExist, workspaceController.addMember);
 
 // 7. Remove members from a workspace (owner only) -- passed in body
 router.delete('/remove-member', auth, validate(removeWorkspaceMemberSchema), checkWorkspaceExists, checkWorkspaceCreator, workspaceController.removeMember);
+
+// 8. Invite members to a workspace (creator only) -- passed in body
+router.post('/invite-member', auth, validate(inviteWorkspaceMemberSchema), checkWorkspaceExists, checkWorkspaceCreator, checkInvitationMembers, workspaceController.inviteMember);
 
 module.exports = router;

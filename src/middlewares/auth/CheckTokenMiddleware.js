@@ -22,6 +22,11 @@ const auth = asyncHandler(async (req, res, next) => {
     if (!user) {
         return next(new AppError('User not found.', 404));
     }
+
+    // Ensure user is verified
+    if (!user.isVerified) {
+        return next(new AppError('Account not verified. Please verify your email.', 403));
+    }
     
     req.user = user;
     next();

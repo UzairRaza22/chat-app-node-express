@@ -52,11 +52,19 @@ const ErrorHandlerMiddleware = (err, req, res, next) => {
   // From: VerifyFileAttachedMiddleware  → No file attached
   // From: VerifyUpdatePayloadMiddleware → content required / new file required
   // From: validate()                   → Joi schema validation failed
+  // From: checkMembersExist            → Failed to add members to workspace
   if (err.statusCode === 400) {
-    return res.status(400).json({
+    const response = {
       success: false,
       message: err.message,
-    });
+    };
+    
+    // Include errors data if available (for member addition failures)
+    if (err.errors) {
+      response.errors = err.errors;
+    }
+    
+    return res.status(400).json(response);
   }
 
   // ── 403 Forbidden Errors ──────────────────────────────────────────────────
