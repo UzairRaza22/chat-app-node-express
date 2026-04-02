@@ -1,4 +1,5 @@
 const { asyncHandler } = require("../Validate");
+const { createError } = require("../../utils/GlobalResponseHandler");
 
 const verifyUpdatePayload = asyncHandler(async (req, res, next) => {
   const message = req.message;
@@ -6,13 +7,13 @@ const verifyUpdatePayload = asyncHandler(async (req, res, next) => {
 
   if (message.type === "text" && !content) {
     return next(
-      new AppError("content is required to update a text message.", 400),
+      createError("content is required to update a text message.", 400),
     );
   }
 
   if (message.type === "file" && !req.file) {
     return next(
-      new AppError("A new file is required to update a file message.", 400),
+      createError("A new file is required to update a file message.", 400),
     );
   }
 

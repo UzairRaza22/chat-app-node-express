@@ -1,5 +1,6 @@
 const Channel = require("../../Models/ChannelModel");
 const { asyncHandler } = require("../Validate");
+const { createError } = require("../../utils/GlobalResponseHandler");
 
 const verifyChannelMember = asyncHandler(async (req, res, next) => {
   const { channelId } = req.validatedData;
@@ -11,9 +12,7 @@ const verifyChannelMember = asyncHandler(async (req, res, next) => {
   });
 
   if (!channel) {
-    const err = new Error("You are not a member of this channel.");
-    err.statusCode = 403;
-    return next(err);
+    return next(createError("You are not a member of this channel.", 403));
   }
 
   req.channel = channel;
