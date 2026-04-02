@@ -18,3 +18,4 @@
 [2026-04-02T10:23:12.688Z] INFO: Server started on port 5000
 [2026-04-02T10:23:34.363Z] INFO: Server started on port 5000
 [2026-04-02T10:26:56.776Z] INFO: Server started on port 5000
+[2026-04-02T12:57:41.138Z] INFO: POST /api/auth/login - Status: 200 - Time: 965ms

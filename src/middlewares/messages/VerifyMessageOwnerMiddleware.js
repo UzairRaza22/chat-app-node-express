@@ -1,4 +1,5 @@
 const { asyncHandler } = require("../Validate");
+const { createError } = require("../../utils/GlobalResponseHandler");
 
 const verifyMessageOwner = asyncHandler(async (req, res, next) => {
   const message = req.message;
@@ -6,7 +7,7 @@ const verifyMessageOwner = asyncHandler(async (req, res, next) => {
 
   if (message.senderId.toString() !== userId.toString()) {
     return next(
-      new AppError("You are not authorized to modify this message.", 403),
+      createError("You are not authorized to modify this message.", 403),
     );
   }
 
