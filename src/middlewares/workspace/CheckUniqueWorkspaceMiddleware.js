@@ -16,7 +16,11 @@ const checkUniqueWorkspace = asyncHandler(async (req, res, next) => {
     const existing = await Workspace.findOne({ name });
 
     if (existing) {
+<<<<<<< HEAD
         return next(new AppError('A workspace with this name already exists.', 400));
+=======
+        return res.error('A workspace with this name already exists.');
+>>>>>>> b89fd9a5ed63ea4e0854216ac6d27f5d043ecb5b
     }
 
     next();
