@@ -318,3 +318,122 @@ Stack: Error: Access denied. Only the workspace owner can perform this action.
 Stack: Error: Invalid credentials.
     at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:16:21
 [2026-04-03T10:34:25.192Z] WARN: POST /api/auth/login - Status: 400 - Time: 265ms
+[2026-04-03T10:50:36.555Z] ERROR: "members[0]" must be a valid email
+Stack: Error: "members[0]" must be a valid email
+    at E:\Chat APP\chat-app-node-express\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\route.js:149:13)
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckTokenMiddleware.js:32:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T10:50:36.559Z] WARN: POST /api/workspaces/invite-member - Status: 400 - Time: 348ms
+[2026-04-03T10:51:12.264Z] ERROR: "members[0]" must be a valid email
+Stack: Error: "members[0]" must be a valid email
+    at E:\Chat APP\chat-app-node-express\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\route.js:149:13)
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckTokenMiddleware.js:32:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T10:51:12.273Z] WARN: POST /api/workspaces/invite-member - Status: 400 - Time: 338ms
+[2026-04-03T10:51:33.197Z] ERROR: "members[0]" must be a valid email
+Stack: Error: "members[0]" must be a valid email
+    at E:\Chat APP\chat-app-node-express\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\route.js:149:13)
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckTokenMiddleware.js:32:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T10:51:33.202Z] WARN: POST /api/workspaces/invite-member - Status: 400 - Time: 304ms
+[2026-04-03T10:51:56.200Z] ERROR: Access denied. Only the workspace owner can perform this action.
+Stack: Error: Access denied. Only the workspace owner can perform this action.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\workspace\CheckWorkspaceCreateMiddleware.js:10:21
+    at E:\Chat APP\chat-app-node-express\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\route.js:149:13)
+    at E:\Chat APP\chat-app-node-express\src\middlewares\workspace\CheckWorkspaceExistsMiddleware.js:23:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T10:51:56.204Z] WARN: POST /api/workspaces/add-member - Status: 403 - Time: 439ms
+[2026-04-03T11:01:28.840Z] ERROR: "members[0]" with value "buttler@example.com" fails to match the required pattern: /^[0-9a-fA-F]{24}$/
+Stack: Error: "members[0]" with value "buttler@example.com" fails to match the required pattern: /^[0-9a-fA-F]{24}$/
+    at E:\Chat APP\chat-app-node-express\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\route.js:149:13)
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckTokenMiddleware.js:32:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T11:01:28.858Z] WARN: POST /api/workspaces/add-member - Status: 400 - Time: 357ms
+[2026-04-03T11:01:48.121Z] ERROR: Access denied. Only the workspace owner can perform this action.
+Stack: Error: Access denied. Only the workspace owner can perform this action.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\workspace\CheckWorkspaceCreateMiddleware.js:10:21
+    at E:\Chat APP\chat-app-node-express\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\route.js:149:13)
+    at E:\Chat APP\chat-app-node-express\src\middlewares\workspace\CheckWorkspaceExistsMiddleware.js:23:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T11:01:48.124Z] WARN: POST /api/workspaces/invite-member - Status: 403 - Time: 443ms
+[2026-04-03T11:02:06.802Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:16:21
+[2026-04-03T11:02:06.806Z] WARN: POST /api/auth/login - Status: 400 - Time: 304ms
+[2026-04-03T11:02:12.325Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:16:21
+[2026-04-03T11:02:12.328Z] WARN: POST /api/auth/login - Status: 400 - Time: 256ms
+[2026-04-03T11:02:37.080Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:16:21
+[2026-04-03T11:02:37.095Z] WARN: POST /api/auth/login - Status: 400 - Time: 313ms
+[2026-04-03T11:02:49.726Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:11:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T11:02:49.746Z] WARN: POST /api/auth/login - Status: 400 - Time: 174ms
+[2026-04-03T11:02:59.038Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:16:21
+[2026-04-03T11:02:59.042Z] WARN: POST /api/auth/login - Status: 400 - Time: 267ms
+[2026-04-03T11:03:28.180Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:16:21
+[2026-04-03T11:03:28.182Z] WARN: POST /api/auth/login - Status: 400 - Time: 250ms
+[2026-04-03T11:03:30.065Z] WARN: POST /api/auth/login - Status: 400 - Time: 270ms
+[2026-04-03T11:03:30.063Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:16:21
+[2026-04-03T11:03:56.126Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:16:21
+[2026-04-03T11:03:56.128Z] WARN: POST /api/auth/login - Status: 400 - Time: 256ms
+[2026-04-03T11:04:04.740Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:16:21
+[2026-04-03T11:04:04.742Z] WARN: POST /api/auth/login - Status: 400 - Time: 260ms
+[2026-04-03T11:04:25.280Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:11:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T11:04:25.282Z] WARN: POST /api/auth/login - Status: 400 - Time: 201ms
+[2026-04-03T11:04:34.676Z] ERROR: Access denied. Only the workspace owner can perform this action.
+Stack: Error: Access denied. Only the workspace owner can perform this action.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\workspace\CheckWorkspaceCreateMiddleware.js:10:21
+    at E:\Chat APP\chat-app-node-express\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\route.js:149:13)
+    at E:\Chat APP\chat-app-node-express\src\middlewares\workspace\CheckWorkspaceExistsMiddleware.js:23:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T11:04:34.680Z] WARN: POST /api/workspaces/invite-member - Status: 403 - Time: 445ms
+[2026-04-03T11:04:56.660Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:11:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T11:04:56.663Z] WARN: POST /api/auth/login - Status: 400 - Time: 149ms
+[2026-04-03T11:05:10.696Z] INFO: POST /api/auth/signup - Status: 200 - Time: 5042ms
+[2026-04-03T11:05:35.744Z] INFO: POST /api/auth/verify - Status: 200 - Time: 317ms
+[2026-04-03T11:05:42.571Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:16:21
+[2026-04-03T11:05:42.573Z] WARN: POST /api/auth/login - Status: 400 - Time: 254ms
+[2026-04-03T11:07:15.165Z] INFO: POST /api/workspaces/invite-member - Status: 200 - Time: 5589ms
+[2026-04-03T11:08:05.437Z] INFO: POST /api/auth/signup - Status: 200 - Time: 4615ms
+[2026-04-03T11:08:20.103Z] INFO: POST /api/auth/verify - Status: 200 - Time: 301ms
+[2026-04-03T11:08:28.924Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:16:21
+[2026-04-03T11:08:28.926Z] WARN: POST /api/auth/login - Status: 400 - Time: 262ms
