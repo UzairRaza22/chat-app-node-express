@@ -23,3 +23,7 @@ Stack: ValidationError: "members[0]" with value "69cd1164a75020cf47438a1" fails 
 [2026-04-02T12:06:20.945Z] ERROR: Application Error: Invalid or expired token.
 [2026-04-02T12:11:19.403Z] ERROR: Application Error: User already exists.
 [2026-04-02T12:11:44.459Z] ERROR: Application Error: Failed to process some invitations.
+[2026-04-03T06:51:54.028Z] ERROR: Channel with this name already exists.
+Stack: Error: Channel with this name already exists.
+    at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelCreateMiddleware.js:79:25
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
