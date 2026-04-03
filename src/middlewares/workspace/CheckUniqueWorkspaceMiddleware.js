@@ -1,6 +1,6 @@
-const Workspace = require('../../models/workspacemodel');
+const Workspace = require('../../models/WorkspaceModel');
 const { asyncHandler } = require('../Validate');
-const AppError = require('../../utils/apperror');
+const AppError = require('../../utils/AppError');
 
 /**
  * Checks that no workspace with the same name already exists.

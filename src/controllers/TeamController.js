@@ -1,9 +1,7 @@
-const Team = require('../models/teammodel');
-const User = require('../models/usermodel'); 
-const TeamResource = require('../resources/teamresource');
+const Team = require('../models/TeamModel');
+const User = require('../models/UserModel'); 
+const TeamResource = require('../resources/TeamResource');
 const { asyncHandler } = require('../middlewares/Validate');
-
-const { asyncHandler } = require("../middlewares/Validate");
 const { createError } = require("../utils/GlobalResponseHandler");
 
 /**

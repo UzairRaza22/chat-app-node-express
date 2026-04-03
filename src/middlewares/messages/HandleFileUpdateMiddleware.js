@@ -1,4 +1,4 @@
-const { updateFileInGridFS } = require("../../config/gridfs");
+const { updateFileInGridFS } = require("../../config/GridFs");
 const { asyncHandler } = require("../Validate");
 
 const handleFileUpdate = asyncHandler(async (req, res, next) => {

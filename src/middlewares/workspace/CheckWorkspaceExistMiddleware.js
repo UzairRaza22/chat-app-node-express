@@ -1,4 +1,4 @@
-const Workspace = require('../../models/workspacemodel');
+const Workspace = require('../../models/WorkspaceModel');
 const { asyncHandler } = require('../Validate');
 
 /**

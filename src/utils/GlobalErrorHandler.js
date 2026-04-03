@@ -13,7 +13,7 @@
  *
  * Works for: auth, workspace, team, channel, messages — every module.
  */
-const logger = require('./logger');
+const logger = require('./Logger');
 
 const GlobalErrorHandler = (err, req, res, next) => {
   logger.error({
@@ -49,7 +49,7 @@ const GlobalErrorHandler = (err, req, res, next) => {
   // From: HandleFileUpdateMiddleware  → update failed
   // From: HandleFileDeleteMiddleware  → delete failed
   // From: StreamFileMiddleware        → download failed
-  if (err.message && err.message.toLowerCase().includes("gridfs")) {
+  if (err.message && err.message.toLowerCase().includes("GridFs")) {
     return res.failed(
       "File storage error. Please try again.",
       { errors: err.message },

@@ -1,7 +1,7 @@
-const Workspace = require('../models/workspacemodel');
-const WorkspaceResource = require('../resources/workspaceresource');
+const Workspace = require('../models/WorkspaceModel');
+const WorkspaceResource = require('../resources/WorkspaceResource');
 const { asyncHandler } = require('../middlewares/Validate');
-const AppError = require('../utils/apperror');
+const AppError = require('../utils/AppError');
 
 /**
  * @desc    Create a new workspace

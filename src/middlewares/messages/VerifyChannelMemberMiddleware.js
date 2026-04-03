@@ -1,4 +1,4 @@
-const Channel = require("../../Models/ChannelModel");
+const Channel = require("../../models/ChannelModel");
 const { asyncHandler } = require("../Validate");
 const { createError } = require("../../utils/GlobalResponseHandler");
 
