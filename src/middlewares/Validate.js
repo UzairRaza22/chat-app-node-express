@@ -1,13 +1,6 @@
 /**
  * middlewares/validate.js
- *
- * Global validation middleware + asyncHandler for the entire application.
- * Used by every module: auth, workspace, team, channel, messages.
- *
- * asyncHandler is exported from here — no separate utils/asyncHandler.js needed.
- * Every middleware and controller imports asyncHandler from this file.
- *
- * Usage in any route:
+
  *   const { validate, validateQuery } = require("../middlewares/validate");
  *
  * Usage in any middleware or controller:
