@@ -1,5 +1,5 @@
 // ── createError ───────────────────────────────────────────────────────────────
-// Replaces: new AppError(message, statusCode)
+// Replaces: createError(message, statusCode)
 // Replaces: const err = new Error(msg); err.statusCode = X; next(err);
 //
 // isOperational = true  → ErrorHandlerMiddleware treats it as a known error

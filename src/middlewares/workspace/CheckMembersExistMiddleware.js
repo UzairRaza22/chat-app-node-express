@@ -1,6 +1,6 @@
 const User = require('../../models/UserModel');
 const { asyncHandler } = require('../Validate');
-const AppError = require('../../utils/AppError');
+const { createError } = require('../../utils/GlobalResponseHandler.js');
 
 /**
  * Processes members for workspace addition
@@ -68,7 +68,7 @@ const checkMembersExist = asyncHandler(async (req, res, next) => {
 
     // If there are any errors, throw an error with the details
     if (errors.length > 0) {
-        const error = new AppError('Failed to add members to workspace.', 400);
+        const error = createError('Failed to add members to workspace.', 400);
         error.errors = errors;
         return next(error);
     }

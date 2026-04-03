@@ -1,7 +1,7 @@
 const Workspace = require('../../models/WorkspaceModel');
 const WorkspaceResource = require('../../resources/WorkspaceResource');
 const { asyncHandler } = require('../Validate');
-const AppError = require('../../utils/AppError');
+const { createError } = require('../../utils/GlobalResponseHandler.js');
 
 /**
  * Checks if workspace_id is in body. 
@@ -12,7 +12,7 @@ const checkReadWorkspace = asyncHandler(async (req, res, next) => {
     if (req.body.workspace_id) {
         const workspace = await Workspace.findById(req.body.workspace_id);
         if (!workspace) {
-            return next(new AppError('Workspace not found.', 404));
+            return next(createError('Workspace not found.', 404));
         }
         req.responseData = {
             message: 'Workspace retrieved successfully.',
