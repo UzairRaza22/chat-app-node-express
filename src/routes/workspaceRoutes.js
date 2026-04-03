@@ -12,8 +12,8 @@ const checkUniqueWorkspace = require('../middlewares/workspace/CheckUniqueWorksp
 const checkWorkspaceCreator = require('../middlewares/workspace/CheckWorkspaceCreateMiddleware');
 const checkMembersExist = require('../middlewares/workspace/CheckMembersExistMiddleware');
 const checkReadWorkspace = require('../middlewares/workspace/CheckReadWorkspaceMiddleware');
-const checkInvitationMembers = require('../middlewares/workspace/CheckInvitationMembersMiddleware');
-const sendInvitationEmail = require('../middlewares/workspace/SendInvitationEmailMiddleware');
+const checkInvitationMembers = require('../middlewares/invitation/CheckInvitationMembersMiddleware');
+const sendInvitationEmail = require('../middlewares/invitation/SendInvitationEmailMiddleware');
 
 // Request Schemas (lowercase)
 const createWorkspaceSchema = require('../requests/workspace/CreateWorkspaceRequest');

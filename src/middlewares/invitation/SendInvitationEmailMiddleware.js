@@ -71,4 +71,3 @@ const sendInvitationEmail = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = sendInvitationEmail;
-

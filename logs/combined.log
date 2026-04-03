@@ -203,3 +203,41 @@ Stack: ValidationError: "members[0]" with value "69cd1164a75020cf47438a1" fails 
 [2026-04-02T12:28:02.709Z] INFO: Outgoing Response: POST /api/auth/signup - Status: 201 - Time: 5051.86ms
 [2026-04-02T12:28:28.715Z] INFO: Incoming Request: POST /api/auth/verify - IP: ::1 - Body: {"token":"*****"}
 [2026-04-02T12:28:29.013Z] INFO: Outgoing Response: POST /api/auth/verify - Status: 200 - Time: 298.36ms
+[2026-04-03T07:45:07.730Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (E:\Chat APP\chat-app-node-express\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-04-03T07:45:07.760Z] WARN: POST /api/workspaces/invite-member - Status: 500 - Time: 10051ms
+[2026-04-03T07:46:15.568Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T07:46:15.591Z] WARN: POST /api/workspaces/invite-member - Status: 401 - Time: 179ms
+[2026-04-03T07:46:26.275Z] INFO: POST /api/auth/login - Status: 200 - Time: 587ms
+[2026-04-03T07:47:30.386Z] INFO: POST /api/workspaces/create - Status: 200 - Time: 636ms
+[2026-04-03T07:47:47.222Z] INFO: POST /api/workspaces/invite-member - Status: 200 - Time: 926ms
+[2026-04-03T07:48:11.445Z] INFO: POST /api/workspaces/invite-member - Status: 200 - Time: 5801ms
+[2026-04-03T07:49:36.531Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:11:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T07:49:36.534Z] WARN: POST /api/auth/login - Status: 400 - Time: 154ms
+[2026-04-03T07:49:59.160Z] INFO: POST /api/auth/signup - Status: 200 - Time: 11248ms
+[2026-04-03T07:50:34.284Z] INFO: POST /api/auth/verify - Status: 200 - Time: 332ms
+[2026-04-03T07:50:52.139Z] INFO: POST /api/auth/login - Status: 200 - Time: 1106ms
+[2026-04-03T07:59:47.644Z] INFO: POST /api/auth/login - Status: 200 - Time: 604ms
+[2026-04-03T08:00:19.933Z] ERROR: Failed to process some invitations.
+Stack: Error: Failed to process some invitations.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:122:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T08:00:19.936Z] WARN: POST /api/workspaces/invite-member - Status: 400 - Time: 626ms
+[2026-04-03T08:00:33.665Z] ERROR: Failed to process some invitations.
+Stack: Error: Failed to process some invitations.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:122:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T08:00:33.668Z] WARN: POST /api/workspaces/invite-member - Status: 400 - Time: 615ms
+[2026-04-03T08:00:52.315Z] INFO: POST /api/workspaces/invite-member - Status: 200 - Time: 6025ms
+[2026-04-03T08:01:54.365Z] INFO: POST /api/auth/signup - Status: 200 - Time: 3565ms
+[2026-04-03T08:02:21.465Z] INFO: POST /api/auth/verify - Status: 200 - Time: 319ms
+[2026-04-03T08:02:39.900Z] INFO: POST /api/auth/login - Status: 200 - Time: 1033ms

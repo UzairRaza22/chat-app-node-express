@@ -23,3 +23,24 @@ Stack: ValidationError: "members[0]" with value "69cd1164a75020cf47438a1" fails 
 [2026-04-02T12:06:20.945Z] ERROR: Application Error: Invalid or expired token.
 [2026-04-02T12:11:19.403Z] ERROR: Application Error: User already exists.
 [2026-04-02T12:11:44.459Z] ERROR: Application Error: Failed to process some invitations.
+[2026-04-03T07:45:07.730Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (E:\Chat APP\chat-app-node-express\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-04-03T07:46:15.568Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T07:49:36.531Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:11:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T08:00:19.933Z] ERROR: Failed to process some invitations.
+Stack: Error: Failed to process some invitations.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:122:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T08:00:33.665Z] ERROR: Failed to process some invitations.
+Stack: Error: Failed to process some invitations.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:122:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)

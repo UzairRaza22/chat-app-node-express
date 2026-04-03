@@ -5,7 +5,7 @@ const AppError = require('../../utils/AppError');
 const crypto = require('crypto');
 
 /**
- * Processes member invitations for workspace
+ * Middleware to process member invitations for workspace
  * - Handles existing users (auto-add if verified)
  * - Creates invitations for non-existing users
  * - Prevents duplicate invitations
@@ -132,4 +132,3 @@ const checkInvitationMembers = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkInvitationMembers;
-
