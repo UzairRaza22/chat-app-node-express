@@ -1,5 +1,5 @@
-const { asyncHandler } = require('../responsehandlermiddleware');
-const AppError = require('../../utils/apperror');
+const { asyncHandler } = require('../Validate');
+const AppError = require('../../utils/AppError');
 
 /**
  * Checks that the authenticated user is the owner (creator) of the workspace.
@@ -14,4 +14,5 @@ const checkWorkspaceCreator = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkWorkspaceCreator;
+
 

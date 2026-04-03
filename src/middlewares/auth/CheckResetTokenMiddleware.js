@@ -1,6 +1,6 @@
-const User = require('../../models/usermodel');
-const { asyncHandler } = require('../responsehandlermiddleware');
-const AppError = require('../../utils/apperror');
+const User = require('../../models/UserModel');
+const { asyncHandler } = require('../Validate');
+const AppError = require('../../utils/AppError');
 
 const verifyResetToken = asyncHandler(async (req, res, next) => {
     const { token } = req.body;
@@ -19,4 +19,5 @@ const verifyResetToken = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = verifyResetToken;
+
 

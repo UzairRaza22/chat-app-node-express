@@ -1,7 +1,7 @@
-const Workspace = require('../../models/workspacemodel');
-const Team = require('../../models/teammodel');
-const { asyncHandler } = require('../responsehandlermiddleware');
-const AppError = require('../../utils/apperror');
+const Workspace = require('../../models/WorkspaceModel');
+const Team = require('../../models/TeamModel');
+const { asyncHandler } = require('../Validate');
+const AppError = require('../../utils/AppError');
 
 
 const channelAddMember = asyncHandler(async (req, res, next) => {
@@ -60,4 +60,5 @@ const channelAddMember = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = channelAddMember;
+
 

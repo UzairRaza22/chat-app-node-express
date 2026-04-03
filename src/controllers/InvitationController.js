@@ -1,9 +1,9 @@
-const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
-const Invitation = require('../models/invitationmodel');
-const User = require('../models/usermodel');
-const Workspace = require('../models/workspacemodel');
-const InvitationService = require('../utils/invitationservice');
-const AppError = require('../utils/apperror');
+const { asyncHandler } = require('../middlewares/Validate');
+const Invitation = require('../models/InvitationModel');
+const User = require('../models/UserModel');
+const Workspace = require('../models/WorkspaceModel');
+const InvitationService = require('../utils/InvitationService');
+const AppError = require('../utils/AppError');
 
 const acceptInvitationByToken = asyncHandler(async (req, res) => {
     const { token, workspaceId } = req.validatedData;

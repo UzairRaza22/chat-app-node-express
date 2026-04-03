@@ -1,11 +1,11 @@
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
-const User = require('../models/usermodel');
-const Token = require('../models/tokenmodel');
+const User = require('../models/UserModel');
+const Token = require('../models/TokenModel');
 const Invitation = require('../models/InvitationModel');
-const Workspace = require('../models/workspacemodel');
-const AuthResource = require('../resources/authresource');
-const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
+const Workspace = require('../models/WorkspaceModel');
+const AuthResource = require('../resources/AuthResource');
+const { asyncHandler } = require('../middlewares/Validate');
 
 /**
  * @desc    Register a new user

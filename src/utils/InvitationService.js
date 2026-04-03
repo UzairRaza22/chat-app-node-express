@@ -1,7 +1,7 @@
 const crypto = require('crypto');
-const Invitation = require('../models/invitationmodel');
-const User = require('../models/usermodel');
-const Workspace = require('../models/workspacemodel');
+const Invitation = require('../models/InvitationModel');
+const User = require('../models/UserModel');
+const Workspace = require('../models/WorkspaceModel');
 
 class InvitationService {
     /**

@@ -5,8 +5,18 @@
  *
  * Works for: auth, workspace, team, channel, messages — every module.
  */
+const logger = require('./Logger');
+
 const GlobalErrorHandler = (err, req, res, next) => {
-  console.error(err);
+  logger.error({
+    message: err.message || 'Internal Server Error',
+    method: req.method,
+    url: req.originalUrl,
+    status: err.statusCode || 500,
+    ip: req.ip,
+    user_id: req.user ? req.user._id : null,
+    stack: err.stack
+  });
 
   // ── Joi Validation Errors ─────────────────────────────────────────────────
   // Any module using validate() or validateQuery() with Joi schemas
@@ -31,7 +41,7 @@ const GlobalErrorHandler = (err, req, res, next) => {
   // From: HandleFileUpdateMiddleware  → update failed
   // From: HandleFileDeleteMiddleware  → delete failed
   // From: StreamFileMiddleware        → download failed
-  if (err.message && err.message.toLowerCase().includes("gridfs")) {
+  if (err.message && err.message.toLowerCase().includes("GridFs")) {
     return res.failed(
       "File storage error. Please try again.",
       { errors: err.message },

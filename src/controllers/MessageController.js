@@ -1,6 +1,6 @@
 const Message = require("../models/MessageModel");
 const MessageResource = require("../resources/MessageResource");
-const paginate = require("../utils/paginate");
+const paginate = require("../utils/Paginate");
 const { asyncHandler } = require("../middlewares/Validate");
 
 const create = asyncHandler(async (req, res) => {

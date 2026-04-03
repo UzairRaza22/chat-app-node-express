@@ -1,6 +1,6 @@
-const Workspace = require('../../models/workspacemodel');
-const { asyncHandler } = require('../responsehandlermiddleware');
-const AppError = require('../../utils/apperror');
+const Workspace = require('../../models/WorkspaceModel');
+const { asyncHandler } = require('../Validate');
+const AppError = require('../../utils/AppError');
 
 /**
  * Finds a single workspace by req.body.workspace_id and attaches it to req.workspace.
@@ -24,4 +24,5 @@ const checkWorkspaceExists = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkWorkspaceExists;
+
 

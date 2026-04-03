@@ -1,7 +1,7 @@
-const Workspace = require('../../models/workspacemodel');
-const WorkspaceResource = require('../../resources/workspaceresource');
-const { asyncHandler } = require('../responsehandlermiddleware');
-const AppError = require('../../utils/apperror');
+const Workspace = require('../../models/WorkspaceModel');
+const WorkspaceResource = require('../../resources/WorkspaceResource');
+const { asyncHandler } = require('../Validate');
+const AppError = require('../../utils/AppError');
 
 /**
  * Checks if workspace_id is in body. 
@@ -29,4 +29,5 @@ const checkReadWorkspace = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkReadWorkspace;
+
 

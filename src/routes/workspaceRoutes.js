@@ -1,27 +1,28 @@
 const express = require('express');
 const router = express.Router();
 
-const workspaceController = require('../controllers/workspacecontroller');
-const { validate } = require('../middlewares/responsehandlermiddleware');
-const auth = require('../middlewares/auth/checktokenmiddleware');
+const workspaceController = require('../controllers/WorkspaceController');
+const { validate } = require('../middlewares/Validate');
+const auth = require('../middlewares/auth/CheckTokenMiddleware');
 
 // Workspace Middlewares (lowercase)
-const checkWorkspaceExists = require('../middlewares/workspace/checkworkspaceexistsmiddleware');
-const checkWorkspaceExist = require('../middlewares/workspace/checkworkspaceexistmiddleware');
-const checkUniqueWorkspace = require('../middlewares/workspace/checkuniqueworkspacemiddleware');
-const checkWorkspaceCreator = require('../middlewares/workspace/checkworkspacecreatemiddleware');
-const checkMembersExist = require('../middlewares/workspace/checkmembersexistmiddleware');
-const checkReadWorkspace = require('../middlewares/workspace/checkreadworkspacemiddleware');
-const checkInvitationMembers = require('../middlewares/workspace/checkinvitationmembersmiddleware');
+const checkWorkspaceExists = require('../middlewares/workspace/CheckWorkspaceExistsMiddleware');
+const checkWorkspaceExist = require('../middlewares/workspace/CheckWorkspaceExistMiddleware');
+const checkUniqueWorkspace = require('../middlewares/workspace/CheckUniqueWorkspaceMiddleware');
+const checkWorkspaceCreator = require('../middlewares/workspace/CheckWorkspaceCreateMiddleware');
+const checkMembersExist = require('../middlewares/workspace/CheckMembersExistMiddleware');
+const checkReadWorkspace = require('../middlewares/workspace/CheckReadWorkspaceMiddleware');
+const checkInvitationMembers = require('../middlewares/workspace/CheckInvitationMembersMiddleware');
+const sendInvitationEmail = require('../middlewares/workspace/SendInvitationEmailMiddleware');
 
 // Request Schemas (lowercase)
-const createWorkspaceSchema = require('../requests/workspace/createworkspacerequest');
-const updateWorkspaceSchema = require('../requests/workspace/updateworkspacerequest');
-const addWorkspaceMemberSchema = require('../requests/workspace/addworkspacememberrequest');
-const removeWorkspaceMemberSchema = require('../requests/workspace/removeworkspacememberrequest');
-const readWorkspaceSchema = require('../requests/workspace/readworkspacerequest');
-const deleteWorkspaceSchema = require('../requests/workspace/deleteworkspacerequest');
-const inviteWorkspaceMemberSchema = require('../requests/workspace/inviteworkspacememberrequest');
+const createWorkspaceSchema = require('../requests/workspace/CreateWorkspaceRequest');
+const updateWorkspaceSchema = require('../requests/workspace/UpdateWorkspaceRequest');
+const addWorkspaceMemberSchema = require('../requests/workspace/AddWorkspaceMemberRequest');
+const removeWorkspaceMemberSchema = require('../requests/workspace/RemoveWorkspaceMemberRequest');
+const readWorkspaceSchema = require('../requests/workspace/ReadWorkspaceRequest');
+const deleteWorkspaceSchema = require('../requests/workspace/DeleteWorkspaceRequest');
+const inviteWorkspaceMemberSchema = require('../requests/workspace/InviteWorkspaceMemberRequest');
 
 // Routes
 
@@ -44,6 +45,6 @@ router.post('/add-member', auth, validate(addWorkspaceMemberSchema), checkWorksp
 router.delete('/remove-member', auth, validate(removeWorkspaceMemberSchema), checkWorkspaceExists, checkWorkspaceCreator, workspaceController.removeMember);
 
 // 8. Invite members to a workspace (creator only) -- passed in body
-router.post('/invite-member', auth, validate(inviteWorkspaceMemberSchema), checkWorkspaceExists, checkWorkspaceCreator, checkInvitationMembers, workspaceController.inviteMember);
+router.post('/invite-member', auth, validate(inviteWorkspaceMemberSchema), checkWorkspaceExists, checkWorkspaceCreator, checkInvitationMembers, sendInvitationEmail, workspaceController.inviteMember);
 
 module.exports = router;

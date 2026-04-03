@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
-const User = require('../../models/usermodel');
-const { asyncHandler } = require('../responsehandlermiddleware');
-const AppError = require('../../utils/apperror');
+const User = require('../../models/UserModel');
+const { asyncHandler } = require('../Validate');
+const AppError = require('../../utils/AppError');
 
 const verifyLogin = asyncHandler(async (req, res, next) => {
     const { email, password } = req.body;
@@ -25,4 +25,5 @@ const verifyLogin = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = verifyLogin;
+
 

@@ -1,4 +1,4 @@
-const { uploadFileToGridFS } = require("../../config/gridfs");
+const { uploadFileToGridFS } = require("../../config/GridFs");
 const { asyncHandler } = require("../Validate");
 
 const handleFileUpload = asyncHandler(async (req, res, next) => {

@@ -1,4 +1,4 @@
-const BaseResource = require('./baseresource');
+const BaseResource = require('./BaseResource');
 
 class AuthResource extends BaseResource {
     toArray() {

@@ -1,6 +1,6 @@
-const Workspace = require('../../models/workspacemodel');
-const { asyncHandler } = require('../responsehandlermiddleware');
-const AppError = require('../../utils/apperror');
+const Workspace = require('../../models/WorkspaceModel');
+const { asyncHandler } = require('../Validate');
+const AppError = require('../../utils/AppError');
 
 /**
  * Checks that no workspace with the same name already exists.
@@ -23,4 +23,5 @@ const checkUniqueWorkspace = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkUniqueWorkspace;
+
 

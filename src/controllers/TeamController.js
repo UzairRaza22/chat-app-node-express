@@ -1,10 +1,12 @@
-const Team = require('../models/teammodel');
-const User = require('../models/usermodel'); 
-const TeamResource = require('../resources/teamresource');
-const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
+const Team = require('../models/TeamModel');
+const User = require('../models/UserModel'); 
+const TeamResource = require('../resources/TeamResource');
+const { asyncHandler } = require('../middlewares/Validate');
+const { createError } = require("../utils/GlobalResponseHandler");
 
-
-//Create
+/**
+ * @desc Create a new team
+ */
 const create = asyncHandler(async (req, res) => {
     const { workspace_id, name, description } = req.validatedData;
 
@@ -18,34 +20,37 @@ const create = asyncHandler(async (req, res) => {
 
     await User.findByIdAndUpdate(req.user._id, { $addToSet: { teams: team._id } });
 
-    res.success({
-        message: 'Team created successfully.',
-        data: TeamResource.make(team)
+    res.success('Team created successfully.', { 
+        team: TeamResource.make(team) 
     }, 201);
 });
 
-//  read team
+/**
+ * @desc Get team details
+ */
 const read = asyncHandler(async (req, res) => {
-    res.success({
-        message: 'Team retrieved successfully.',
-        data: TeamResource.make(req.team)
+    res.success('Team retrieved successfully.', { 
+        team: TeamResource.make(req.team) 
     });
 });
 
-//  Update 
+/**
+ * @desc Update team details
+ */
 const update = asyncHandler(async (req, res) => {
     const updatePayload = req.updatePayload;
 
     Object.assign(req.team, updatePayload);
     await req.team.save();
 
-    res.success({
-        message: 'Team updated successfully.',
-        data: TeamResource.make(req.team)
+    res.success('Team updated successfully.', { 
+        team: TeamResource.make(req.team) 
     });
 });
 
- //  Delete 
+/**
+ * @desc Delete a team and sync user records
+ */
 const deleteTeam = asyncHandler(async (req, res) => {
     await User.updateMany(
         { teams: req.team._id },
@@ -54,12 +59,12 @@ const deleteTeam = asyncHandler(async (req, res) => {
 
     await req.team.deleteOne();
 
-    res.success({
-        message: 'Team deleted successfully.'
-    });
+    res.success('Team deleted successfully.');
 });
 
-  // Add members 
+/**
+ * @desc Add members to team and sync user records
+ */
 const addMember = asyncHandler(async (req, res) => {
     const { members } = req.validatedData;
 
@@ -74,13 +79,14 @@ const addMember = asyncHandler(async (req, res) => {
         { $addToSet: { teams: req.team._id } }
     );
 
-    res.success({
-        message: 'Members added successfully.',
-        data: TeamResource.make(team)
+    res.success('Members added successfully.', { 
+        team: TeamResource.make(team) 
     });
 });
-   
-// Remove members
+
+/**
+ * @desc Remove members from team and sync user records
+ */
 const removeMember = asyncHandler(async (req, res) => {
     const { members } = req.validatedData;
 
@@ -95,9 +101,8 @@ const removeMember = asyncHandler(async (req, res) => {
         { $pull: { teams: req.team._id } }
     );
 
-    res.success({
-        message: 'Members removed successfully.',
-        data: TeamResource.make(team)
+    res.success('Members removed successfully.', { 
+        team: TeamResource.make(team) 
     });
 });
 

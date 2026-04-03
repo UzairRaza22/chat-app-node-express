@@ -1,29 +1,7 @@
-const Workspace = require('../models/workspacemodel');
-const WorkspaceResource = require('../resources/workspaceresource');
-const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
-const AppError = require('../utils/apperror');
-
-/**
- * @desc    Get all workspaces for the authenticated user
- * @route   GET /api/workspaces
- */
-const readAll = asyncHandler(async (req, res) => {
-    res.success({
-        message: 'Workspaces retrieved successfully.',
-        data: WorkspaceResource.collection(req.userWorkspaces)
-    });
-});
-
-/**
- * @desc    Get a single workspace by ID
- * @route   GET /api/workspaces/:id
- */
-const readOne = asyncHandler(async (req, res) => {
-    res.success({
-        message: 'Workspace retrieved successfully.',
-        data: WorkspaceResource.make(req.workspace)
-    });
-});
+const Workspace = require('../models/WorkspaceModel');
+const WorkspaceResource = require('../resources/WorkspaceResource');
+const { asyncHandler } = require('../middlewares/Validate');
+const AppError = require('../utils/AppError');
 
 /**
  * @desc    Create a new workspace
@@ -43,6 +21,14 @@ const create = asyncHandler(async (req, res) => {
         message: 'Workspace created successfully.',
         data: WorkspaceResource.make(workspace)
     }, 201);
+});
+
+/**
+ * @desc    Get a single workspace or all workspaces
+ * @route   GET /api/workspaces/read
+ */
+const read = asyncHandler(async (req, res) => {
+    res.success(req.responseData);
 });
 
 /**
@@ -112,14 +98,6 @@ const removeMember = asyncHandler(async (req, res) => {
         message: 'Members removed successfully.',
         data: WorkspaceResource.make(updated)
     });
-});
-
-/**
- * @desc    Get a single workspace or all workspaces
- * @route   GET /api/workspaces/read
- */
-const read = asyncHandler(async (req, res) => {
-    res.success(req.responseData);
 });
 
 /**
