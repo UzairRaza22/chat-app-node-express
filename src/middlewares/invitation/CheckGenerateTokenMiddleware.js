@@ -7,7 +7,7 @@ const { asyncHandler } = require('../Validate');
  * Token format: HMAC(email:workspaceId:timestamp):timestamp:version
  */
 const generateToken = (email, workspaceId) => {
-    const secret = process.env.INVITATION_SECRET || process.env.JWT_SECRET || 'fallback_invitation_secret';
+    const secret = process.env.INVITATION_SECRET;
     const timestamp = Date.now().toString();
     const version = '1';
     
