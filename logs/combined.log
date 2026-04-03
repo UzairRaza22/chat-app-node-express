@@ -241,3 +241,14 @@ Stack: Error: Failed to process some invitations.
 [2026-04-03T08:01:54.365Z] INFO: POST /api/auth/signup - Status: 200 - Time: 3565ms
 [2026-04-03T08:02:21.465Z] INFO: POST /api/auth/verify - Status: 200 - Time: 319ms
 [2026-04-03T08:02:39.900Z] INFO: POST /api/auth/login - Status: 200 - Time: 1033ms
+[2026-04-03T09:45:36.047Z] INFO: POST /api/auth/login - Status: 200 - Time: 621ms
+[2026-04-03T09:45:45.093Z] INFO: POST /api/auth/login - Status: 200 - Time: 557ms
+[2026-04-03T09:46:02.906Z] ERROR: Failed to process some invitations.
+Stack: Error: Failed to process some invitations.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:131:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T09:46:02.909Z] WARN: POST /api/workspaces/invite-member - Status: 400 - Time: 605ms
+[2026-04-03T09:46:25.817Z] INFO: POST /api/workspaces/invite-member - Status: 200 - Time: 6540ms
+[2026-04-03T09:48:13.322Z] INFO: POST /api/auth/signup - Status: 200 - Time: 4575ms
+[2026-04-03T09:48:35.660Z] INFO: POST /api/auth/verify - Status: 200 - Time: 338ms
+[2026-04-03T09:48:55.134Z] INFO: POST /api/auth/login - Status: 200 - Time: 1479ms

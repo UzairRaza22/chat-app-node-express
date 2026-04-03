@@ -44,3 +44,7 @@ Stack: Error: Failed to process some invitations.
 Stack: Error: Failed to process some invitations.
     at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:122:23
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T09:46:02.906Z] ERROR: Failed to process some invitations.
+Stack: Error: Failed to process some invitations.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:131:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
