@@ -1,6 +1,6 @@
 const Workspace = require('../../models/WorkspaceModel');
 const { asyncHandler } = require('../Validate');
-const AppError = require('../../utils/AppError');
+const { createError } = require('../../utils/GlobalResponseHandler.js');
 
 /**
  * Checks that no workspace with the same name already exists.
@@ -16,7 +16,7 @@ const checkUniqueWorkspace = asyncHandler(async (req, res, next) => {
     const existing = await Workspace.findOne({ name });
 
     if (existing) {
-        return next(new AppError('A workspace with this name already exists.', 400));
+        return next(createError('A workspace with this name already exists.', 400));
     }
 
     next();

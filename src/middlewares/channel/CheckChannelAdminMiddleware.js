@@ -1,5 +1,5 @@
 const { asyncHandler } = require('../Validate');
-const AppError = require('../../utils/AppError');
+const { createError } = require('../../utils/GlobalResponseHandler.js');
 
 
 const channelAdmin = asyncHandler(async (req, res, next) => {
@@ -7,11 +7,11 @@ const channelAdmin = asyncHandler(async (req, res, next) => {
     const user = req.user;
 
     if (!channel) {
-        return next(new AppError('Channel not found.', 404));
+        return next(createError('Channel not found.', 404));
     }
 
     if (!user) {
-        return next(new AppError('Unauthorized.', 401));
+        return next(createError('Unauthorized.', 401));
     }
 
     const userId = String(user._id);
@@ -25,7 +25,7 @@ const channelAdmin = asyncHandler(async (req, res, next) => {
     }
 
     if (creatorId !== userId) {
-        return next(new AppError('Access denied. Only the channel creator can perform this action.', 403));
+        return next(createError('Access denied. Only the channel creator can perform this action.', 403));
     }
 
     next();

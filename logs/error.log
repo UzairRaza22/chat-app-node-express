@@ -23,6 +23,7 @@ Stack: ValidationError: "members[0]" with value "69cd1164a75020cf47438a1" fails 
 [2026-04-02T12:06:20.945Z] ERROR: Application Error: Invalid or expired token.
 [2026-04-02T12:11:19.403Z] ERROR: Application Error: User already exists.
 [2026-04-02T12:11:44.459Z] ERROR: Application Error: Failed to process some invitations.
+<<<<<<< HEAD
 [2026-04-03T07:45:07.730Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
 Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
     at Timeout.<anonymous> (E:\Chat APP\chat-app-node-express\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
@@ -47,4 +48,50 @@ Stack: Error: Failed to process some invitations.
 [2026-04-03T09:46:02.906Z] ERROR: Failed to process some invitations.
 Stack: Error: Failed to process some invitations.
     at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:131:23
+=======
+[2026-04-03T06:51:54.028Z] ERROR: Channel with this name already exists.
+Stack: Error: Channel with this name already exists.
+    at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelCreateMiddleware.js:79:25
+>>>>>>> 41a2951c8dd09407337a6754e4e99a5cca9d4c96
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T09:56:39.735Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:11:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T10:11:29.175Z] ERROR: Failed to process some invitations.
+Stack: Error: Failed to process some invitations.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:142:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T10:12:06.023Z] ERROR: Failed to process some invitations.
+Stack: Error: Failed to process some invitations.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:142:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T10:14:10.554Z] ERROR: Invitation validation failed: inviterId: Inviter ID is required
+Stack: ValidationError: Invitation validation failed: inviterId: Inviter ID is required
+    at Document.invalidate (E:\Chat APP\chat-app-node-express\node_modules\mongoose\lib\document.js:3381:32)
+    at E:\Chat APP\chat-app-node-express\node_modules\mongoose\lib\document.js:3142:17
+    at E:\Chat APP\chat-app-node-express\node_modules\mongoose\lib\schemaType.js:1446:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:84:11)
+[2026-04-03T10:19:36.949Z] ERROR: Failed to process some invitations.
+Stack: Error: Failed to process some invitations.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:131:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T10:22:09.729Z] ERROR: Failed to process some invitations.
+Stack: Error: Failed to process some invitations.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:131:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T10:23:16.295Z] ERROR: Failed to process some invitations.
+Stack: Error: Failed to process some invitations.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:131:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T10:25:43.297Z] ERROR: Access denied. Only the workspace owner can perform this action.
+Stack: Error: Access denied. Only the workspace owner can perform this action.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\workspace\CheckWorkspaceCreateMiddleware.js:10:21
+    at E:\Chat APP\chat-app-node-express\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\Chat APP\chat-app-node-express\node_modules\express\lib\router\route.js:149:13)
+    at E:\Chat APP\chat-app-node-express\src\middlewares\workspace\CheckWorkspaceExistsMiddleware.js:23:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T10:34:25.190Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:16:21

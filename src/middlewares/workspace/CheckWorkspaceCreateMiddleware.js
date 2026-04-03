@@ -1,5 +1,5 @@
 const { asyncHandler } = require('../Validate');
-const AppError = require('../../utils/AppError');
+const { createError } = require('../../utils/GlobalResponseHandler.js');
 
 /**
  * Checks that the authenticated user is the owner (creator) of the workspace.
@@ -7,7 +7,7 @@ const AppError = require('../../utils/AppError');
  */
 const checkWorkspaceCreator = asyncHandler(async (req, res, next) => {
     if (req.workspace.ownerId.toString() !== req.user._id.toString()) {
-        return next(new AppError('Access denied. Only the workspace owner can perform this action.', 403));
+        return next(createError('Access denied. Only the workspace owner can perform this action.', 403));
     }
 
     next();

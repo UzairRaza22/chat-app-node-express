@@ -1,13 +1,5 @@
 /**
  * GlobalErrorHandler — utils/GlobalErrorHandler.js
- *
- * Registered last in app.js via app.use(GlobalErrorHandler).
- * Catches all next(err) calls from every module across the entire application.
- * Uses res.failed() from GlobalResponseHandler for all error responses.
- *
- * Uses err.isOperational (set by createError in GlobalResponseHandler) to
- * distinguish known expected errors from unexpected server crashes.
- *
  *   isOperational = true  → known error → respond with err.statusCode + err.message
  *   isOperational = false → unexpected crash → respond with generic 500
  *
