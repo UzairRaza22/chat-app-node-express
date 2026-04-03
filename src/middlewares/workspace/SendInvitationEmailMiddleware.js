@@ -1,5 +1,5 @@
 const { asyncHandler } = require('../Validate');
-const transporter = require('../../config/mail');
+const transporter = require('../../config/Mail');
 
 /**
  * Middleware to handle invitation email sending

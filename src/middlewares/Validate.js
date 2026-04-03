@@ -8,10 +8,10 @@
  * Every middleware and controller imports asyncHandler from this file.
  *
  * Usage in any route:
- *   const { validate, validateQuery } = require("../middlewares/validate");
+ *   const { validate, validateQuery } = require('../middlewares/Validate');
  *
  * Usage in any middleware or controller:
- *   const { asyncHandler } = require("../middlewares/validate");
+ *   const { asyncHandler } = require('../middlewares/Validate');
  */
 const { createError } = require("../utils/GlobalResponseHandler");
 

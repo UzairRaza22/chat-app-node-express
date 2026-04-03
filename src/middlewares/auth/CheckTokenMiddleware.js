@@ -1,7 +1,7 @@
-const User = require('../../models/usermodel');
-const Token = require('../../models/tokenmodel');
+const User = require('../../models/UserModel');
+const Token = require('../../models/TokenModel');
 const { asyncHandler } = require('../Validate');
-const AppError = require('../../utils/apperror');
+const AppError = require('../../utils/AppError');
 
 const auth = asyncHandler(async (req, res, next) => {
     let token = req.header('Authorization');

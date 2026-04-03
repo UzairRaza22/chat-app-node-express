@@ -1,4 +1,4 @@
-const { downloadFileFromGridFS } = require('../../config/gridfs');
+const { downloadFileFromGridFS } = require('../../config/GridFs');
 
 const streamFile = (req, res, next) => {
   const message = req.message;

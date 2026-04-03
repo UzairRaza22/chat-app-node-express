@@ -1,5 +1,5 @@
-const Channel = require('../models/channelmodel');
-const ChannelResource = require('../resources/channelresource');
+const Channel = require('../models/ChannelModel');
+const ChannelResource = require('../resources/ChannelResource');
 const { asyncHandler } = require('../middlewares/Validate');
 
 /**

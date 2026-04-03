@@ -1,8 +1,8 @@
-const Channel = require('../../models/channelmodel');
-const Workspace = require('../../models/workspacemodel');
-const Team = require('../../models/teammodel');
+const Channel = require('../../models/ChannelModel');
+const Workspace = require('../../models/WorkspaceModel');
+const Team = require('../../models/TeamModel');
 const { asyncHandler } = require('../Validate');
-const AppError = require('../../utils/apperror');
+const AppError = require('../../utils/AppError');
 
 
 const channelCreate = asyncHandler(async (req, res, next) => {

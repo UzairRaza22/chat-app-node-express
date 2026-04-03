@@ -1,5 +1,5 @@
 const { asyncHandler } = require('../Validate');
-const AppError = require('../../utils/apperror');
+const AppError = require('../../utils/AppError');
 
 
 const channelAdmin = asyncHandler(async (req, res, next) => {

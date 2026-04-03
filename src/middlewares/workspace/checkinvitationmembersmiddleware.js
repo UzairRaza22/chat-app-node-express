@@ -1,7 +1,7 @@
-const User = require('../../models/usermodel');
+const User = require('../../models/UserModel');
 const Invitation = require('../../models/InvitationModel');
 const { asyncHandler } = require('../Validate');
-const AppError = require('../../utils/apperror');
+const AppError = require('../../utils/AppError');
 const crypto = require('crypto');
 
 /**

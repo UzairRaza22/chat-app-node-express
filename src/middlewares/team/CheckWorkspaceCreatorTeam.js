@@ -1,4 +1,4 @@
-const Workspace = require('../../Models/WorkspaceModel');
+const Workspace = require('../../models/WorkspaceModel');
 const { asyncHandler } = require("../Validate"); 
 const { createError } = require("../../utils/GlobalResponseHandler");
 

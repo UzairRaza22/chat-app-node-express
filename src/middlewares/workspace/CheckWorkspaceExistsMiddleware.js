@@ -1,6 +1,6 @@
-const Workspace = require('../../models/workspacemodel');
+const Workspace = require('../../models/WorkspaceModel');
 const { asyncHandler } = require('../Validate');
-const AppError = require('../../utils/apperror');
+const AppError = require('../../utils/AppError');
 
 /**
  * Finds a single workspace by req.body.workspace_id and attaches it to req.workspace.

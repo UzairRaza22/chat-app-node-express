@@ -1,5 +1,5 @@
 const { asyncHandler } = require('../Validate');
-const AppError = require('../../utils/apperror');
+const AppError = require('../../utils/AppError');
 
 /**
  * Checks that the authenticated user is the owner (creator) of the workspace.
