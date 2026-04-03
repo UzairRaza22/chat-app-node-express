@@ -209,3 +209,35 @@ Stack: Error: Channel with this name already exists.
     at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelCreateMiddleware.js:79:25
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
 [2026-04-03T06:51:54.039Z] WARN: POST /api/channels/create - Status: 409 - Time: 907ms
+[2026-04-03T07:44:51.120Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckLoginMiddleware.js:11:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T07:44:51.222Z] WARN: POST /api/auth/login - Status: 400 - Time: 313ms
+[2026-04-03T07:47:46.212Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckLoginMiddleware.js:11:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T07:47:46.243Z] WARN: POST /api/auth/login - Status: 400 - Time: 191ms
+[2026-04-03T07:50:02.617Z] INFO: POST /api/auth/login - Status: 200 - Time: 1882ms
+[2026-04-03T07:55:31.927Z] INFO: POST /api/auth/login - Status: 200 - Time: 797ms
+[2026-04-03T09:55:17.735Z] INFO: POST /api/auth/login - Status: 200 - Time: 1826ms
+[2026-04-03T10:06:14.845Z] INFO: POST /api/auth/login - Status: 200 - Time: 722ms
+[2026-04-03T10:09:36.810Z] INFO: Server started on port 5000
+[2026-04-03T10:09:50.470Z] INFO: Server started on port 5000
+[2026-04-03T10:09:51.571Z] INFO: MongoDB Connected...
+[2026-04-03T10:10:19.994Z] INFO: Server started on port 5000
+[2026-04-03T10:10:21.102Z] INFO: MongoDB Connected...
+[2026-04-03T10:10:26.521Z] INFO: Server started on port 5000
+[2026-04-03T10:10:27.664Z] INFO: MongoDB Connected...
+[2026-04-03T10:10:56.344Z] INFO: Server started on port 5000
+[2026-04-03T10:10:57.860Z] INFO: MongoDB Connected...
+[2026-04-03T10:11:04.097Z] INFO: Server started on port 5000
+[2026-04-03T10:11:05.933Z] INFO: MongoDB Connected...
+[2026-04-03T10:11:54.436Z] INFO: Server started on port 5000
+[2026-04-03T10:11:55.878Z] INFO: MongoDB Connected...
+[2026-04-03T10:15:36.909Z] INFO: Server started on port 5000
+[2026-04-03T10:15:37.942Z] INFO: MongoDB Connected...
+[2026-04-03T10:15:54.165Z] INFO: POST /api/auth/login - Status: 200 - Time: 1645ms
+[2026-04-03T10:22:47.710Z] INFO: Server started on port 5000
+[2026-04-03T10:22:48.796Z] INFO: MongoDB Connected...

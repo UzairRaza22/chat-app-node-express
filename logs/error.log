@@ -27,3 +27,11 @@ Stack: ValidationError: "members[0]" with value "69cd1164a75020cf47438a1" fails 
 Stack: Error: Channel with this name already exists.
     at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelCreateMiddleware.js:79:25
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T07:44:51.120Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckLoginMiddleware.js:11:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T07:47:46.212Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckLoginMiddleware.js:11:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)

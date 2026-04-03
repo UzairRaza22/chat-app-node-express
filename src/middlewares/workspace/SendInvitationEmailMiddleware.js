@@ -1,5 +1,6 @@
 const { asyncHandler } = require('../Validate');
 const transporter = require('../../config/Mail');
+const logger = require('../../utils/Logger');
 
 /**
  * Middleware to handle invitation email sending
@@ -43,7 +44,7 @@ const sendInvitationEmail = asyncHandler(async (req, res, next) => {
                 };
 
                 await transporter.sendMail(mailOptions);
-                console.log('Invitation email sent to:', result.member);
+                logger.info(`Invitation email sent to: ${result.member}`);
 
                 emailResults.push({
                     member: result.member,
@@ -53,7 +54,7 @@ const sendInvitationEmail = asyncHandler(async (req, res, next) => {
                 });
 
             } catch (emailError) {
-                console.error('Email sending failed for', result.member, ':', emailError.message);
+                logger.error(`Email sending failed for ${result.member} : ${emailError.message}`);
                 
                 emailResults.push({
                     member: result.member,

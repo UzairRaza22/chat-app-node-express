@@ -38,4 +38,5 @@ app.use("/api/messages", messageRoutes);
 app.use(GlobalErrorHandler);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+const logger = require("./utils/Logger");
+app.listen(PORT, () => logger.info(`Server started on port ${PORT}`));
