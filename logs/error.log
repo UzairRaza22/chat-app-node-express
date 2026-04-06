@@ -23,7 +23,6 @@ Stack: ValidationError: "members[0]" with value "69cd1164a75020cf47438a1" fails 
 [2026-04-02T12:06:20.945Z] ERROR: Application Error: Invalid or expired token.
 [2026-04-02T12:11:19.403Z] ERROR: Application Error: User already exists.
 [2026-04-02T12:11:44.459Z] ERROR: Application Error: Failed to process some invitations.
-<<<<<<< HEAD
 [2026-04-03T07:45:07.730Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
 Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
     at Timeout.<anonymous> (E:\Chat APP\chat-app-node-express\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
@@ -48,13 +47,10 @@ Stack: Error: Failed to process some invitations.
 [2026-04-03T09:46:02.906Z] ERROR: Failed to process some invitations.
 Stack: Error: Failed to process some invitations.
     at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:131:23
-=======
 [2026-04-03T06:51:54.028Z] ERROR: Channel with this name already exists.
 Stack: Error: Channel with this name already exists.
     at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelCreateMiddleware.js:79:25
->>>>>>> 41a2951c8dd09407337a6754e4e99a5cca9d4c96
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-<<<<<<< HEAD
 [2026-04-03T07:44:51.120Z] ERROR: Invalid credentials.
 Stack: Error: Invalid credentials.
     at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckLoginMiddleware.js:11:21
@@ -69,7 +65,6 @@ Stack: ValidationError: Invitation validation failed: inviterId: Inviter ID is r
     at C:\xampp\htdocs\node_project\node_modules\mongoose\lib\document.js:3142:17
     at C:\xampp\htdocs\node_project\node_modules\mongoose\lib\schemaType.js:1446:9
     at process.processTicksAndRejections (node:internal/process/task_queues:84:11)
-=======
 [2026-04-03T09:56:39.735Z] ERROR: Invalid credentials.
 Stack: Error: Invalid credentials.
     at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:11:21
@@ -205,4 +200,11 @@ Stack: Error: Invalid credentials.
 [2026-04-03T11:08:28.924Z] ERROR: Invalid credentials.
 Stack: Error: Invalid credentials.
     at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:16:21
->>>>>>> 1b29b78489501c2ff65f2f3264d6fe20a5675b1c
+[2026-04-06T10:15:40.805Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-06T10:21:25.967Z] ERROR: Channel with this name already exists.
+Stack: Error: Channel with this name already exists.
+    at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelCreateMiddleware.js:79:25
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
