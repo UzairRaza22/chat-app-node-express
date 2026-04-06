@@ -5,7 +5,7 @@
  *
  * Works for: auth, workspace, team, channel, messages — every module.
  */
-const logger = require('./Logger');
+const logger = require('./logger');
 
 const GlobalErrorHandler = (err, req, res, next) => {
   logger.error({

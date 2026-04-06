@@ -1,4 +1,4 @@
-const logger = require('../utils/Logger');
+const logger = require('../utils/logger');
 
 /**
  * Sensitive fields to sanitize from logs

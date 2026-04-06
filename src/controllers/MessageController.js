@@ -1,8 +1,10 @@
 const Message = require("../models/MessageModel");
+const Channel = require('../models/ChannelModel');
 const MessageResource = require("../resources/MessageResource");
 const paginate = require('../utils/Paginate');
 const { asyncHandler } = require("../middlewares/Validate");
 
+const channelMemberIds = (channel) => (channel && channel.members ? channel.members.map(m => m.user_id.toString()) : []);
 const create = asyncHandler(async (req, res) => {
   const { channelId, type, content } = req.validatedData;
 
@@ -14,6 +16,17 @@ const create = asyncHandler(async (req, res) => {
     file: req.uploadedFile,
   });
 
+  const channel = req.channel || await Channel.findById(channelId);
+  const recipients = channelMemberIds(channel);
+
+  req.event = {
+    eventName: 'message_created',
+    module: 'message',
+    operation: 'create',
+    referenceId: message._id,
+    userIds: recipients,
+    metadata: { message: MessageResource.make(message) }
+  };
   return res.success(
     "Message sent successfully.",
     MessageResource.make(message),
@@ -60,6 +73,17 @@ const update = asyncHandler(async (req, res) => {
 
   await message.save();
 
+  const channel = await Channel.findById(message.channelId);
+  const recipients = channelMemberIds(channel);
+
+  req.event = {
+    eventName: 'message_updated',
+    module: 'message',
+    operation: 'update',
+    referenceId: message._id,
+    userIds: recipients,
+    metadata: { message: MessageResource.make(message) }
+  };
   return res.success(
     "Message updated successfully.",
     MessageResource.make(message),
@@ -69,6 +93,18 @@ const update = asyncHandler(async (req, res) => {
 const delete_ = asyncHandler(async (req, res) => {
   req.message.isDeleted = true;
   await req.message.save();
+
+  const channel = await Channel.findById(req.message.channelId);
+  const recipients = channelMemberIds(channel);
+
+  req.event = {
+    eventName: 'message_deleted',
+    module: 'message',
+    operation: 'soft_delete',
+    referenceId: req.message._id,
+    userIds: recipients,
+    metadata: { messageId: req.message._id.toString() }
+  };
 
   return res.success("Message deleted successfully.", {});
 });
