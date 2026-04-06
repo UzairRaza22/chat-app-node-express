@@ -96,6 +96,9 @@ const addMember = asyncHandler(async (req, res) => {
         userIds: channelMemberIds(channel),
         metadata: {
             channel: ChannelResource.make(channel),
+            channelId: channel._id.toString(),
+            workspaceId: channel.workspace_id ? channel.workspace_id.toString() : undefined,
+            teamId: channel.team_id ? channel.team_id.toString() : undefined,
             addedUserId
         }
     };
@@ -125,6 +128,9 @@ const removeMember = asyncHandler(async (req, res) => {
         userIds: recipients,
         metadata: {
             channel: ChannelResource.make(channel),
+            channelId: channel._id.toString(),
+            workspaceId: channel.workspace_id ? channel.workspace_id.toString() : undefined,
+            teamId: channel.team_id ? channel.team_id.toString() : undefined,
             removedUserId
         }
     };

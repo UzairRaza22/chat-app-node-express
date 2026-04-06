@@ -110,6 +110,8 @@ const addMember = asyncHandler(async (req, res) => {
         userIds: team.members,
         metadata: {
             team: TeamResource.make(team),
+            teamId: team._id.toString(),
+            workspaceId: team.workspace_id ? team.workspace_id.toString() : undefined,
             addedUserIds: (members || []).map(id => id.toString())
         }
     };
@@ -142,6 +144,8 @@ const removeMember = asyncHandler(async (req, res) => {
         userIds: uniqueIds([...(team.members || []), ...(members || [])]),
         metadata: {
             team: TeamResource.make(team),
+            teamId: team._id.toString(),
+            workspaceId: team.workspace_id ? team.workspace_id.toString() : undefined,
             removedUserIds: (members || []).map(id => id.toString())
         }
     };

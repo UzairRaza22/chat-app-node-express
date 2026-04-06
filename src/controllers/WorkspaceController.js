@@ -101,6 +101,7 @@ req.event = {
         userIds: uniqueIds([...(updatedWorkspace.members || []), ...addedUserIds]),
         metadata: {
             workspace: WorkspaceResource.make(updatedWorkspace),
+            workspaceId: updatedWorkspace._id.toString(),
             addedUserIds: addedUserIds.map(id => id.toString()),
             results: finalResults
         }
@@ -136,6 +137,7 @@ req.event = {
         userIds: uniqueIds([...(updated.members || []), ...(members || [])]),
         metadata: {
             workspace: WorkspaceResource.make(updated),
+            workspaceId: updated._id.toString(),
             removedUserIds: (members || []).map(id => id.toString())
         }
     };
@@ -163,6 +165,7 @@ req.event = {
         userIds: uniqueIds([...(updatedWorkspace.members || []), ...invitedUserIds]),
         metadata: {
             workspace: WorkspaceResource.make(updatedWorkspace),
+            workspaceId: updatedWorkspace._id.toString(),
             invitedUserIds: invitedUserIds.map(id => id.toString()),
             results: processedResults
         }
