@@ -35,3 +35,9 @@ Stack: Error: Invalid credentials.
 Stack: Error: Invalid credentials.
     at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckLoginMiddleware.js:11:21
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T11:06:19.538Z] ERROR: Invitation validation failed: inviterId: Inviter ID is required
+Stack: ValidationError: Invitation validation failed: inviterId: Inviter ID is required
+    at Document.invalidate (C:\xampp\htdocs\node_project\node_modules\mongoose\lib\document.js:3381:32)
+    at C:\xampp\htdocs\node_project\node_modules\mongoose\lib\document.js:3142:17
+    at C:\xampp\htdocs\node_project\node_modules\mongoose\lib\schemaType.js:1446:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:84:11)

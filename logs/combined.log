@@ -241,3 +241,16 @@ Stack: Error: Invalid credentials.
 [2026-04-03T10:15:54.165Z] INFO: POST /api/auth/login - Status: 200 - Time: 1645ms
 [2026-04-03T10:22:47.710Z] INFO: Server started on port 5000
 [2026-04-03T10:22:48.796Z] INFO: MongoDB Connected...
+[2026-04-03T11:03:43.395Z] INFO: POST /api/auth/login - Status: 200 - Time: 971ms
+[2026-04-03T11:06:19.538Z] ERROR: Invitation validation failed: inviterId: Inviter ID is required
+Stack: ValidationError: Invitation validation failed: inviterId: Inviter ID is required
+    at Document.invalidate (C:\xampp\htdocs\node_project\node_modules\mongoose\lib\document.js:3381:32)
+    at C:\xampp\htdocs\node_project\node_modules\mongoose\lib\document.js:3142:17
+    at C:\xampp\htdocs\node_project\node_modules\mongoose\lib\schemaType.js:1446:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:84:11)
+[2026-04-03T11:06:19.548Z] WARN: POST /api/auth/login - Status: 500 - Time: 880ms
+[2026-04-03T11:06:34.100Z] INFO: POST /api/auth/login - Status: 200 - Time: 740ms
+[2026-04-03T11:08:59.810Z] INFO: POST /api/auth/login - Status: 200 - Time: 1236ms
+[2026-04-06T06:35:01.108Z] INFO: Server started on port 5000
+[2026-04-06T06:35:02.124Z] INFO: MongoDB Connected...
+[2026-04-06T06:35:08.738Z] INFO: POST /api/auth/login - Status: 200 - Time: 1320ms
