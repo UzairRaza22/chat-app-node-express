@@ -209,3 +209,5 @@ Stack: Error: Channel with this name already exists.
     at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelCreateMiddleware.js:79:25
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
 [2026-04-03T06:51:54.039Z] WARN: POST /api/channels/create - Status: 409 - Time: 907ms
+[2026-04-03T09:48:31.904Z] INFO: Server started on port 5000
+[2026-04-03T09:48:35.540Z] INFO: Server started on port 5000

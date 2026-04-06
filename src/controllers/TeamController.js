@@ -4,6 +4,7 @@ const TeamResource = require('../resources/TeamResource');
 const { asyncHandler } = require('../middlewares/Validate');
 const { createError } = require("../utils/GlobalResponseHandler");
 
+const uniqueIds = (arr) => Array.from(new Set((arr || []).map(id => id.toString())));
 /**
  * @desc Create a new team
  */
@@ -20,6 +21,14 @@ const create = asyncHandler(async (req, res) => {
 
     await User.findByIdAndUpdate(req.user._id, { $addToSet: { teams: team._id } });
 
+    req.event = {
+        eventName: 'team_created',
+        module: 'team',
+        operation: 'create',
+        referenceId: team._id,
+        userIds: team.members,
+        metadata: { team: TeamResource.make(team) }
+    };
     res.success('Team created successfully.', { 
         team: TeamResource.make(team) 
     }, 201);
@@ -42,7 +51,14 @@ const update = asyncHandler(async (req, res) => {
 
     Object.assign(req.team, updatePayload);
     await req.team.save();
-
+req.event = {
+        eventName: 'team_updated',
+        module: 'team',
+        operation: 'update',
+        referenceId: req.team._id,
+        userIds: req.team.members,
+        metadata: { team: TeamResource.make(req.team) }
+    };
     res.success('Team updated successfully.', { 
         team: TeamResource.make(req.team) 
     });
@@ -58,7 +74,14 @@ const deleteTeam = asyncHandler(async (req, res) => {
     );
 
     await req.team.deleteOne();
-
+req.event = {
+        eventName: 'team_deleted',
+        module: 'team',
+        operation: 'delete',
+        referenceId: req.team._id,
+        userIds: req.team.members,
+        metadata: { teamId: req.team._id.toString() }
+    };
     res.success('Team deleted successfully.');
 });
 
@@ -79,6 +102,17 @@ const addMember = asyncHandler(async (req, res) => {
         { $addToSet: { teams: req.team._id } }
     );
 
+    req.event = {
+        eventName: 'team_member_added',
+        module: 'team',
+        operation: 'member_added',
+        referenceId: team._id,
+        userIds: team.members,
+        metadata: {
+            team: TeamResource.make(team),
+            addedUserIds: (members || []).map(id => id.toString())
+        }
+    };
     res.success('Members added successfully.', { 
         team: TeamResource.make(team) 
     });
@@ -100,6 +134,17 @@ const removeMember = asyncHandler(async (req, res) => {
         { _id: { $in: members } },
         { $pull: { teams: req.team._id } }
     );
+ req.event = {
+        eventName: 'team_member_removed',
+        module: 'team',
+        operation: 'member_removed',
+        referenceId: team._id,
+        userIds: uniqueIds([...(team.members || []), ...(members || [])]),
+        metadata: {
+            team: TeamResource.make(team),
+            removedUserIds: (members || []).map(id => id.toString())
+        }
+    };
 
     res.success('Members removed successfully.', { 
         team: TeamResource.make(team) 

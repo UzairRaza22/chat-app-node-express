@@ -1,6 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const http = require("http");
+const { Server } = require("socket.io");
 
 const connectDB = require("./config/Db");
 
@@ -14,7 +16,8 @@ const messageRoutes = require("./routes/messageroutes");
 const { GlobalResponseHandler } = require("./utils/GlobalResponseHandler");
 const GlobalErrorHandler = require("./utils/GlobalErrorHandler");
 const loggerMiddleware = require("./middlewares/LoggerMiddleware");
-
+const eventLoggerMiddleware = require("./middlewares/eventloggermiddleware");
+const { startEventWatcher } = require("./watchers/eventWatcher");
 const app = express();
 
 // Database Connection
@@ -24,6 +27,7 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 app.use(loggerMiddleware);
+app.use(eventLoggerMiddleware);
 
 // ✅ Attaches res.success() and res.failed() to every request
 app.use(GlobalResponseHandler);
@@ -38,4 +42,41 @@ app.use("/api/messages", messageRoutes);
 app.use(GlobalErrorHandler);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+const logger = require("./utils/logger");
+
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
+  }
+});
+
+io.on("connection", (socket) => {
+  const userId =
+    socket.handshake.auth?.userId ||
+    socket.handshake.query?.userId ||
+    socket.request.headers["x-user-id"];
+
+  if (!userId) {
+    socket.disconnect(true);
+    return;
+  }
+
+  const userRoom = userId.toString();
+  socket.join(userRoom);
+  logger.info(`Socket connected for user ${userRoom} (room joined)`);
+
+  socket.on("disconnect", () => {
+    logger.info(`Socket disconnected for user ${userRoom}`);
+  });
+});
+
+(async () => {
+  await connectDB();
+  startEventWatcher(io);
+
+  server.listen(PORT, () => {
+    logger.info(`Server started on port ${PORT}`);
+  });
+})();
