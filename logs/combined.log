@@ -260,11 +260,3 @@ Stack: Error: Channel with this name already exists.
     at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelCreateMiddleware.js:79:25
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
 [2026-04-03T06:51:54.039Z] WARN: POST /api/channels/create - Status: 409 - Time: 907ms
-[2026-04-06T11:11:11.332Z] INFO: POST /api/auth/login - Status: 200 - Time: 700ms
-[2026-04-06T11:11:48.673Z] INFO: POST /api/workspaces/create - Status: 200 - Time: 587ms
-[2026-04-06T11:16:17.793Z] INFO: POST /api/auth/login - Status: 200 - Time: 596ms
-[2026-04-06T11:18:05.502Z] INFO: POST /api/auth/login - Status: 200 - Time: 589ms
-[2026-04-06T11:18:36.983Z] INFO: POST /api/auth/login - Status: 200 - Time: 712ms
-[2026-04-06T11:20:31.774Z] INFO: POST /api/auth/login - Status: 200 - Time: 517ms
-[2026-04-06T11:23:21.658Z] INFO: POST /api/auth/login - Status: 200 - Time: 613ms
-[2026-04-06T11:23:35.283Z] INFO: POST /api/workspaces/create - Status: 200 - Time: 614ms
