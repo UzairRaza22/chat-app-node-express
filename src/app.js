@@ -22,8 +22,8 @@ const sendErrorToWebhook = require("./utils/WebhookService");
 
 const app = express();
 
-// Database Connection
-connectDB();
+// Database Connection is handled in the async initialization block below.
+
 
 // Standard Middlewares
 app.use(cors());
@@ -56,7 +56,7 @@ process.on("unhandledRejection", (reason, promise) => {
 });
 
 const PORT = process.env.PORT || 5000;
-const logger = require("./utils/logger");
+const logger = require("./utils/Logger");
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -94,4 +94,3 @@ io.on("connection", (socket) => {
     logger.info(`Server started on port ${PORT}`);
   });
 })();
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
