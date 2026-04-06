@@ -12,12 +12,7 @@ if (!fs.existsSync(LOGS_DIR)) {
 }
 
 // MongoDB activity log model
-let ActivityLog = null;
-try {
-  ActivityLog = require('../models/ActivityLogModel');
-} catch (e) {
-  ActivityLog = null;
-}
+const ActivityLog = require('../models/ActivityLogModel');
 
 /**
  * Custom Logger Utility
@@ -45,12 +40,12 @@ class Logger {
    */
   _writeFile(formattedMessage, isError = false) {
     fs.appendFile(COMBINED_LOG, formattedMessage, (err) => {
-      if (err) console.error('Failed to write to combined.log:', err.message);
+      // Silently ignore file write errors to avoid terminal logs
     });
 
     if (isError) {
       fs.appendFile(ERROR_LOG, formattedMessage, (err) => {
-        if (err) console.error('Failed to write to error.log:', err.message);
+        // Silently ignore file write errors to avoid terminal logs
       });
     }
   }
@@ -77,7 +72,7 @@ class Logger {
     try {
       await ActivityLog.create(logData);
     } catch (err) {
-      console.error("Log DB Error:", err.message);
+      // Silently ignore MongoDB write errors to avoid terminal logs
     }
   }
 
@@ -85,7 +80,6 @@ class Logger {
     const data = typeof messageOrData === 'object' ? messageOrData : { message: messageOrData };
     const formatted = this._format(this.levels.INFO, data.message);
     
-    console.log(formatted.trim());
     this._writeFile(formatted);
     this._writeMongo(this.levels.INFO, data);
   }
@@ -94,7 +88,6 @@ class Logger {
     const data = typeof messageOrData === 'object' ? messageOrData : { message: messageOrData };
     const formatted = this._format(this.levels.WARN, data.message);
     
-    console.warn(formatted.trim());
     this._writeFile(formatted);
     this._writeMongo(this.levels.WARN, data);
   }
@@ -104,7 +97,6 @@ class Logger {
     const fullMessage = data.stack ? `${data.message}\nStack: ${data.stack}` : data.message;
     const formatted = this._format(this.levels.ERROR, fullMessage);
     
-    console.error(formatted.trim());
     this._writeFile(formatted, true);
     this._writeMongo(this.levels.ERROR, data);
   }

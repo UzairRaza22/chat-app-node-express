@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const transporter = require('../config/Mail');
+const logger = require('../utils/Logger');
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -50,7 +51,7 @@ UserSchema.post('save', async function(doc) {
             html: `<h3>Welcome, ${doc.name}!</h3>
                    <p>Use the following token to verify your account:</p>
                    <p><strong>${doc.verifyToken}</strong></p>`
-        }).catch(e => console.error('Verification email failed:', e.message));
+        }).catch(e => logger.error(`Verification email failed: ${e.message}`));
     }
 
     // Send Reset Password Email
@@ -62,7 +63,7 @@ UserSchema.post('save', async function(doc) {
             html: `<p>Use this token to reset your password:</p>
                    <p><strong>${doc.resetToken}</strong></p>
                    <p>Expires in 1 hour.</p>`
-        }).catch(e => console.error('Reset email failed:', e.message));
+        }).catch(e => logger.error(`Reset email failed: ${e.message}`));
     }
 });
 

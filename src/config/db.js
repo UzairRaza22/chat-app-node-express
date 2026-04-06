@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
+const logger = require('../utils/Logger');
 
 const connectDB = async () => {
     try {
         await mongoose.connect(process.env.MONGO_URI);
-        console.log('MongoDB Connected...');
+        logger.info('MongoDB Connected...');
     } catch (err) {
-        console.error('MongoDB connection failed:', err.message);
-        console.error('Continuing without database connection.');
+        logger.error(`MongoDB connection failed: ${err.message}`);
+        logger.warn('Continuing without database connection.');
     }
 };
 

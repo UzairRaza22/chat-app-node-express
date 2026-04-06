@@ -1,14 +1,15 @@
 const User = require('../../models/UserModel');
 const Invitation = require('../../models/InvitationModel');
 const { asyncHandler } = require('../Validate');
-const AppError = require('../../utils/AppError');
-const crypto = require('crypto');
+const { createError } = require('../../utils/GlobalResponseHandler.js');
+const { generateToken } = require('./CheckGenerateTokenMiddleware');
 
 /**
- * Processes member invitations for workspace
+ * Middleware to process member invitations for workspace
  * - Handles existing users (auto-add if verified)
  * - Creates invitations for non-existing users
  * - Prevents duplicate invitations
+ * - Handles expired invitations
  * - Throws errors for any failures
  */
 const checkInvitationMembers = asyncHandler(async (req, res, next) => {
@@ -67,16 +68,24 @@ const checkInvitationMembers = asyncHandler(async (req, res, next) => {
                     });
 
                     if (existingInvitation) {
-                        errors.push({
-                            member: normalizedEmail,
-                            reason: 'Invitation already sent to this email.'
-                        });
-                        continue;
+                        // Check if invitation is expired
+                        if (existingInvitation.isExpired()) {
+                            // Delete expired invitation and create new one
+                            console.log(`📧 Expired invitation found for ${email}, creating new one`);
+                            await Invitation.findByIdAndDelete(existingInvitation._id);
+                        } else {
+                            errors.push({
+                                member: normalizedEmail,
+                                reason: 'Invitation already sent to this email.'
+                            });
+                            continue;
+                        }
                     }
 
-                    // Create new invitation
-                    const invitationToken = crypto.randomBytes(32).toString('hex');
-                    const expiresAt = new Date(Date.now() + 48 * 60 * 60 * 1000); // 48 hours
+                    // Create new invitation with secure token
+                    const invitationToken = generateToken(normalizedEmail, workspace._id);
+                    const expiresAt = new Date();
+                    expiresAt.setHours(expiresAt.getHours() + 48); // 48 hours from now
 
                     const invitation = await Invitation.create({
                         workspaceId: workspace._id,
@@ -119,7 +128,7 @@ const checkInvitationMembers = asyncHandler(async (req, res, next) => {
 
     // If there are any errors, throw an error with the details
     if (errors.length > 0) {
-        const error = new AppError('Failed to process some invitations.', 400);
+        const error = createError('Failed to process some invitations.', 400);
         error.errors = errors;
         return next(error);
     }
@@ -132,4 +141,3 @@ const checkInvitationMembers = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = checkInvitationMembers;
-
