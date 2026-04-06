@@ -2,7 +2,6 @@ const { asyncHandler } = require('../middlewares/Validate');
 const Invitation = require('../models/InvitationModel');
 const User = require('../models/UserModel');
 const Workspace = require('../models/WorkspaceModel');
-const InvitationService = require('../utils/InvitationService');
 const { createError } = require('../utils/GlobalResponseHandler.js');
 
 const acceptInvitationByToken = asyncHandler(async (req, res) => {
@@ -38,21 +37,24 @@ const acceptInvitationByToken = asyncHandler(async (req, res) => {
         return next(createError('You are already a member of this workspace.', 400));
     }
 
-    // Accept the invitation
-    const invitationResult = await InvitationService.acceptInvitation(token, user._id, workspaceId);
-    
-    if (invitationResult.success) {
-        res.success({
-            message: 'Invitation accepted successfully! You have been added to the workspace.',
-            workspace: {
-                id: invitationResult.workspace._id,
-                name: invitationResult.workspace.name,
-                description: invitationResult.workspace.description
-            }
-        });
-    } else {
-        return next(createError('Failed to accept invitation. Please try again.', 500));
-    }
+    // Add user to workspace and mark invitation as accepted
+    const workspace = await Workspace.findByIdAndUpdate(
+        workspaceId,
+        { $push: { members: user._id } },
+        { new: true }
+    );
+
+    // Mark invitation as accepted
+    await Invitation.findByIdAndUpdate(invitation._id, { status: 'accepted' });
+
+    res.success({
+        message: 'Invitation accepted successfully! You have been added to the workspace.',
+        workspace: {
+            id: workspace._id,
+            name: workspace.name,
+            description: workspace.description
+        }
+    });
 });
 
 module.exports = {
