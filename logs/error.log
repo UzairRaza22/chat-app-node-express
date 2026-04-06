@@ -27,3 +27,202 @@ Stack: ValidationError: "members[0]" with value "69cd1164a75020cf47438a1" fails 
 Stack: Error: Channel with this name already exists.
     at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelCreateMiddleware.js:79:25
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-03T07:52:08.415Z] ERROR: Operation `users.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-03T07:55:07.010Z] ERROR: Operation `users.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-03T07:55:25.136Z] ERROR: Operation `users.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-03T07:56:23.762Z] ERROR: Operation `users.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-03T08:00:12.331Z] ERROR: Operation `users.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-03T09:58:03.501Z] ERROR: Operation `users.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-03T10:22:00.463Z] ERROR: Operation `users.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-03T10:22:44.355Z] ERROR: Operation `users.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-03T10:23:02.639Z] ERROR: Operation `users.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-03T10:25:25.547Z] ERROR: You are not a member of this channel.
+Stack: Error: You are not a member of this channel.
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\messages\VerifyChannelMemberMiddleware.js:15:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-03T10:31:06.912Z] ERROR: Unexpected field
+Stack: MulterError: Unexpected field
+    at wrappedFileFilter (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\multer\index.js:41:19)
+    at Multipart.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\multer\lib\make-middleware.js:183:7)
+    at Multipart.emit (node:events:518:28)
+    at HeaderParser.cb (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\busboy\lib\types\multipart.js:358:14)
+    at HeaderParser.push (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\busboy\lib\types\multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\busboy\lib\types\multipart.js:394:37)
+    at feed (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\streamsearch\lib\sbmh.js:219:14)
+    at SBMH.push (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\streamsearch\lib\sbmh.js:104:16)
+    at Multipart._write (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\busboy\lib\types\multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+[2026-04-03T10:31:26.411Z] ERROR: Unexpected field
+Stack: MulterError: Unexpected field
+    at wrappedFileFilter (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\multer\index.js:41:19)
+    at Multipart.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\multer\lib\make-middleware.js:183:7)
+    at Multipart.emit (node:events:518:28)
+    at HeaderParser.cb (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\busboy\lib\types\multipart.js:358:14)
+    at HeaderParser.push (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\busboy\lib\types\multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\busboy\lib\types\multipart.js:394:37)
+    at feed (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\streamsearch\lib\sbmh.js:219:14)
+    at SBMH.push (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\streamsearch\lib\sbmh.js:104:16)
+    at Multipart._write (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\busboy\lib\types\multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+[2026-04-03T10:32:07.559Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-03T10:40:18.532Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-03T13:31:18.823Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-03T13:31:35.190Z] ERROR: Operation `users.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-03T13:33:04.618Z] ERROR: a is not defined
+Stack: ReferenceError: a is not defined
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\controllers\AuthController.js:61:22
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckLoginMiddleware.js:24:5
+[2026-04-03T13:41:29.240Z] ERROR: a is not defined
+Stack: ReferenceError: a is not defined
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\controllers\AuthController.js:61:22
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckLoginMiddleware.js:24:5
+[2026-04-06T10:13:41.466Z] ERROR: Operation `users.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-06T10:15:18.671Z] ERROR: Operation `users.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-06T10:18:24.494Z] ERROR: a is not defined
+Stack: ReferenceError: a is not defined
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\controllers\AuthController.js:61:22
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckLoginMiddleware.js:24:5
+[2026-04-06T10:18:40.903Z] ERROR: a is not defined
+Stack: ReferenceError: a is not defined
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\controllers\AuthController.js:61:22
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckLoginMiddleware.js:24:5
+[2026-04-06T10:19:27.304Z] ERROR: "password" is required
+Stack: Error: "password" is required
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:47:12)
+[2026-04-06T10:19:58.794Z] ERROR: a is not defined
+Stack: ReferenceError: a is not defined
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\controllers\AuthController.js:61:22
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckLoginMiddleware.js:24:5
+[2026-04-06T11:03:00.742Z] ERROR: a is not defined
+Stack: ReferenceError: a is not defined
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\controllers\AuthController.js:61:22
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckLoginMiddleware.js:24:5
+[2026-04-06T11:03:54.829Z] ERROR: a is not defined
+Stack: ReferenceError: a is not defined
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\controllers\AuthController.js:61:22
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckLoginMiddleware.js:24:5
+[2026-04-06T11:04:27.319Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-06T11:07:57.841Z] ERROR: a is not defined
+Stack: ReferenceError: a is not defined
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\controllers\AuthController.js:61:22
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckLoginMiddleware.js:24:5
+[2026-04-06T11:15:53.517Z] ERROR: a is not defined
+Stack: ReferenceError: a is not defined
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\controllers\AuthController.js:61:22
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckLoginMiddleware.js:24:5
+[2026-04-06T11:18:57.688Z] ERROR: a is not defined
+Stack: ReferenceError: a is not defined
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\controllers\AuthController.js:61:22
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckLoginMiddleware.js:24:5
+[2026-04-06T11:26:23.919Z] ERROR: "email" must be a valid email
+Stack: Error: "email" must be a valid email
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:47:12)
