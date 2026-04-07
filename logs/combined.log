@@ -424,3 +424,83 @@ Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 100
     at listOnTimeout (node:internal/timers:594:17)
     at process.processTimers (node:internal/timers:529:7)
 [2026-04-07T11:27:00.637Z] WARN: POST /api/workspaces/add-member - Status: 500 - Time: 10205ms
+[2026-04-07T11:28:15.179Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-07T11:28:15.189Z] WARN: POST /api/workspaces/add-member - Status: 500 - Time: 10029ms
+[2026-04-07T11:28:58.353Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-07T11:28:58.369Z] WARN: POST /api/workspaces/add-member - Status: 500 - Time: 10020ms
+[2026-04-07T11:29:30.906Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-07T11:29:30.920Z] WARN: POST /api/workspaces/add-member - Status: 500 - Time: 10026ms
+[2026-04-07T11:31:19.101Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-07T11:31:19.124Z] WARN: POST /api/workspaces/add-member - Status: 500 - Time: 10040ms
+[2026-04-07T11:36:31.136Z] INFO: MongoDB Connected...
+[2026-04-07T11:36:31.170Z] INFO: Server started on port 5000
+[2026-04-07T11:36:40.240Z] INFO: MongoDB Connected...
+[2026-04-07T11:36:40.358Z] INFO: Server started on port 5000
+[2026-04-07T11:36:45.242Z] INFO: Server started on port 5000
+[2026-04-07T11:36:45.216Z] INFO: MongoDB Connected...
+[2026-04-07T11:36:51.781Z] INFO: MongoDB Connected...
+[2026-04-07T11:36:51.807Z] INFO: Server started on port 5000
+[2026-04-07T11:37:43.071Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-07T11:37:43.349Z] WARN: POST /api/workspaces/add-member - Status: 401 - Time: 456ms
+[2026-04-07T11:38:01.865Z] INFO: POST /api/auth/login - Status: 200 - Time: 827ms
+[2026-04-07T11:38:21.263Z] INFO: POST /api/workspaces/create - Status: 201 - Time: 850ms
+[2026-04-07T11:39:33.827Z] ERROR: Expected ',' or '}' after property value in JSON at position 21 (line 2 column 19)
+Stack: SyntaxError: Expected ',' or '}' after property value in JSON at position 21 (line 2 column 19)
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\body-parser\lib\types\json.js:92:19)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:238:16)
+    at done (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+[2026-04-07T11:41:25.829Z] INFO: MongoDB Connected...
+[2026-04-07T11:41:25.891Z] INFO: Server started on port 5000
+[2026-04-07T11:41:38.357Z] INFO: MongoDB Connected...
+[2026-04-07T11:41:38.403Z] INFO: Server started on port 5000
+[2026-04-07T11:42:48.119Z] INFO: MongoDB Connected...
+[2026-04-07T11:42:48.174Z] INFO: Server started on port 5000
+[2026-04-07T11:43:38.827Z] ERROR: Expected ',' or '}' after property value in JSON at position 21 (line 2 column 19)
+Stack: SyntaxError: Expected ',' or '}' after property value in JSON at position 21 (line 2 column 19)
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\body-parser\lib\types\json.js:92:19)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:238:16)
+    at done (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+[2026-04-07T11:43:55.909Z] INFO: POST /api/messages/read - Status: 200 - Time: 1157ms
+[2026-04-07T11:45:07.565Z] INFO: MongoDB Connected...
+[2026-04-07T11:45:07.592Z] INFO: Server started on port 5000
+[2026-04-07T11:45:15.276Z] INFO: MongoDB Connected...
+[2026-04-07T11:45:15.340Z] INFO: Server started on port 5000
+[2026-04-07T11:45:17.391Z] INFO: POST /api/messages/read - Status: 200 - Time: 1186ms
+[2026-04-07T11:46:16.403Z] INFO: POST /api/messages/create - Status: 201 - Time: 2300ms
+[2026-04-07T11:46:33.925Z] INFO: POST /api/messages/read - Status: 200 - Time: 2103ms
+[2026-04-07T12:39:47.914Z] INFO: POST /api/auth/login - Status: 200 - Time: 1691ms
+[2026-04-07T12:40:53.451Z] INFO: POST /api/auth/login - Status: 200 - Time: 680ms
+[2026-04-07T12:42:09.197Z] INFO: POST /api/messages/create - Status: 201 - Time: 751ms

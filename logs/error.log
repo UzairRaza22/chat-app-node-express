@@ -366,3 +366,51 @@ Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 100
     at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
     at listOnTimeout (node:internal/timers:594:17)
     at process.processTimers (node:internal/timers:529:7)
+[2026-04-07T11:28:15.179Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-07T11:28:58.353Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-07T11:29:30.906Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-07T11:31:19.101Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-07T11:37:43.071Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-07T11:39:33.827Z] ERROR: Expected ',' or '}' after property value in JSON at position 21 (line 2 column 19)
+Stack: SyntaxError: Expected ',' or '}' after property value in JSON at position 21 (line 2 column 19)
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\body-parser\lib\types\json.js:92:19)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:238:16)
+    at done (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+[2026-04-07T11:43:38.827Z] ERROR: Expected ',' or '}' after property value in JSON at position 21 (line 2 column 19)
+Stack: SyntaxError: Expected ',' or '}' after property value in JSON at position 21 (line 2 column 19)
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\body-parser\lib\types\json.js:92:19)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:238:16)
+    at done (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
