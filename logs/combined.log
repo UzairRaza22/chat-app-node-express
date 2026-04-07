@@ -287,3 +287,37 @@ Stack: Error: Members already in team: 69c4e3ddb98704ef693cb668
 [2026-04-06T11:37:29.701Z] INFO: Server started on port 5000
 [2026-04-06T11:38:26.619Z] INFO: MongoDB Connected...
 [2026-04-06T11:38:26.647Z] INFO: Server started on port 5000
+[2026-04-07T08:19:36.914Z] INFO: MongoDB Connected...
+[2026-04-07T08:19:36.954Z] INFO: Server started on port 5000
+[2026-04-07T10:27:47.515Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:27:47.624Z] WARN: POST /api/channels/create - Status: 401 - Time: 442ms
+[2026-04-07T10:28:04.988Z] INFO: POST /api/auth/login - Status: 200 - Time: 715ms
+[2026-04-07T10:28:24.457Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:28:24.480Z] WARN: POST /api/channels/create - Status: 401 - Time: 299ms
+[2026-04-07T10:28:27.053Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:28:27.061Z] WARN: POST /api/channels/create - Status: 401 - Time: 189ms
+[2026-04-07T10:31:15.633Z] ERROR: User is not part of this workspace.
+Stack: Error: User is not part of this workspace.
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\channel\MemberCheckMiddleware.js:31:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:31:15.639Z] WARN: POST /api/channels/create - Status: 403 - Time: 498ms
+[2026-04-07T10:52:50.651Z] INFO: POST /api/auth/signup - Status: 200 - Time: 5975ms
+[2026-04-07T10:53:42.069Z] INFO: POST /api/auth/verify - Status: 200 - Time: 358ms
+[2026-04-07T10:55:47.192Z] INFO: POST /api/auth/login - Status: 200 - Time: 682ms
+[2026-04-07T10:56:51.407Z] INFO: POST /api/workspaces/create - Status: 200 - Time: 1176ms
+[2026-04-07T10:57:18.542Z] INFO: POST /api/auth/login - Status: 200 - Time: 709ms
+[2026-04-07T10:57:46.821Z] INFO: POST /api/workspaces/create - Status: 200 - Time: 715ms
+[2026-04-07T11:00:22.216Z] ERROR: addedUserIds is not defined
+Stack: ReferenceError: addedUserIds is not defined
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\controllers\WorkspaceController.js:101:69
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T11:00:22.224Z] WARN: POST /api/workspaces/add-member - Status: 500 - Time: 964ms

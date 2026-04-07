@@ -270,3 +270,23 @@ Stack: Error: "email" must be a valid email
     at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:280:10)
     at Function.handle (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:175:3)
     at router (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:47:12)
+[2026-04-07T10:27:47.515Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:28:24.457Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:28:27.053Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:31:15.633Z] ERROR: User is not part of this workspace.
+Stack: Error: User is not part of this workspace.
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\channel\MemberCheckMiddleware.js:31:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T11:00:22.216Z] ERROR: addedUserIds is not defined
+Stack: ReferenceError: addedUserIds is not defined
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\controllers\WorkspaceController.js:101:69
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
