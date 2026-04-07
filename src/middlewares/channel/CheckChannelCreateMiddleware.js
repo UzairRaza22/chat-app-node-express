@@ -38,7 +38,9 @@ const channelCreate = asyncHandler(async (req, res, next) => {
     }
 
     const workspaceMemberIds = workspace.members.map(member => String(member));
-    if (!workspaceMemberIds.includes(userId)) {
+    const isWorkspaceOwner = String(workspace.ownerId) === userId;
+
+    if (!isWorkspaceOwner && !workspaceMemberIds.includes(userId)) {
         return next(createError('User is not part of this workspace.', 403));
     }
 
@@ -59,7 +61,9 @@ const channelCreate = asyncHandler(async (req, res, next) => {
         }
 
         const teamMemberIds = team.members.map(member => String(member));
-        if (!teamMemberIds.includes(userId)) {
+        const isTeamCreator = String(team.creator_id) === userId;
+
+        if (!isTeamCreator && !teamMemberIds.includes(userId)) {
             return next(createError('User is not part of this team.', 403));
         }
 

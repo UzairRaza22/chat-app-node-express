@@ -33,9 +33,13 @@ const channelAddMember = asyncHandler(async (req, res, next) => {
         return next(createError('Workspace not found.', 404));
     }
 
-    const workspaceMemberIds = workspace.members.map(member => String(member));
-    if (!workspaceMemberIds.includes(userId) || !workspaceMemberIds.includes(targetUserId)) {
+    const isWorkspaceOwner = String(workspace.ownerId) === userId;
+    if (!isWorkspaceOwner && !workspaceMemberIds.includes(userId)) {
         return next(createError('User is not part of this workspace.', 403));
+    }
+
+    if (!workspaceMemberIds.includes(targetUserId)) {
+        return next(createError('The user you are adding is not part of this workspace.', 403));
     }
 
     // For public/private channels, target user must also be on the channel team
@@ -46,8 +50,14 @@ const channelAddMember = asyncHandler(async (req, res, next) => {
         }
 
         const teamMemberIds = team.members.map(member => String(member));
-        if (!teamMemberIds.includes(userId) || !teamMemberIds.includes(targetUserId)) {
+        const isTeamCreator = String(team.creator_id) === userId;
+
+        if (!isTeamCreator && !teamMemberIds.includes(userId)) {
             return next(createError('User is not part of this team.', 403));
+        }
+
+        if (!teamMemberIds.includes(targetUserId)) {
+            return next(createError('The user you are adding is not part of this team.', 403));
         }
     }
 

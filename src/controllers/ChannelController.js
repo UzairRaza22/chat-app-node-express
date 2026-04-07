@@ -29,6 +29,12 @@ const create = asyncHandler(async (req, res) => {
  * @route   GET /api/channels/read
  */
 const read = asyncHandler(async (req, res) => {
+    if (req.channels) {
+        return res.success({
+            channels: req.channels.map(channel => ChannelResource.make(channel))
+        });
+    }
+
     res.success({
         channel: ChannelResource.make(req.channel)
     });

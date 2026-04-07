@@ -12,8 +12,8 @@ const checkWorkspaceCreatorTeam = asyncHandler(async (req, res, next) => {
         return next(createError('Workspace not found.', 404));
     }
 
-    if (String(workspace.creator_id) !== String(req.user._id)) {
-        return next(createError('Access denied. Only the workspace creator can manage teams.', 403));
+    if (String(workspace.ownerId) !== String(req.user._id)) {
+        return next(createError('Access denied. Only the workspace owner can manage teams.', 403));
     }
 
     req.workspace = workspace;
