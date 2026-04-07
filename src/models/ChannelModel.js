@@ -31,6 +31,7 @@ const ChannelSchema = new mongoose.Schema(
     },
     members: [
       {
+        _id: false,
         user_id: { type: String, required: true },
         role: { type: String, default: "member" },
       },

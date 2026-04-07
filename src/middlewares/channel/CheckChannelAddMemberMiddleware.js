@@ -33,6 +33,7 @@ const channelAddMember = asyncHandler(async (req, res, next) => {
         return next(createError('Workspace not found.', 404));
     }
 
+    const workspaceMemberIds = workspace.members.map(member => String(member));
     const isWorkspaceOwner = String(workspace.ownerId) === userId;
     if (!isWorkspaceOwner && !workspaceMemberIds.includes(userId)) {
         return next(createError('User is not part of this workspace.', 403));
