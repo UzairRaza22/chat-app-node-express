@@ -290,3 +290,55 @@ Stack: Error: Access denied. Only the channel creator can perform this action.
     at next (E:\NodeJs\chat-app-node-express\node_modules\express\lib\router\route.js:149:13)
     at E:\NodeJs\chat-app-node-express\src\middlewares\channel\CheckChannelExistMiddleware.js:27:16
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T11:47:08.372Z] ERROR: A workspace with this name already exists.
+Stack: Error: A workspace with this name already exists.
+    at E:\NodeJs\chat-app-node-express\src\middlewares\workspace\CheckUniqueWorkspaceMiddleware.js:19:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T11:49:41.807Z] ERROR: A team with this name already exists in this workspace.
+Stack: Error: A team with this name already exists in this workspace.
+    at E:\NodeJs\chat-app-node-express\src\middlewares\team\CheckUniqueTeamName.js:22:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T12:00:32.237Z] ERROR: A team with this name already exists in this workspace.
+Stack: Error: A team with this name already exists in this workspace.
+    at E:\NodeJs\chat-app-node-express\src\middlewares\team\CheckUniqueTeamName.js:22:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T12:22:14.483Z] ERROR: workspaceMemberIds is not defined
+Stack: ReferenceError: workspaceMemberIds is not defined
+    at E:\NodeJs\chat-app-node-express\src\middlewares\channel\CheckChannelAddMemberMiddleware.js:41:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T12:22:30.502Z] ERROR: No file attached. Please upload a file when type is "file".
+Stack: Error: No file attached. Please upload a file when type is "file".
+    at E:\NodeJs\chat-app-node-express\src\middlewares\messages\VerifyFileAttachedMiddleware.js:9:7
+    at E:\NodeJs\chat-app-node-express\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (E:\NodeJs\chat-app-node-express\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\NodeJs\chat-app-node-express\node_modules\express\lib\router\route.js:149:13)
+    at E:\NodeJs\chat-app-node-express\src\middlewares\Validate.js:36:3
+    at Layer.handle [as handle_request] (E:\NodeJs\chat-app-node-express\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\NodeJs\chat-app-node-express\node_modules\express\lib\router\route.js:149:13)
+    at done (E:\NodeJs\chat-app-node-express\node_modules\multer\lib\make-middleware.js:69:7)
+    at indicateDone (E:\NodeJs\chat-app-node-express\node_modules\multer\lib\make-middleware.js:73:68)
+    at Multipart.<anonymous> (E:\NodeJs\chat-app-node-express\node_modules\multer\lib\make-middleware.js:243:7)
+[2026-04-07T12:23:24.154Z] ERROR: Expected ',' or '}' after property value in JSON at position 22 (line 2 column 20)
+Stack: SyntaxError: Expected ',' or '}' after property value in JSON at position 22 (line 2 column 20)
+    at JSON.parse (<anonymous>)
+    at parse (E:\NodeJs\chat-app-node-express\node_modules\express\node_modules\body-parser\lib\types\json.js:92:19)
+    at E:\NodeJs\chat-app-node-express\node_modules\express\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+    at invokeCallback (E:\NodeJs\chat-app-node-express\node_modules\express\node_modules\raw-body\index.js:238:16)
+    at done (E:\NodeJs\chat-app-node-express\node_modules\express\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (E:\NodeJs\chat-app-node-express\node_modules\express\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:508:28)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+[2026-04-07T12:23:49.601Z] ERROR: Expected ',' or '}' after property value in JSON at position 22 (line 2 column 20)
+Stack: SyntaxError: Expected ',' or '}' after property value in JSON at position 22 (line 2 column 20)
+    at JSON.parse (<anonymous>)
+    at parse (E:\NodeJs\chat-app-node-express\node_modules\express\node_modules\body-parser\lib\types\json.js:92:19)
+    at E:\NodeJs\chat-app-node-express\node_modules\express\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+    at invokeCallback (E:\NodeJs\chat-app-node-express\node_modules\express\node_modules\raw-body\index.js:238:16)
+    at done (E:\NodeJs\chat-app-node-express\node_modules\express\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (E:\NodeJs\chat-app-node-express\node_modules\express\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:508:28)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
