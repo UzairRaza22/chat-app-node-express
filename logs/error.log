@@ -270,15 +270,3 @@ Stack: Error: "email" must be a valid email
     at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:280:10)
     at Function.handle (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:175:3)
     at router (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:47:12)
-[2026-04-07T12:25:24.741Z] ERROR: Channel not found.
-Stack: Error: Channel not found.
-    at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelExistMiddleware.js:23:25
-    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-[2026-04-07T12:25:43.187Z] ERROR: workspaceMemberIds is not defined
-Stack: ReferenceError: workspaceMemberIds is not defined
-    at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelAddMemberMiddleware.js:41:5
-    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-[2026-04-07T12:27:30.158Z] ERROR: The user you are adding is not part of this team.
-Stack: Error: The user you are adding is not part of this team.
-    at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelAddMemberMiddleware.js:61:25
-    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
