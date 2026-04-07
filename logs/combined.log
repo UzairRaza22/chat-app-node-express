@@ -264,3 +264,122 @@ Stack: Error: Channel with this name already exists.
 [2026-04-06T11:37:29.701Z] INFO: Server started on port 5000
 [2026-04-06T11:38:26.619Z] INFO: MongoDB Connected...
 [2026-04-06T11:38:26.647Z] INFO: Server started on port 5000
+[2026-04-06T11:39:37.540Z] INFO: Server started on port 5000
+[2026-04-06T11:39:37.486Z] INFO: MongoDB Connected...
+[2026-04-06T11:46:08.021Z] INFO: POST /api/auth/login - Status: 200 - Time: 1162ms
+[2026-04-06T12:06:11.496Z] ERROR: "email" is required
+Stack: Error: "email" is required
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:47:12)
+[2026-04-06T12:06:11.548Z] WARN: POST /api/auth/login - Status: 400 - Time: 58ms
+[2026-04-06T12:07:16.094Z] INFO: POST /api/auth/login - Status: 200 - Time: 687ms
+[2026-04-06T12:08:30.141Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-06T12:08:30.151Z] WARN: POST /api/workspaces/create - Status: 401 - Time: 168ms
+[2026-04-06T12:09:11.877Z] INFO: POST /api/workspaces/create - Status: 200 - Time: 695ms
+[2026-04-06T12:11:05.846Z] INFO: PUT /api/workspaces/update - Status: 200 - Time: 648ms
+[2026-04-07T06:23:21.951Z] ERROR: MongoDB connection failed: Authentication failed.
+[2026-04-07T06:23:21.969Z] WARN: Continuing without database connection.
+[2026-04-07T06:23:21.982Z] INFO: Server started on port 5000
+[2026-04-07T06:25:12.780Z] INFO: MongoDB Connected...
+[2026-04-07T06:25:12.861Z] INFO: Server started on port 5000
+[2026-04-07T06:26:52.389Z] INFO: POST /api/auth/login - Status: 200 - Time: 780ms
+[2026-04-07T06:30:37.421Z] INFO: POST /api/auth/login - Status: 200 - Time: 618ms
+[2026-04-07T06:31:03.282Z] INFO: GET /api/workspaces/read - Status: 200 - Time: 560ms
+[2026-04-07T06:31:36.507Z] INFO: POST /api/workspaces/create - Status: 200 - Time: 769ms
+[2026-04-07T06:32:19.312Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-07T06:32:19.699Z] WARN: PUT /api/workspaces/update - Status: 401 - Time: 645ms
+[2026-04-07T06:32:44.821Z] ERROR: E11000 duplicate key error collection: node_mvc_auth.workspaces index: name_1 dup key: { name: "UpdatedDev zain Workspace Name" }
+Stack: MongoServerError: E11000 duplicate key error collection: node_mvc_auth.workspaces index: name_1 dup key: { name: "UpdatedDev zain Workspace Name" }
+    at UpdateOneOperation.handleOk (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongodb\lib\operations\update.js:70:19)
+    at tryOperation (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongodb\lib\operations\execute_operation.js:214:34)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async executeOperation (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongodb\lib\operations\execute_operation.js:78:16)
+    at async Collection.updateOne (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongodb\lib\collection.js:238:16)
+[2026-04-07T06:32:44.837Z] WARN: PUT /api/workspaces/update - Status: 409 - Time: 786ms
+[2026-04-07T06:32:58.025Z] INFO: PUT /api/workspaces/update - Status: 200 - Time: 691ms
+[2026-04-07T06:34:14.104Z] ERROR: addedUserIds is not defined
+Stack: ReferenceError: addedUserIds is not defined
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\controllers\WorkspaceController.js:101:69
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-07T06:34:14.125Z] WARN: POST /api/workspaces/add-member - Status: 500 - Time: 969ms
+[2026-04-07T06:34:46.457Z] ERROR: Failed to add members to workspace.
+Stack: Error: Failed to add members to workspace.
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\workspace\CheckMembersExistMiddleware.js:71:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-07T06:34:46.470Z] WARN: POST /api/workspaces/add-member - Status: 400 - Time: 772ms
+[2026-04-07T06:35:07.453Z] ERROR: addedUserIds is not defined
+Stack: ReferenceError: addedUserIds is not defined
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\controllers\WorkspaceController.js:101:69
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-07T06:35:07.465Z] WARN: POST /api/workspaces/add-member - Status: 500 - Time: 1178ms
+[2026-04-07T07:03:32.357Z] INFO: POST /api/teams/create - Status: 201 - Time: 775ms
+[2026-04-07T07:03:58.177Z] INFO: GET /api/teams/read - Status: 200 - Time: 466ms
+[2026-04-07T07:04:05.965Z] ERROR: Access denied. Only the workspace creator can manage teams.
+Stack: Error: Access denied. Only the workspace creator can manage teams.
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\team\CheckWorkspaceCreatorTeam.js:16:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-07T07:04:05.977Z] WARN: PUT /api/teams/update - Status: 403 - Time: 738ms
+[2026-04-07T07:04:16.764Z] ERROR: Access denied. Only the workspace creator can manage teams.
+Stack: Error: Access denied. Only the workspace creator can manage teams.
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\team\CheckWorkspaceCreatorTeam.js:16:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-07T07:04:16.777Z] WARN: PUT /api/teams/update - Status: 403 - Time: 685ms
+[2026-04-07T07:06:16.077Z] INFO: POST /api/channels/create - Status: 200 - Time: 1039ms
+[2026-04-07T08:18:09.497Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-07T08:18:09.575Z] WARN: POST /api/messages/create - Status: 401 - Time: 295ms
+[2026-04-07T08:18:29.929Z] INFO: POST /api/auth/login - Status: 200 - Time: 776ms
+[2026-04-07T08:18:58.032Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-07T08:18:58.044Z] WARN: POST /api/messages/create - Status: 401 - Time: 165ms
+[2026-04-07T08:19:35.335Z] INFO: POST /api/messages/create - Status: 201 - Time: 799ms
+[2026-04-07T08:20:19.031Z] INFO: POST /api/messages/read - Status: 200 - Time: 581ms
+[2026-04-07T08:20:30.657Z] INFO: PUT /api/messages/update - Status: 200 - Time: 1010ms
+[2026-04-07T08:22:36.002Z] INFO: POST /api/messages/create - Status: 201 - Time: 1747ms
+[2026-04-07T08:23:15.740Z] ERROR: Expected ',' or '}' after property value in JSON at position 22 (line 2 column 20)
+Stack: SyntaxError: Expected ',' or '}' after property value in JSON at position 22 (line 2 column 20)
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\body-parser\lib\types\json.js:92:19)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:238:16)
+    at done (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+[2026-04-07T08:24:10.081Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2026-04-07T08:24:10.092Z] WARN: POST /api/messages/read - Status: 401 - Time: 158ms
+[2026-04-07T08:24:41.110Z] ERROR: Expected ',' or '}' after property value in JSON at position 21 (line 2 column 19)
+Stack: SyntaxError: Expected ',' or '}' after property value in JSON at position 21 (line 2 column 19)
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\body-parser\lib\types\json.js:92:19)
+    at C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:238:16)
+    at done (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
