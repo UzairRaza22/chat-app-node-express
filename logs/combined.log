@@ -203,96 +203,87 @@ Stack: ValidationError: "members[0]" with value "69cd1164a75020cf47438a1" fails 
 [2026-04-02T12:28:02.709Z] INFO: Outgoing Response: POST /api/auth/signup - Status: 201 - Time: 5051.86ms
 [2026-04-02T12:28:28.715Z] INFO: Incoming Request: POST /api/auth/verify - IP: ::1 - Body: {"token":"*****"}
 [2026-04-02T12:28:29.013Z] INFO: Outgoing Response: POST /api/auth/verify - Status: 200 - Time: 298.36ms
-<<<<<<< HEAD
-[2026-04-03T07:45:07.730Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
-Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
-    at Timeout.<anonymous> (E:\Chat APP\chat-app-node-express\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
-    at listOnTimeout (node:internal/timers:605:17)
-    at process.processTimers (node:internal/timers:541:7)
-[2026-04-03T07:45:07.760Z] WARN: POST /api/workspaces/invite-member - Status: 500 - Time: 10051ms
-[2026-04-03T07:46:15.568Z] ERROR: Invalid or expired token.
+[2026-04-06T13:55:16.139Z] ERROR: Invalid or expired token.
 Stack: Error: Invalid or expired token.
-    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\auth\CheckTokenMiddleware.js:18:21
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-[2026-04-03T07:46:15.591Z] WARN: POST /api/workspaces/invite-member - Status: 401 - Time: 179ms
-[2026-04-03T07:46:26.275Z] INFO: POST /api/auth/login - Status: 200 - Time: 587ms
-[2026-04-03T07:47:30.386Z] INFO: POST /api/workspaces/create - Status: 200 - Time: 636ms
-[2026-04-03T07:47:47.222Z] INFO: POST /api/workspaces/invite-member - Status: 200 - Time: 926ms
-[2026-04-03T07:48:11.445Z] INFO: POST /api/workspaces/invite-member - Status: 200 - Time: 5801ms
-[2026-04-03T07:49:36.531Z] ERROR: Invalid credentials.
-Stack: Error: Invalid credentials.
-    at E:\Chat APP\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:11:21
+[2026-04-06T13:55:16.242Z] WARN: POST /api/teams/add-member - Status: 401 - Time: 272ms
+[2026-04-07T07:19:02.271Z] INFO: MongoDB Connected...
+[2026-04-07T07:19:02.304Z] INFO: Server started on port 5000
+[2026-04-07T07:19:16.120Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\auth\CheckTokenMiddleware.js:18:21
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-[2026-04-03T07:49:36.534Z] WARN: POST /api/auth/login - Status: 400 - Time: 154ms
-[2026-04-03T07:49:59.160Z] INFO: POST /api/auth/signup - Status: 200 - Time: 11248ms
-[2026-04-03T07:50:34.284Z] INFO: POST /api/auth/verify - Status: 200 - Time: 332ms
-[2026-04-03T07:50:52.139Z] INFO: POST /api/auth/login - Status: 200 - Time: 1106ms
-[2026-04-03T07:59:47.644Z] INFO: POST /api/auth/login - Status: 200 - Time: 604ms
-[2026-04-03T08:00:19.933Z] ERROR: Failed to process some invitations.
-Stack: Error: Failed to process some invitations.
-    at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:122:23
+[2026-04-07T07:19:16.311Z] WARN: POST /api/teams/add-member - Status: 401 - Time: 377ms
+[2026-04-07T07:19:53.211Z] INFO: POST /api/auth/login - Status: 200 - Time: 727ms
+[2026-04-07T07:20:25.421Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\auth\CheckTokenMiddleware.js:18:21
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-[2026-04-03T08:00:19.936Z] WARN: POST /api/workspaces/invite-member - Status: 400 - Time: 626ms
-[2026-04-03T08:00:33.665Z] ERROR: Failed to process some invitations.
-Stack: Error: Failed to process some invitations.
-    at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:122:23
+[2026-04-07T07:20:25.432Z] WARN: POST /api/workspaces/create - Status: 401 - Time: 170ms
+[2026-04-07T07:20:42.192Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\auth\CheckTokenMiddleware.js:18:21
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-[2026-04-03T08:00:33.668Z] WARN: POST /api/workspaces/invite-member - Status: 400 - Time: 615ms
-[2026-04-03T08:00:52.315Z] INFO: POST /api/workspaces/invite-member - Status: 200 - Time: 6025ms
-[2026-04-03T08:01:54.365Z] INFO: POST /api/auth/signup - Status: 200 - Time: 3565ms
-[2026-04-03T08:02:21.465Z] INFO: POST /api/auth/verify - Status: 200 - Time: 319ms
-[2026-04-03T08:02:39.900Z] INFO: POST /api/auth/login - Status: 200 - Time: 1033ms
-[2026-04-03T09:45:36.047Z] INFO: POST /api/auth/login - Status: 200 - Time: 621ms
-[2026-04-03T09:45:45.093Z] INFO: POST /api/auth/login - Status: 200 - Time: 557ms
-[2026-04-03T09:46:02.906Z] ERROR: Failed to process some invitations.
-Stack: Error: Failed to process some invitations.
-    at E:\Chat APP\chat-app-node-express\src\middlewares\invitation\CheckInvitationMembersMiddleware.js:131:23
+[2026-04-07T07:20:42.201Z] WARN: POST /api/workspaces/create - Status: 401 - Time: 165ms
+[2026-04-07T07:21:15.098Z] INFO: POST /api/workspaces/create - Status: 200 - Time: 639ms
+[2026-04-07T07:21:53.895Z] INFO: POST /api/teams/create - Status: 201 - Time: 916ms
+[2026-04-07T07:22:39.820Z] ERROR: Access denied. Only the workspace creator can manage teams.
+Stack: Error: Access denied. Only the workspace creator can manage teams.
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\team\CheckWorkspaceCreatorTeam.js:16:21
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-[2026-04-03T09:46:02.909Z] WARN: POST /api/workspaces/invite-member - Status: 400 - Time: 605ms
-[2026-04-03T09:46:25.817Z] INFO: POST /api/workspaces/invite-member - Status: 200 - Time: 6540ms
-[2026-04-03T09:48:13.322Z] INFO: POST /api/auth/signup - Status: 200 - Time: 4575ms
-[2026-04-03T09:48:35.660Z] INFO: POST /api/auth/verify - Status: 200 - Time: 338ms
-[2026-04-03T09:48:55.134Z] INFO: POST /api/auth/login - Status: 200 - Time: 1479ms
-=======
-[2026-04-03T06:51:16.262Z] INFO: POST /api/auth/login - Status: 200 - Time: 2129ms
-[2026-04-03T06:51:54.028Z] ERROR: Channel with this name already exists.
-Stack: Error: Channel with this name already exists.
-    at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelCreateMiddleware.js:79:25
+[2026-04-07T07:22:39.825Z] WARN: POST /api/teams/add-member - Status: 403 - Time: 706ms
+[2026-04-07T07:37:40.078Z] INFO: MongoDB Connected...
+[2026-04-07T07:37:40.117Z] INFO: Server started on port 5000
+[2026-04-07T07:40:18.622Z] INFO: MongoDB Connected...
+[2026-04-07T07:40:18.653Z] INFO: Server started on port 5000
+[2026-04-07T07:40:22.683Z] ERROR: Cannot read properties of undefined (reading 'toString')
+Stack: TypeError: Cannot read properties of undefined (reading 'toString')
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\team\CheckTeamExists.js:23:66
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T07:40:22.779Z] WARN: POST /api/teams/add-member - Status: 500 - Time: 775ms
+[2026-04-07T07:40:50.530Z] INFO: MongoDB Connected...
+[2026-04-07T07:40:50.577Z] INFO: Server started on port 5000
+[2026-04-07T07:41:00.072Z] ERROR: Cannot read properties of undefined (reading 'toString')
+Stack: TypeError: Cannot read properties of undefined (reading 'toString')
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\team\CheckTeamExists.js:23:66
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T07:41:00.163Z] WARN: POST /api/teams/add-member - Status: 500 - Time: 842ms
+[2026-04-07T07:46:07.161Z] ERROR: Cannot read properties of undefined (reading 'toString')
+Stack: TypeError: Cannot read properties of undefined (reading 'toString')
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\team\CheckTeamExists.js:23:66
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T07:46:07.169Z] WARN: POST /api/teams/add-member - Status: 500 - Time: 659ms
+[2026-04-07T07:56:44.959Z] INFO: MongoDB Connected...
+[2026-04-07T07:56:44.991Z] INFO: Server started on port 5000
+[2026-04-07T08:00:30.230Z] INFO: MongoDB Connected...
+[2026-04-07T08:00:30.266Z] INFO: Server started on port 5000
+[2026-04-07T08:00:53.956Z] ERROR: One or more members are not part of the workspace.
+Stack: Error: One or more members are not part of the workspace.
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\team\CheckWorkspaceMemberTeam.js:22:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T08:00:54.680Z] WARN: POST /api/teams/add-member - Status: 400 - Time: 1681ms
+[2026-04-07T08:01:13.850Z] INFO: MongoDB Connected...
+[2026-04-07T08:01:13.880Z] INFO: Server started on port 5000
+[2026-04-07T08:01:58.832Z] ERROR: One or more members are not part of the workspace.
+Stack: Error: One or more members are not part of the workspace.
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\team\CheckWorkspaceMemberTeam.js:22:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T08:01:58.922Z] WARN: POST /api/teams/add-member - Status: 400 - Time: 1018ms
+[2026-04-07T08:03:40.503Z] INFO: POST /api/teams/create - Status: 201 - Time: 824ms
+[2026-04-07T08:04:00.916Z] INFO: POST /api/teams/add-member - Status: 200 - Time: 1209ms
+[2026-04-07T08:04:41.748Z] INFO: PUT /api/teams/update - Status: 200 - Time: 969ms
+[2026-04-07T08:04:58.661Z] INFO: GET /api/teams/read - Status: 200 - Time: 956ms
+[2026-04-07T08:05:47.494Z] ERROR: Members already in team: 69c4e3ddb98704ef693cb668
+Stack: Error: Members already in team: 69c4e3ddb98704ef693cb668
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\team\CheckTeamMemberExists.js:15:21
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\Validate.js:22:19
+    at Layer.handle [as handle_request] (C:\Users\ahsan\Desktop\nodejs-chatapp\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\ahsan\Desktop\nodejs-chatapp\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\team\CheckTeamExists.js:34:5
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
 [2026-04-03T06:51:54.039Z] WARN: POST /api/channels/create - Status: 409 - Time: 907ms
 [2026-04-06T11:37:29.633Z] INFO: MongoDB Connected...
 [2026-04-06T11:37:29.701Z] INFO: Server started on port 5000
 [2026-04-06T11:38:26.619Z] INFO: MongoDB Connected...
 [2026-04-06T11:38:26.647Z] INFO: Server started on port 5000
-[2026-04-06T11:41:51.665Z] INFO: MongoDB Connected...
-[2026-04-06T11:41:51.699Z] INFO: Server started on port 5000
-[2026-04-06T11:46:39.585Z] ERROR: Invalid credentials.
-Stack: Error: Invalid credentials.
-    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckLoginMiddleware.js:16:21
-[2026-04-06T11:46:39.748Z] WARN: POST /api/auth/login - Status: 400 - Time: 525ms
-[2026-04-06T12:32:31.984Z] INFO: MongoDB Connected...
-[2026-04-06T12:32:32.049Z] INFO: Server started on port 5000
-[2026-04-06T13:14:43.738Z] ERROR: Invalid or expired token.
-Stack: Error: Invalid or expired token.
-    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:18:21
-    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-[2026-04-06T13:14:44.042Z] WARN: GET /api/channels/read - Status: 401 - Time: 579ms
-[2026-04-06T13:14:56.288Z] INFO: POST /api/auth/login - Status: 200 - Time: 598ms
-[2026-04-06T13:15:12.255Z] ERROR: "value" must contain at least one of [channel_id, workspace_id]
-Stack: Error: "value" must contain at least one of [channel_id, workspace_id]
-    at C:\xampp\htdocs\node_project\src\middlewares\Validate.js:32:17
-    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
-    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:149:13)
-    at Route.dispatch (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:119:3)
-    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
-    at C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:284:15
-    at router.process_params (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:346:12)
-    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:280:10)
-    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:32:5
-    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-[2026-04-06T13:15:12.262Z] WARN: GET /api/channels/read - Status: 400 - Time: 301ms
-[2026-04-06T13:15:36.523Z] ERROR: Channel not found.
-Stack: Error: Channel not found.
-    at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelExistMiddleware.js:23:25
-    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-[2026-04-06T13:15:36.529Z] WARN: GET /api/channels/read - Status: 404 - Time: 420ms
