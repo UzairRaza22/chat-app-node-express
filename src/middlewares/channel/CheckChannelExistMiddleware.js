@@ -11,7 +11,7 @@ const channelExist = asyncHandler(async (req, res, next) => {
         return next(createError('Invalid request data.', 400));
     }
 
-    const { channel_id, user_id } = data;
+    const { channel_id, user_id, workspace_id } = data;
 
     if (channel_id) {
         if (!mongoose.Types.ObjectId.isValid(channel_id)) {
@@ -34,7 +34,18 @@ const channelExist = asyncHandler(async (req, res, next) => {
         return next();
     }
 
-    return next(createError('channel_id or user_id is required.', 400));
+    if (workspace_id) {
+        if (!mongoose.Types.ObjectId.isValid(workspace_id)) {
+            return next(createError('Invalid workspace ID format.', 400));
+        }
+
+        // Fetching all channels in the workspace
+        const channels = await Channel.find({ workspace_id });
+        req.channels = channels || [];
+        return next();
+    }
+
+    return next(createError('channel_id, workspace_id, or user_id is required.', 400));
 });
 
 module.exports = channelExist;
