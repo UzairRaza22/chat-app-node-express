@@ -15,7 +15,7 @@ const messageRoutes = require("./routes/messageroutes");
 
 const { GlobalResponseHandler } = require("./utils/GlobalResponseHandler");
 const GlobalErrorHandler = require("./utils/GlobalErrorHandler");
-const loggerMiddleware = require("./middlewares/LoggerMiddleware");
+const loggerMiddleware = require("./middlewares/loggermiddleware");
 const eventLoggerMiddleware = require("./middlewares/eventloggermiddleware");
 const { startEventWatcher } = require("./watchers/eventWatcher");
 const sendErrorToWebhook = require("./utils/WebhookService");

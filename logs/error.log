@@ -407,3 +407,26 @@ Stack: Error: "email" must be a valid email
     at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:280:10)
     at Function.handle (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:175:3)
     at router (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:47:12)
+[2026-04-06T11:46:39.585Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckLoginMiddleware.js:16:21
+[2026-04-06T13:14:43.738Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-06T13:15:12.255Z] ERROR: "value" must contain at least one of [channel_id, workspace_id]
+Stack: Error: "value" must contain at least one of [channel_id, workspace_id]
+    at C:\xampp\htdocs\node_project\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:280:10)
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:32:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-06T13:15:36.523Z] ERROR: Channel not found.
+Stack: Error: Channel not found.
+    at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelExistMiddleware.js:23:25
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)

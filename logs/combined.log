@@ -264,3 +264,35 @@ Stack: Error: Channel with this name already exists.
 [2026-04-06T11:37:29.701Z] INFO: Server started on port 5000
 [2026-04-06T11:38:26.619Z] INFO: MongoDB Connected...
 [2026-04-06T11:38:26.647Z] INFO: Server started on port 5000
+[2026-04-06T11:41:51.665Z] INFO: MongoDB Connected...
+[2026-04-06T11:41:51.699Z] INFO: Server started on port 5000
+[2026-04-06T11:46:39.585Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckLoginMiddleware.js:16:21
+[2026-04-06T11:46:39.748Z] WARN: POST /api/auth/login - Status: 400 - Time: 525ms
+[2026-04-06T12:32:31.984Z] INFO: MongoDB Connected...
+[2026-04-06T12:32:32.049Z] INFO: Server started on port 5000
+[2026-04-06T13:14:43.738Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-06T13:14:44.042Z] WARN: GET /api/channels/read - Status: 401 - Time: 579ms
+[2026-04-06T13:14:56.288Z] INFO: POST /api/auth/login - Status: 200 - Time: 598ms
+[2026-04-06T13:15:12.255Z] ERROR: "value" must contain at least one of [channel_id, workspace_id]
+Stack: Error: "value" must contain at least one of [channel_id, workspace_id]
+    at C:\xampp\htdocs\node_project\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:280:10)
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:32:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-06T13:15:12.262Z] WARN: GET /api/channels/read - Status: 400 - Time: 301ms
+[2026-04-06T13:15:36.523Z] ERROR: Channel not found.
+Stack: Error: Channel not found.
+    at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelExistMiddleware.js:23:25
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-06T13:15:36.529Z] WARN: GET /api/channels/read - Status: 404 - Time: 420ms
