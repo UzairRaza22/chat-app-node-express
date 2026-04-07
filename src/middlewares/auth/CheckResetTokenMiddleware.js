@@ -1,6 +1,6 @@
-const User = require('../../models/usermodel');
-const { asyncHandler } = require('../responsehandlermiddleware');
-const AppError = require('../../utils/apperror');
+const User = require('../../models/UserModel');
+const { asyncHandler } = require('../Validate');
+const { createError } = require('../../utils/GlobalResponseHandler.js');
 
 const verifyResetToken = asyncHandler(async (req, res, next) => {
     const { token } = req.body;
@@ -11,7 +11,7 @@ const verifyResetToken = asyncHandler(async (req, res, next) => {
     });
 
     if (!user) {
-        return next(new AppError('Invalid or expired reset token.', 400));
+        return next(createError('Invalid or expired reset token.', 400));
     }
 
     req.user = user;
@@ -19,4 +19,5 @@ const verifyResetToken = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = verifyResetToken;
+
 

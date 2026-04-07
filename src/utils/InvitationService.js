@@ -1,7 +1,8 @@
 const crypto = require('crypto');
-const Invitation = require('../models/invitationmodel');
-const User = require('../models/usermodel');
-const Workspace = require('../models/workspacemodel');
+const Invitation = require('../models/InvitationModel');
+const User = require('../models/UserModel');
+const Workspace = require('../models/WorkspaceModel');
+const logger = require('./Logger');
 
 class InvitationService {
     /**
@@ -31,11 +32,11 @@ class InvitationService {
                 // Check if invitation is expired
                 if (existingInvitation.isExpired()) {
                     // Delete expired invitation and create new one
-                    console.log(`📧 Expired invitation found for ${email}, creating new one`);
+                    logger.info(`📧 Expired invitation found for ${email}, creating new one`);
                     await Invitation.findByIdAndDelete(existingInvitation._id);
                 } else {
                     // Return existing invitation (still valid)
-                    console.log(`📧 Valid invitation already exists for ${email}, returning existing invitation`);
+                    logger.info(`📧 Valid invitation already exists for ${email}, returning existing invitation`);
                     return {
                         success: true,
                         invitation: existingInvitation,

@@ -1,29 +1,9 @@
-const Workspace = require('../models/workspacemodel');
-const WorkspaceResource = require('../resources/workspaceresource');
-const { asyncHandler } = require('../middlewares/responsehandlermiddleware');
+const Workspace = require('../models/WorkspaceModel');
+const WorkspaceResource = require('../resources/WorkspaceResource');
+const { asyncHandler } = require('../middlewares/Validate');
+const { createError } = require('../utils/GlobalResponseHandler.js');
 
-/**
- * @desc    Get all workspaces for the authenticated user
- * @route   GET /api/workspaces
- */
-const readAll = asyncHandler(async (req, res) => {
-    res.success({
-        message: 'Workspaces retrieved successfully.',
-        data: WorkspaceResource.collection(req.userWorkspaces)
-    });
-});
-
-/**
- * @desc    Get a single workspace by ID
- * @route   GET /api/workspaces/:id
- */
-const readOne = asyncHandler(async (req, res) => {
-    res.success({
-        message: 'Workspace retrieved successfully.',
-        data: WorkspaceResource.make(req.workspace)
-    });
-});
-
+const uniqueIds = (arr) => Array.from(new Set((arr || []).map(id => id.toString())));
 /**
  * @desc    Create a new workspace
  * @route   POST /api/workspaces
@@ -37,11 +17,23 @@ const create = asyncHandler(async (req, res) => {
         ownerId: req.user._id,
         members: [req.user._id]
     });
+req.event = {
+        eventName: 'workspace_created',
+        module: 'workspace',
+        operation: 'create',
+        referenceId: workspace._id,
+        userIds: workspace.members,
+        metadata: { workspace: WorkspaceResource.make(workspace) }
+    };
+    res.success('Workspace created successfully.', WorkspaceResource.make(workspace), 201);
+});
 
-    res.success({
-        message: 'Workspace created successfully.',
-        data: WorkspaceResource.make(workspace)
-    }, 201);
+/**
+ * @desc    Get a single workspace or all workspaces
+ * @route   GET /api/workspaces/read
+ */
+const read = asyncHandler(async (req, res) => {
+    res.success(req.responseData);
 });
 
 /**
@@ -53,11 +45,15 @@ const update = asyncHandler(async (req, res) => {
 
     Object.assign(req.workspace, { name, description });
     await req.workspace.save();
-
-    res.success({
-        message: 'Workspace updated successfully.',
-        data: WorkspaceResource.make(req.workspace)
-    });
+req.event = {
+        eventName: 'workspace_updated',
+        module: 'workspace',
+        operation: 'update',
+        referenceId: req.workspace._id,
+        userIds: req.workspace.members,
+        metadata: { workspace: WorkspaceResource.make(req.workspace) }
+    };
+    res.success('Workspace updated successfully.', WorkspaceResource.make(req.workspace));
 });
 
 /**
@@ -67,38 +63,49 @@ const update = asyncHandler(async (req, res) => {
 const deletes = asyncHandler(async (req, res) => {
     await req.workspace.deleteOne();
 
-    res.success({
-        message: 'Workspace deleted successfully.'
-    });
+    req.event = {
+        eventName: 'workspace_deleted',
+        module: 'workspace',
+        operation: 'delete',
+        referenceId: req.workspace._id,
+        userIds: req.workspace.members,
+        metadata: { workspaceId: req.workspace._id.toString() }
+    };
+    res.success('Workspace deleted successfully.');
 });
 
 /**
- * @desc    Add members to a workspace (handles both user IDs and emails)
+ * @desc    Add members to a workspace (only accepts user IDs)
  * @route   POST /api/workspaces/add-member
  */
 const addMember = asyncHandler(async (req, res) => {
-    const { processedResults, emailResults } = req;
+    const { processedResults } = req;
     const workspace = req.workspace;
-
-    // Merge processed results with email results
-    const finalResults = processedResults.map(result => {
-        if (result.status === 'pending_email') {
-            // Find corresponding email result
-            const emailResult = emailResults.find(email => email.member === result.member);
-            return emailResult || result;
-        }
-        return result;
-    });
 
     // Get updated workspace
     const updatedWorkspace = await Workspace.findById(workspace._id);
-
-    res.success({
-        message: 'Member processing completed.',
-        data: {
+    
+    // Extract added user IDs from processed results
+    const addedUserIds = processedResults.map(result => result.userId);
+    
+    //event logging
+req.event = {
+        eventName: 'workspace_member_added',
+        module: 'workspace',
+        operation: 'member_added',
+        referenceId: updatedWorkspace._id,
+        userIds: uniqueIds([...(updatedWorkspace.members || []), ...addedUserIds]),
+        metadata: {
             workspace: WorkspaceResource.make(updatedWorkspace),
-            results: finalResults
+            workspaceId: updatedWorkspace._id.toString(),
+            addedUserIds: addedUserIds.map(id => id.toString()),
+            results: processedResults
         }
+    };
+    // All members added successfully (middleware ensures this)
+    res.success('Members added successfully to workspace.', {
+        workspace: WorkspaceResource.make(updatedWorkspace),
+        results: processedResults
     });
 });
 
@@ -115,19 +122,53 @@ const removeMember = asyncHandler(async (req, res) => {
     );
 
     const updated = await Workspace.findById(req.workspace._id);
-
-    res.success({
-        message: 'Members removed successfully.',
-        data: WorkspaceResource.make(updated)
-    });
+req.event = {
+        eventName: 'workspace_member_removed',
+        module: 'workspace',
+        operation: 'member_removed',
+        referenceId: updated._id,
+        userIds: uniqueIds([...(updated.members || []), ...(members || [])]),
+        metadata: {
+            workspace: WorkspaceResource.make(updated),
+            workspaceId: updated._id.toString(),
+            removedUserIds: (members || []).map(id => id.toString())
+        }
+    };
+    res.success('Members removed successfully.', WorkspaceResource.make(updated));
 });
 
 /**
- * @desc    Get a single workspace or all workspaces
- * @route   GET /api/workspaces/read
+ * @desc    Invite members to a workspace (handles both existing users and invitations)
+ * @route   POST /api/workspaces/invite-member
  */
-const read = asyncHandler(async (req, res) => {
-    res.success(req.responseData);
+const inviteMember = asyncHandler(async (req, res) => {
+    const { processedResults } = req;
+    const workspace = req.workspace;
+
+    // Get updated workspace
+    const updatedWorkspace = await Workspace.findById(workspace._id);
+    
+    // Extract invited user IDs from processed results
+    const invitedUserIds = processedResults.map(result => result.userId || result.member);
+    
+req.event = {
+        eventName: 'workspace_member_invited',
+        module: 'workspace',
+        operation: 'member_invited',
+        referenceId: updatedWorkspace._id,
+        userIds: uniqueIds([...(updatedWorkspace.members || []), ...invitedUserIds]),
+        metadata: {
+            workspace: WorkspaceResource.make(updatedWorkspace),
+            workspaceId: updatedWorkspace._id.toString(),
+            invitedUserIds: invitedUserIds.map(id => id.toString()),
+            results: processedResults
+        }
+    };
+    // All invitations processed successfully (middleware ensures this)
+    res.success('Invitations processed successfully.', {
+        workspace: WorkspaceResource.make(updatedWorkspace),
+        results: processedResults
+    });
 });
 
 module.exports = {
@@ -136,5 +177,6 @@ module.exports = {
     update,
     delete: deletes,
     addMember,
-    removeMember
+    removeMember,
+    inviteMember
 };

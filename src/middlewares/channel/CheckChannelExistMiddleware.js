@@ -1,26 +1,26 @@
 const mongoose = require('mongoose');
-const Channel = require('../../models/channelmodel');
-const { asyncHandler } = require('../responsehandlermiddleware');
-const AppError = require('../../utils/apperror');
+const Channel = require('../../models/ChannelModel');
+const { asyncHandler } = require('../Validate');
+const { createError } = require('../../utils/GlobalResponseHandler.js');
 
 
 const channelExist = asyncHandler(async (req, res, next) => {
     const data = req.validatedData;
 
     if (!data) {
-        return next(new AppError('Invalid request data.', 400));
+        return next(createError('Invalid request data.', 400));
     }
 
     const { channel_id, user_id } = data;
 
     if (channel_id) {
         if (!mongoose.Types.ObjectId.isValid(channel_id)) {
-            return next(new AppError('Invalid channel ID format.', 400));
+            return next(createError('Invalid channel ID format.', 400));
         }
 
         const channel = await Channel.findById(channel_id);
         if (!channel) {
-            return next(new AppError('Channel not found.', 404));
+            return next(createError('Channel not found.', 404));
         }
 
         req.channel = channel;
@@ -34,8 +34,9 @@ const channelExist = asyncHandler(async (req, res, next) => {
         return next();
     }
 
-    return next(new AppError('channel_id or user_id is required.', 400));
+    return next(createError('channel_id or user_id is required.', 400));
 });
 
 module.exports = channelExist;
+
 

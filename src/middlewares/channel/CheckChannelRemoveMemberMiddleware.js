@@ -1,5 +1,5 @@
-const { asyncHandler } = require('../responsehandlermiddleware');
-const AppError = require('../../utils/apperror');
+const { asyncHandler } = require('../Validate');
+const { createError } = require('../../utils/GlobalResponseHandler.js');
 
 
 const channelRemoveMember = asyncHandler(async (req, res, next) => {
@@ -7,15 +7,15 @@ const channelRemoveMember = asyncHandler(async (req, res, next) => {
     const data = req.validatedData;
 
     if (!channel) {
-        return next(new AppError('Channel not found.', 404));
+        return next(createError('Channel not found.', 404));
     }
 
     if (!data || !data.user_id) {
-        return next(new AppError('User ID is required.', 400));
+        return next(createError('User ID is required.', 400));
     }
 
     if (channel.type === 'direct') {
-        return next(new AppError('Cannot remove members from a direct channel.', 400));
+        return next(createError('Cannot remove members from a direct channel.', 400));
     }
 
     const targetUserId = String(data.user_id);
@@ -25,11 +25,11 @@ const channelRemoveMember = asyncHandler(async (req, res, next) => {
     }));
 
     if (!members.some(member => member.user_id === targetUserId)) {
-        return next(new AppError('User is not a member of this channel.', 404));
+        return next(createError('User is not a member of this channel.', 404));
     }
 
     if (String(channel.created_id) === targetUserId) {
-        return next(new AppError('Cannot remove the channel creator.', 403));
+        return next(createError('Cannot remove the channel creator.', 403));
     }
 
     req.members = members.filter(member => member.user_id !== targetUserId);
@@ -37,4 +37,5 @@ const channelRemoveMember = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = channelRemoveMember;
+
 

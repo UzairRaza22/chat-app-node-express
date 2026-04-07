@@ -1,7 +1,7 @@
-const Workspace = require('../../models/workspacemodel');
-const Team = require('../../models/teammodel');
-const { asyncHandler } = require('../responsehandlermiddleware');
-const AppError = require('../../utils/apperror');
+const Workspace = require('../../models/WorkspaceModel');
+const Team = require('../../models/TeamModel');
+const { asyncHandler } = require('../Validate');
+const { createError } = require('../../utils/GlobalResponseHandler.js');
 
 
 const channelAddMember = asyncHandler(async (req, res, next) => {
@@ -11,7 +11,7 @@ const channelAddMember = asyncHandler(async (req, res, next) => {
 
 
     if (channel.type === 'direct') {
-        return next(new AppError('Cannot add members to a direct channel.', 400));
+        return next(createError('Cannot add members to a direct channel.', 400));
     }
 
     const userId = String(user._id);
@@ -20,34 +20,34 @@ const channelAddMember = asyncHandler(async (req, res, next) => {
     const existingMemberIds = channel.members.map(member => String(member.user_id));
 
     if (creatorId === targetUserId) {
-        return next(new AppError('Creator is already part of the channel.', 400));
+        return next(createError('Creator is already part of the channel.', 400));
     }
 
     if (existingMemberIds.includes(targetUserId)) {
-        return next(new AppError('User is already a member of this channel.', 400));
+        return next(createError('User is already a member of this channel.', 400));
     }
 
     // Workspace membership must hold for both the requesting user and the target user
     const workspace = await Workspace.findById(channel.workspace_id);
     if (!workspace) {
-        return next(new AppError('Workspace not found.', 404));
+        return next(createError('Workspace not found.', 404));
     }
 
     const workspaceMemberIds = workspace.members.map(member => String(member));
     if (!workspaceMemberIds.includes(userId) || !workspaceMemberIds.includes(targetUserId)) {
-        return next(new AppError('User is not part of this workspace.', 403));
+        return next(createError('User is not part of this workspace.', 403));
     }
 
     // For public/private channels, target user must also be on the channel team
     if (['public', 'private'].includes(channel.type)) {
         const team = await Team.findById(channel.team_id);
         if (!team) {
-            return next(new AppError('Team not found.', 404));
+            return next(createError('Team not found.', 404));
         }
 
         const teamMemberIds = team.members.map(member => String(member));
         if (!teamMemberIds.includes(userId) || !teamMemberIds.includes(targetUserId)) {
-            return next(new AppError('User is not part of this team.', 403));
+            return next(createError('User is not part of this team.', 403));
         }
     }
 
@@ -60,4 +60,5 @@ const channelAddMember = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = channelAddMember;
+
 
