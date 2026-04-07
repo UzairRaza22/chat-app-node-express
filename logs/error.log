@@ -355,3 +355,14 @@ Stack: SyntaxError: Expected ',' or '}' after property value in JSON at position
     at endReadableNT (node:internal/streams/readable:1698:12)
     at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
 [2026-04-07T11:23:02.295Z] ERROR: MongoDB connection failed: Authentication failed.
+[2026-04-07T11:25:32.489Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-07T11:26:48.532Z] ERROR: MongoDB connection failed: Authentication failed.
+[2026-04-07T11:27:00.444Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)

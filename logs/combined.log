@@ -409,3 +409,18 @@ Stack: SyntaxError: Expected ',' or '}' after property value in JSON at position
 [2026-04-07T11:23:02.295Z] ERROR: MongoDB connection failed: Authentication failed.
 [2026-04-07T11:23:02.306Z] WARN: Continuing without database connection.
 [2026-04-07T11:23:02.313Z] INFO: Server started on port 5000
+[2026-04-07T11:25:32.489Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-07T11:25:32.684Z] WARN: POST /api/workspaces/add-member - Status: 500 - Time: 10215ms
+[2026-04-07T11:26:48.532Z] ERROR: MongoDB connection failed: Authentication failed.
+[2026-04-07T11:26:48.540Z] WARN: Continuing without database connection.
+[2026-04-07T11:26:48.545Z] INFO: Server started on port 5000
+[2026-04-07T11:27:00.444Z] ERROR: Operation `tokens.findOne()` buffering timed out after 10000ms
+Stack: MongooseError: Operation `tokens.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-04-07T11:27:00.637Z] WARN: POST /api/workspaces/add-member - Status: 500 - Time: 10205ms
