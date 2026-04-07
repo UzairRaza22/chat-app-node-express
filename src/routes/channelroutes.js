@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const channelController = require('../controllers/ChannelController');
-const { validate } = require('../middlewares/Validate');
+const { validate, validateQuery } = require('../middlewares/Validate');
 const auth = require('../middlewares/auth/CheckTokenMiddleware');
 
 const channelExist = require('../middlewares/channel/CheckChannelExistMiddleware');

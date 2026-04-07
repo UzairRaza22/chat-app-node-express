@@ -270,3 +270,139 @@ Stack: Error: "email" must be a valid email
     at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:280:10)
     at Function.handle (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:175:3)
     at router (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:47:12)
+[2026-04-07T08:21:31.147Z] ERROR: User is not part of this workspace.
+Stack: Error: User is not part of this workspace.
+    at C:\xampp\htdocs\node_project\src\middlewares\channel\MemberCheckMiddleware.js:31:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T08:23:10.581Z] ERROR: User is not part of this workspace.
+Stack: Error: User is not part of this workspace.
+    at C:\xampp\htdocs\node_project\src\middlewares\channel\MemberCheckMiddleware.js:31:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:16:50.396Z] ERROR: User is not part of this team.
+Stack: Error: User is not part of this team.
+    at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelAddMemberMiddleware.js:50:25
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:26:01.106Z] ERROR: "name" is required
+Stack: Error: "name" is required
+    at C:\xampp\htdocs\node_project\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:280:10)
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:32:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:26:26.504Z] ERROR: Expected ',' or '}' after property value in JSON at position 123 (line 4 column 21)
+Stack: SyntaxError: Expected ',' or '}' after property value in JSON at position 123 (line 4 column 21)
+    at JSON.parse (<anonymous>)
+    at parse (C:\xampp\htdocs\node_project\node_modules\express\node_modules\body-parser\lib\types\json.js:92:19)
+    at C:\xampp\htdocs\node_project\node_modules\express\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+    at invokeCallback (C:\xampp\htdocs\node_project\node_modules\express\node_modules\raw-body\index.js:238:16)
+    at done (C:\xampp\htdocs\node_project\node_modules\express\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\xampp\htdocs\node_project\node_modules\express\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:508:28)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+[2026-04-07T10:26:49.734Z] ERROR: "direct_user_id" is not allowed
+Stack: Error: "direct_user_id" is not allowed
+    at C:\xampp\htdocs\node_project\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:280:10)
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:32:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:27:12.799Z] ERROR: "direct_user_id" is not allowed
+Stack: Error: "direct_user_id" is not allowed
+    at C:\xampp\htdocs\node_project\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:280:10)
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:32:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:27:20.630Z] ERROR: "name" is required
+Stack: Error: "name" is required
+    at C:\xampp\htdocs\node_project\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:280:10)
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:32:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:48:33.839Z] ERROR: "value" must contain at least one of [channel_id, workspace_id]
+Stack: Error: "value" must contain at least one of [channel_id, workspace_id]
+    at C:\xampp\htdocs\node_project\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:280:10)
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:32:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:51:00.472Z] ERROR: Team does not belong to this workspace.
+Stack: Error: Team does not belong to this workspace.
+    at C:\xampp\htdocs\node_project\src\middlewares\channel\MemberCheckMiddleware.js:52:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:51:30.863Z] ERROR: "workspace_id" is required
+Stack: Error: "workspace_id" is required
+    at C:\xampp\htdocs\node_project\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:280:10)
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:32:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:58:44.876Z] ERROR: "value" must contain at least one of [channel_id, workspace_id]
+Stack: Error: "value" must contain at least one of [channel_id, workspace_id]
+    at C:\xampp\htdocs\node_project\src\middlewares\Validate.js:46:17
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:280:10)
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:32:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:59:06.358Z] ERROR: "value" must contain at least one of [channel_id, workspace_id]
+Stack: Error: "value" must contain at least one of [channel_id, workspace_id]
+    at C:\xampp\htdocs\node_project\src\middlewares\Validate.js:46:17
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:280:10)
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:32:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T11:00:58.628Z] ERROR: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+Stack: SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+    at JSON.parse (<anonymous>)
+    at parse (C:\xampp\htdocs\node_project\node_modules\express\node_modules\body-parser\lib\types\json.js:92:19)
+    at C:\xampp\htdocs\node_project\node_modules\express\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+    at invokeCallback (C:\xampp\htdocs\node_project\node_modules\express\node_modules\raw-body\index.js:238:16)
+    at done (C:\xampp\htdocs\node_project\node_modules\express\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\xampp\htdocs\node_project\node_modules\express\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:508:28)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
