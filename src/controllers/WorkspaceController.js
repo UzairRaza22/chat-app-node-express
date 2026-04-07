@@ -25,10 +25,7 @@ req.event = {
         userIds: workspace.members,
         metadata: { workspace: WorkspaceResource.make(workspace) }
     };
-    res.success({
-        message: 'Workspace created successfully.',
-        data: WorkspaceResource.make(workspace)
-    }, 201);
+    res.success('Workspace created successfully.', WorkspaceResource.make(workspace), 201);
 });
 
 /**
@@ -56,10 +53,7 @@ req.event = {
         userIds: req.workspace.members,
         metadata: { workspace: WorkspaceResource.make(req.workspace) }
     };
-    res.success({
-        message: 'Workspace updated successfully.',
-        data: WorkspaceResource.make(req.workspace)
-    });
+    res.success('Workspace updated successfully.', WorkspaceResource.make(req.workspace));
 });
 
 /**
@@ -77,9 +71,7 @@ const deletes = asyncHandler(async (req, res) => {
         userIds: req.workspace.members,
         metadata: { workspaceId: req.workspace._id.toString() }
     };
-    res.success({
-        message: 'Workspace deleted successfully.'
-    });
+    res.success('Workspace deleted successfully.');
 });
 
 /**
@@ -92,6 +84,10 @@ const addMember = asyncHandler(async (req, res) => {
 
     // Get updated workspace
     const updatedWorkspace = await Workspace.findById(workspace._id);
+    
+    // Extract added user IDs from processed results
+    const addedUserIds = processedResults.map(result => result.userId);
+    
     //event logging
 req.event = {
         eventName: 'workspace_member_added',
@@ -103,16 +99,13 @@ req.event = {
             workspace: WorkspaceResource.make(updatedWorkspace),
             workspaceId: updatedWorkspace._id.toString(),
             addedUserIds: addedUserIds.map(id => id.toString()),
-            results: finalResults
+            results: processedResults
         }
     };
     // All members added successfully (middleware ensures this)
-    res.success({
-        message: 'Members added successfully to workspace.',
-        data: {
-            workspace: WorkspaceResource.make(updatedWorkspace),
-            results: processedResults
-        }
+    res.success('Members added successfully to workspace.', {
+        workspace: WorkspaceResource.make(updatedWorkspace),
+        results: processedResults
     });
 });
 
@@ -141,10 +134,7 @@ req.event = {
             removedUserIds: (members || []).map(id => id.toString())
         }
     };
-    res.success({
-        message: 'Members removed successfully.',
-        data: WorkspaceResource.make(updated)
-    });
+    res.success('Members removed successfully.', WorkspaceResource.make(updated));
 });
 
 /**
@@ -157,6 +147,10 @@ const inviteMember = asyncHandler(async (req, res) => {
 
     // Get updated workspace
     const updatedWorkspace = await Workspace.findById(workspace._id);
+    
+    // Extract invited user IDs from processed results
+    const invitedUserIds = processedResults.map(result => result.userId || result.member);
+    
 req.event = {
         eventName: 'workspace_member_invited',
         module: 'workspace',
@@ -171,12 +165,9 @@ req.event = {
         }
     };
     // All invitations processed successfully (middleware ensures this)
-    res.success({
-        message: 'Invitations processed successfully.',
-        data: {
-            workspace: WorkspaceResource.make(updatedWorkspace),
-            results: processedResults
-        }
+    res.success('Invitations processed successfully.', {
+        workspace: WorkspaceResource.make(updatedWorkspace),
+        results: processedResults
     });
 });
 

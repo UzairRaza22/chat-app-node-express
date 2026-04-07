@@ -270,6 +270,7 @@ Stack: Error: "email" must be a valid email
     at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:280:10)
     at Function.handle (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:175:3)
     at router (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:47:12)
+<<<<<<< HEAD
 [2026-04-07T10:27:47.515Z] ERROR: Invalid or expired token.
 Stack: Error: Invalid or expired token.
     at C:\Users\ahsan\Desktop\nodejs-chatapp\src\middlewares\auth\CheckTokenMiddleware.js:18:21
@@ -289,4 +290,36 @@ Stack: Error: User is not part of this workspace.
 [2026-04-07T11:00:22.216Z] ERROR: addedUserIds is not defined
 Stack: ReferenceError: addedUserIds is not defined
     at C:\Users\ahsan\Desktop\nodejs-chatapp\src\controllers\WorkspaceController.js:101:69
+=======
+[2026-04-07T10:37:50.287Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at E:\NodeJs\chat-app-node-express\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:40:15.663Z] ERROR: addedUserIds is not defined
+Stack: ReferenceError: addedUserIds is not defined
+    at E:\NodeJs\chat-app-node-express\src\controllers\WorkspaceController.js:101:69
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:41:48.470Z] ERROR: Failed to add members to workspace.
+Stack: Error: Failed to add members to workspace.
+    at E:\NodeJs\chat-app-node-express\src\middlewares\workspace\CheckMembersExistMiddleware.js:71:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:46:44.680Z] ERROR: Failed to add members to workspace.
+Stack: Error: Failed to add members to workspace.
+    at E:\NodeJs\chat-app-node-express\src\middlewares\workspace\CheckMembersExistMiddleware.js:71:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:47:22.979Z] ERROR: Failed to add members to workspace.
+Stack: Error: Failed to add members to workspace.
+    at E:\NodeJs\chat-app-node-express\src\middlewares\workspace\CheckMembersExistMiddleware.js:71:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:48:39.945Z] ERROR: "members[0]" must be a valid email
+Stack: Error: "members[0]" must be a valid email
+    at E:\NodeJs\chat-app-node-express\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (E:\NodeJs\chat-app-node-express\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\NodeJs\chat-app-node-express\node_modules\express\lib\router\route.js:149:13)
+    at E:\NodeJs\chat-app-node-express\src\middlewares\auth\CheckTokenMiddleware.js:32:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T10:52:25.768Z] ERROR: Invalid credentials.
+Stack: Error: Invalid credentials.
+    at E:\NodeJs\chat-app-node-express\src\middlewares\auth\CheckLoginMiddleware.js:11:21
+>>>>>>> 0f3cd7e844da48891a6bb7ae591edc4875f358be
     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
