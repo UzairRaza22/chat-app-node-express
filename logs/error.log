@@ -270,3 +270,31 @@ Stack: Error: "email" must be a valid email
     at next (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:280:10)
     at Function.handle (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:175:3)
     at router (C:\Users\DELL\Desktop\Chat_App_Node_Messages - Copy - Copy\node_modules\express\lib\router\index.js:47:12)
+[2026-04-07T13:49:09.092Z] ERROR: "confirmPassword" is not allowed
+Stack: Error: "confirmPassword" is not allowed
+    at C:\xampp\htdocs\node_project\src\middlewares\Validate.js:32:17
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\xampp\htdocs\node_project\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\xampp\htdocs\node_project\node_modules\express\lib\router\layer.js:95:5)
+    at C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:280:10)
+    at router.handle (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\xampp\htdocs\node_project\node_modules\express\lib\router\index.js:47:12)
+[2026-04-07T13:49:15.602Z] ERROR: User already exists.
+Stack: Error: User already exists.
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckExistingUserMiddleware.js:10:25
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T13:49:34.264Z] ERROR: User already exists.
+Stack: Error: User already exists.
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckExistingUserMiddleware.js:10:25
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T14:20:49.862Z] ERROR: Invalid or expired token.
+Stack: Error: Invalid or expired token.
+    at C:\xampp\htdocs\node_project\src\middlewares\auth\CheckTokenMiddleware.js:18:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[2026-04-07T14:26:05.200Z] ERROR: Channel with this name already exists.
+Stack: Error: Channel with this name already exists.
+    at C:\xampp\htdocs\node_project\src\middlewares\channel\CheckChannelCreateMiddleware.js:83:25
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)

@@ -65,6 +65,7 @@ class Logger {
       ip: data.ip,
       user_id: data.user_id || null,
       request_body: data.request_body,
+      response_body: data.response_body,
       response_time: data.response_time,
       created_at: data.created_at || Date.now()
     };

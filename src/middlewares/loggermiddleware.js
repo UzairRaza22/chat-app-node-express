@@ -45,13 +45,28 @@ const loggerMiddleware = (req, res, next) => {
   const { method, url, ip, body } = req;
   const startTime = process.hrtime();
 
+  // Intercept res.send to capture response body
+  const originalSend = res.send;
+  res.send = function (content) {
+    if (content) {
+      try {
+        // Try to parse if it's a JSON string
+        res.rawResponseBody = typeof content === 'string' ? JSON.parse(content) : content;
+      } catch (e) {
+        res.rawResponseBody = content;
+      }
+    }
+    return originalSend.apply(res, arguments);
+  };
+
   // Log Outgoing Response (and request data) on Finish
   res.on('finish', () => {
     const diff = process.hrtime(startTime);
     const responseTimeMs = Math.round(diff[0] * 1e3 + diff[1] * 1e-6); // Structured response_time as number
     const { statusCode } = res;
     
-    const sanitizedBody = sanitize(body);
+    const sanitizedRequestBody = sanitize(body);
+    const sanitizedResponseBody = sanitize(res.rawResponseBody);
 
     const logData = {
       message: `${method} ${url} - Status: ${statusCode} - Time: ${responseTimeMs}ms`,
@@ -60,7 +75,8 @@ const loggerMiddleware = (req, res, next) => {
       status: statusCode,
       ip,
       user_id: req.user ? req.user._id : null,
-      request_body: sanitizedBody,
+      request_body: sanitizedRequestBody,
+      response_body: sanitizedResponseBody,
       response_time: responseTimeMs
     };
 

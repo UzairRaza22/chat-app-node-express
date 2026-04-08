@@ -30,6 +30,9 @@ const activityLogSchema = new mongoose.Schema({
     request_body: {
         type: Object
     },
+    response_body: {
+        type: Object
+    },
     response_time: {
         type: Number
     },
